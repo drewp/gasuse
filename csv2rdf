@@ -3,16 +3,33 @@
 import csv
 from itertools import islice
 import optparse
+from rdflib import Graph
+from rdflib import URIRef, Literal, BNode, Namespace
+from rdflib import RDF
+
+GAS=Namespace("http://bigasterisk.com/gasuse/")
+
+def addStation(store, label, addr):
+    if store.value(
 
 parser = optparse.OptionParser(usage="""%prog input.csv
 First row will be treated as headers.""")
 parser.add_option("--headerns",help="namespace for headers")
 opts, args = parser.parse_args()
+if len(args)<1:
+    parser.error("You need a file")
 
+store = Graph()
 dialect = csv.Sniffer().sniff("\n".join(list(islice(open(args[0]), 10))))
 
 reader = csv.reader(open(args[0]), dialect)
 headers = reader.next()
 for row in reader:
-    print dict(zip(headers, row))
+    record = dict(zip(headers, [unicode(f,"latin") for f in row]))
 
+    if record["gallons (+adj)"] == "":
+        continue
+
+    addStation(store, record["station"], record["addr"])
+
+store.save("gas.rdf", format="pretty-xml")    
