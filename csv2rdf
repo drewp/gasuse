@@ -28,6 +28,7 @@ def newURI(store, base):
     return URIRef("%s%s" % (base, suffix))
 
 def addStation(store, shortName, shortAddress):
+    # should be sparql
     matchname = list(store.subjects(GAS['shortName'], Literal(shortName)))
     matchaddr = list(store.subjects(GAS['shortAddress'],Literal(shortAddress)))
     station = None
@@ -42,13 +43,12 @@ def addStation(store, shortName, shortAddress):
         return station
 
     station = newURI(store, GAS['station/' + shortName.replace(' ','')])
-    store.add((station, GAS['shortName'], Literal(shortName)))
-    store.add((station, GAS['shortAddress'], Literal(shortAddress)))
-    store.add((station, RDFS.label,
-               Literal("%s at %s" % (shortName, shortAddress))))
-    return station
-
-    
+    for p,o in [
+        (GAS['shortName'], Literal(shortName)),
+        (GAS['shortAddress'], Literal(shortAddress)),
+        (RDFS.label, Literal("%s at %s" % (shortName, shortAddress)))]:
+        store.add((station, p, o))
+    return station    
 
 parser = optparse.OptionParser(usage="""%prog input.csv
 First row will be treated as headers.""")
@@ -63,23 +63,21 @@ dialect = csv.Sniffer().sniff("\n".join(list(islice(open(args[0]), 10))))
 reader = csv.reader(open(args[0]), dialect)
 headers = reader.next()
 for row in reader:
-    record = dict(zip(headers, [unicode(f,"latin") for f in row]))
+    record = dict(zip(headers, [unicode(f, "latin") for f in row]))
 
     if record["gallons (+adj)"] == "":
         continue
 
+    time = Literal("%s-%s-%s" % (record["date"][6:10], record["date"][:2],
+                                 record["date"][3:5]))
+
     station = addStation(store, record["station"], record["addr"])
 
-    time = Literal("%s-%s-%s" % (record["date"][6:10],
-                                 record["date"][:2],
-                                 record["date"][3:5]))
-    
     gasPrice = BNode()
     for p, o in [ 
         (GAS['time'], time),
-        (GAS['pricePerGallon'],
-         Literal(record["price gal"], datatype=DOLLAR)),
-        (GAS['gasStation'], station)
+        (GAS['pricePerGallon'], Literal(record["price gal"], datatype=DOLLAR)),
+        (GAS['gasStation'], station),
         ]:
         store.add((gasPrice, p, o))
     
@@ -100,4 +98,4 @@ for row in reader:
             continue
         store.add((fillUp, p, o))
 
-store.save("gas.rdf", format="pretty-xml")    
+store.save("gas.rdf", format="pretty-xml")
