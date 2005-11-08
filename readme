@@ -1,0 +1,35 @@
+non-calculated fields
+"date"  
+"station"       
+"addr"  
+"price gal"     
+"gallons (+adj)"        
+"miles (+adjs)" 
+"fee"   
+"notes" 
+"mileage" 
+
+
+gasStation:
+  shortAddress
+  shortName
+  (->gasCompany)
+
+gasPrice: 
+  time
+  grade
+  pricePerGallon
+  ->gasStation
+
+fillUp:
+  time (dc? event?)
+  ->gasStation
+  notes
+  ->gasPrice
+  gallons
+  fee
+  tripMeter
+  odometer
+  ->car
+
+    

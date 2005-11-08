@@ -5,12 +5,50 @@ from itertools import islice
 import optparse
 from rdflib import Graph
 from rdflib import URIRef, Literal, BNode, Namespace
-from rdflib import RDF
+from rdflib import RDF, RDFS
 
-GAS=Namespace("http://bigasterisk.com/gasuse/")
+GAS = Namespace("http://bigasterisk.com/gasuse/")
 
-def addStation(store, label, addr):
-    if store.value(
+# should be standard datatypes:
+DOLLAR = "dollar"
+MILE = "mile"
+GALLON = "gallon"
+
+def newURI(store, base):
+    """find an unused uri with a name like base1 base2, etc"""
+    suffix = ""
+    while 1:
+        uri = URIRef("%s%s" % (base, suffix))
+        if not list(store.predicate_objects(uri)):
+            break
+        if suffix == "":
+            suffix = 1
+        else:
+            suffix = suffix + 1
+    return URIRef("%s%s" % (base, suffix))
+
+def addStation(store, shortName, shortAddress):
+    matchname = list(store.subjects(GAS['shortName'], Literal(shortName)))
+    matchaddr = list(store.subjects(GAS['shortAddress'],Literal(shortAddress)))
+    station = None
+    for s in matchname:
+        if s in matchaddr:
+            if station is not None:
+                raise ValueError(
+                    "found multiple stations with same name and address")
+            station = s
+    
+    if station is not None:
+        return station
+
+    station = newURI(store, GAS['station/' + shortName.replace(' ','')])
+    store.add((station, GAS['shortName'], Literal(shortName)))
+    store.add((station, GAS['shortAddress'], Literal(shortAddress)))
+    store.add((station, RDFS.label,
+               Literal("%s at %s" % (shortName, shortAddress))))
+    return station
+
+    
 
 parser = optparse.OptionParser(usage="""%prog input.csv
 First row will be treated as headers.""")
@@ -30,6 +68,36 @@ for row in reader:
     if record["gallons (+adj)"] == "":
         continue
 
-    addStation(store, record["station"], record["addr"])
+    station = addStation(store, record["station"], record["addr"])
+
+    time = Literal("%s-%s-%s" % (record["date"][6:10],
+                                 record["date"][:2],
+                                 record["date"][3:5]))
+    
+    gasPrice = BNode()
+    for p, o in [ 
+        (GAS['time'], time),
+        (GAS['pricePerGallon'],
+         Literal(record["price gal"], datatype=DOLLAR)),
+        (GAS['gasStation'], station)
+        ]:
+        store.add((gasPrice, p, o))
+    
+    fillUp = BNode()
+    for p,o in [
+        (RDFS.Class, GAS['fillUp']),
+        (GAS['time'], time),
+        (GAS['notes'], Literal(record["notes"])),
+        (GAS['gallons'], Literal(record["gallons (+adj)"], datatype=GALLON)),
+        (GAS['fee'], Literal(record["fee"], datatype=DOLLAR)),
+        (GAS['tripMeter'], Literal(record["miles (+adjs)"], datatype=MILE)),
+        (GAS['odometer'], Literal(record["mileage"], datatype=MILE)),
+        (GAS['gasStation'], station),
+        (GAS['gasPrice'], gasPrice),
+        (GAS['car'], GAS['car/drewHonda']),
+        ]:
+        if isinstance(o, basestring) and o == "":
+            continue
+        store.add((fillUp, p, o))
 
 store.save("gas.rdf", format="pretty-xml")    
