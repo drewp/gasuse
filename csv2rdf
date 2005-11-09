@@ -3,16 +3,19 @@
 import csv
 from itertools import islice
 import optparse
-from rdflib import Graph
+from rdflib.sparql.sparqlGraph import SPARQLGraph as Graph
+from rdflib.sparql import GraphPattern
 from rdflib import URIRef, Literal, BNode, Namespace
 from rdflib import RDF, RDFS
 
+DC = Namespace("http://purl.org/dc/elements/1.1/")
+DATE = URIRef("http://www.w3.org/2001/XMLSchema#date")
 GAS = Namespace("http://bigasterisk.com/gasuse/")
 
-# should be standard datatypes:
-DOLLAR = "dollar"
-MILE = "mile"
-GALLON = "gallon"
+# should be standard datatypes, but I can't find any
+DOLLAR = GAS["type/dollar"]
+MILE = GAS["type/mile"]
+GALLON = GAS["type/gallon"]
 
 def newURI(store, base):
     """find an unused uri with a name like base1 base2, etc"""
@@ -29,19 +32,16 @@ def newURI(store, base):
 
 def addStation(store, shortName, shortAddress):
     # should be sparql
-    matchname = list(store.subjects(GAS['shortName'], Literal(shortName)))
-    matchaddr = list(store.subjects(GAS['shortAddress'],Literal(shortAddress)))
-    station = None
-    for s in matchname:
-        if s in matchaddr:
-            if station is not None:
-                raise ValueError(
-                    "found multiple stations with same name and address")
-            station = s
-    
-    if station is not None:
-        return station
 
+    results = store.query("?station", GraphPattern([
+        ("?station", GAS['shortName'], Literal(shortName)),
+        ("?station", GAS['shortAddress'], Literal(shortAddress))]))
+
+    if len(results) > 1:
+        raise ValueError("found multiple stations with same name and address")
+    if len(results) == 1:
+        return results[0]
+        
     station = newURI(store, GAS['station/' + shortName.replace(' ','')])
     for p,o in [
         (GAS['shortName'], Literal(shortName)),
@@ -52,7 +52,6 @@ def addStation(store, shortName, shortAddress):
 
 parser = optparse.OptionParser(usage="""%prog input.csv
 First row will be treated as headers.""")
-parser.add_option("--headerns",help="namespace for headers")
 opts, args = parser.parse_args()
 if len(args)<1:
     parser.error("You need a file")
@@ -68,14 +67,15 @@ for row in reader:
     if record["gallons (+adj)"] == "":
         continue
 
-    time = Literal("%s-%s-%s" % (record["date"][6:10], record["date"][:2],
-                                 record["date"][3:5]))
+    date = Literal("%s-%s-%s" % (record["date"][6:10], record["date"][:2],
+                                 record["date"][3:5]),
+                   datatype=DATE)
 
     station = addStation(store, record["station"], record["addr"])
 
     gasPrice = BNode()
     for p, o in [ 
-        (GAS['time'], time),
+        (DC['date'], date),
         (GAS['pricePerGallon'], Literal(record["price gal"], datatype=DOLLAR)),
         (GAS['gasStation'], station),
         ]:
@@ -84,7 +84,7 @@ for row in reader:
     fillUp = BNode()
     for p,o in [
         (RDFS.Class, GAS['fillUp']),
-        (GAS['time'], time),
+        (DC['date'], date),
         (GAS['notes'], Literal(record["notes"])),
         (GAS['gallons'], Literal(record["gallons (+adj)"], datatype=GALLON)),
         (GAS['fee'], Literal(record["fee"], datatype=DOLLAR)),
