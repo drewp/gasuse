@@ -1,0 +1,21 @@
+#!/usr/bin/python
+
+import optparse
+from rdflib.sparql.sparqlGraph import SPARQLGraph as Graph
+from rdflib.sparql import GraphPattern
+from rdflib import URIRef, Literal, BNode, Namespace
+from rdflib import RDF, RDFS
+
+DC = Namespace("http://purl.org/dc/elements/1.1/")
+DATE = URIRef("http://www.w3.org/2001/XMLSchema#date")
+GAS = Namespace("http://bigasterisk.com/gasuse/")
+
+store = Graph()
+store.open("gas.rdf")
+
+for result in store:#.subjects(#query("?station",
+                          #GraphPattern([
+    #("?station",
+#    RDFS.Class, GAS['station']):
+#    ])):
+    print result

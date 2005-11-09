@@ -31,8 +31,6 @@ def newURI(store, base):
     return URIRef("%s%s" % (base, suffix))
 
 def addStation(store, shortName, shortAddress):
-    # should be sparql
-
     results = store.query("?station", GraphPattern([
         ("?station", GAS['shortName'], Literal(shortName)),
         ("?station", GAS['shortAddress'], Literal(shortAddress))]))
@@ -44,6 +42,7 @@ def addStation(store, shortName, shortAddress):
         
     station = newURI(store, GAS['station/' + shortName.replace(' ','')])
     for p,o in [
+        (RDFS.Class, GAS['station']),
         (GAS['shortName'], Literal(shortName)),
         (GAS['shortAddress'], Literal(shortAddress)),
         (RDFS.label, Literal("%s at %s" % (shortName, shortAddress)))]:
@@ -67,9 +66,9 @@ for row in reader:
     if record["gallons (+adj)"] == "":
         continue
 
-    date = Literal("%s-%s-%s" % (record["date"][6:10], record["date"][:2],
-                                 record["date"][3:5]),
-                   datatype=DATE)
+    date = Literal("%s-%s-%s" % (record["date"][6:10],
+                                 record["date"][:2],
+                                 record["date"][3:5]), datatype=DATE)
 
     station = addStation(store, record["station"], record["addr"])
 
