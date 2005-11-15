@@ -3,19 +3,26 @@
 import optparse
 from rdflib.sparql.sparqlGraph import SPARQLGraph as Graph
 from rdflib.sparql import GraphPattern
-from rdflib import URIRef, Literal, BNode, Namespace
+from rdflib import URIRef, Literal, BNode, Namespace, FileInputSource
 from rdflib import RDF, RDFS
 
-DC = Namespace("http://purl.org/dc/elements/1.1/")
-DATE = URIRef("http://www.w3.org/2001/XMLSchema#date")
-GAS = Namespace("http://bigasterisk.com/gasuse/")
+from gasuse import DC, DATE, GAS, DOLLAR, MILE, GALLON
 
 store = Graph()
-store.open("gas.rdf")
+store.parse(FileInputSource(open("gas.rdf")))
 
-for result in store:#.subjects(#query("?station",
-                          #GraphPattern([
-    #("?station",
-#    RDFS.Class, GAS['station']):
-#    ])):
-    print result
+knownNames = store.query("?shortName",
+                         GraphPattern([
+    ("?station", RDFS.Class, GAS['station']),
+    ("?station", GAS['shortName'], "?shortName"),
+    ("?station", GAS['shortAddress'], "?shortAddress"),
+    ]))
+
+print "known stations:",
+for name in knownNames:
+    res = store.query("?station",
+                      GraphPattern([("?station", GAS['shortName'], name)]))
+    print "%s (%d)," % (name, len(res)),
+print
+
+#print "%d known stations: %s" % (len(knownStations), 
