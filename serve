@@ -14,9 +14,34 @@ class MainPage(rend.Page):
     def render_car(self, ctx, data):
         return car
     def data_fillUps(self, ctx, data):
-        return [1,2]
+        return [f for d,f in mpg.fillUps(graph, car)]
     def render_row(self, ctx, item):
-        return ctx
+        for p in [
+"http://purl.org/dc/elements/1.1/date",
+"http://bigasterisk.com/2005/11/gasuse/gallons" ,
+"http://bigasterisk.com/2005/11/gasuse/gasPrice" ,
+"http://bigasterisk.com/2005/11/gasuse/gasStation" ,
+"http://bigasterisk.com/2005/11/gasuse/tripMeter" ,
+"http://bigasterisk.com/2005/11/gasuse/milesOnThisTank" ,
+"http://bigasterisk.com/2005/11/gasuse/mpgOnThisTank" ,
+"http://bigasterisk.com/2005/11/gasuse/notes" ,
+"http://bigasterisk.com/2005/11/gasuse/odometer" ,
+"coloredMpg", ]:
+            ctx.fillSlots(p, "")
+ 
+        for p,o in graph.predicate_objects(item):
+            ctx.fillSlots(p, str(o))
+
+        if graph.value(item, "http://bigasterisk.com/2005/11/gasuse/mpgOnThisTank") is not None:
+            m = float(graph.value(item, "http://bigasterisk.com/2005/11/gasuse/mpgOnThisTank"))
+            bright = max(0, min(255, m / 35 * 255))
+            ctx.fillSlots("coloredMpg",
+                          T.td(bgcolor="#%02X%02X%02X" % (50,
+                                                          bright,
+                                                          50))[str(m)])
+        
+            
+        return ctx.tag
 
 graph = Graph()
 graph.parse(FileInputSource(open("gas.rdf")))

@@ -1,9 +1,22 @@
-<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xmlns:n="http://nevow.com/ns/nevow/0.1">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" 
+      xmlns:n="http://nevow.com/ns/nevow/0.1"
+      xmlns:nevow="http://nevow.com/ns/nevow/0.1">
 <body>
 <p>Car: <div n:render="car"/></p>
 Fillups:
-<table n:data="fillUps" n:render="sequence">
-  <tr n:pattern="item" n:render="row"><td>dataq</td></tr>
+<table n:data="fillUps" n:render="sequence" border="1">
+  <tr n:pattern="item" n:render="row">
+ <td><nevow:slot name="http://purl.org/dc/elements/1.1/date" /></td>
+ <td><nevow:slot name="http://bigasterisk.com/2005/11/gasuse/gallons" /></td>
+ <td><nevow:slot name="http://bigasterisk.com/2005/11/gasuse/gasPrice" /></td>
+ <td><nevow:slot name="http://bigasterisk.com/2005/11/gasuse/gasStation" /></td>
+ <td><nevow:slot name="http://bigasterisk.com/2005/11/gasuse/tripMeter" /></td>
+ <td><nevow:slot name="http://bigasterisk.com/2005/11/gasuse/milesOnThisTank" /></td>
+ <nevow:slot name="coloredMpg" />
+ <td><nevow:slot name="http://bigasterisk.com/2005/11/gasuse/notes" /></td>
+ <td><nevow:slot name="http://bigasterisk.com/2005/11/gasuse/odometer" /></td>
+ 
+  </tr>
 </table>
 
 </body>

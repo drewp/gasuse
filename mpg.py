@@ -37,6 +37,8 @@ def calcMpg(graph, car):
                 # prefer odometer since it should have less per-reading error
                 miles = (int(graph.value(f, GAS['odometer'])) -
                          int(graph.value(prevFillup, GAS['odometer'])))
+                if miles < 1 or miles > 600:
+                    raise ValueError
             except (ValueError, TypeError), e:
                 try:
                     miles = graph.value(f, GAS['tripMeter'])
