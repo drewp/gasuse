@@ -10,7 +10,10 @@ from rdflib import RDF, RDFS
 from gasuse import DC, DATE, GAS, DOLLAR, MILE, GALLON
 
 def fillUps(graph, car):
-    """sorted list of (date, fillUp)"""
+    """sorted list of (date, fillUp)
+
+    should sort by odometer if date is missing
+    """
     ret = graph.query(("?date", "?fillUp"), 
                       GraphPattern([("?fillUp", RDFS.Class, GAS['fillUp']),
                                     ("?fillUp", DC['date'], "?date"),

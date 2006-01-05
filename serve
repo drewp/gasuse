@@ -16,36 +16,42 @@ class MainPage(rend.Page):
     def data_fillUps(self, ctx, data):
         return [f for d,f in mpg.fillUps(graph, car)]
     def render_row(self, ctx, item):
+        val = graph.value
         for p in [
-"http://purl.org/dc/elements/1.1/date",
-"http://bigasterisk.com/2005/11/gasuse/gallons" ,
-"http://bigasterisk.com/2005/11/gasuse/gasPrice" ,
-"http://bigasterisk.com/2005/11/gasuse/gasStation" ,
-"http://bigasterisk.com/2005/11/gasuse/tripMeter" ,
-"http://bigasterisk.com/2005/11/gasuse/milesOnThisTank" ,
-"http://bigasterisk.com/2005/11/gasuse/mpgOnThisTank" ,
-"http://bigasterisk.com/2005/11/gasuse/notes" ,
-"http://bigasterisk.com/2005/11/gasuse/odometer" ,
-"coloredMpg", ]:
+            "http://purl.org/dc/elements/1.1/date",
+            "http://bigasterisk.com/2005/11/gasuse/gallons" ,
+            "http://bigasterisk.com/2005/11/gasuse/gasPrice" ,
+            "http://bigasterisk.com/2005/11/gasuse/gasStation" ,
+            "http://bigasterisk.com/2005/11/gasuse/tripMeter" ,
+            "http://bigasterisk.com/2005/11/gasuse/milesOnThisTank" ,
+            "http://bigasterisk.com/2005/11/gasuse/mpgOnThisTank" ,
+            "http://bigasterisk.com/2005/11/gasuse/notes" ,
+            "http://bigasterisk.com/2005/11/gasuse/odometer" ,
+            "coloredMpg", "pricePerGallon", "gasStationLabel"]:
             ctx.fillSlots(p, "")
  
         for p,o in graph.predicate_objects(item):
             ctx.fillSlots(p, str(o))
 
-        if graph.value(item, "http://bigasterisk.com/2005/11/gasuse/mpgOnThisTank") is not None:
-            m = float(graph.value(item, "http://bigasterisk.com/2005/11/gasuse/mpgOnThisTank"))
-            bright = max(0, min(255, m / 35 * 255))
+        if val(item, GAS["mpgOnThisTank"]) is not None:
+            m = float(val(item, GAS["mpgOnThisTank"]))
+            bright = max(0, min(255, (m - 15) / (35 - 15) * 255))
             ctx.fillSlots("coloredMpg",
                           T.td(bgcolor="#%02X%02X%02X" % (50,
                                                           bright,
                                                           50))[str(m)])
-        
+        try:
+            ctx.fillSlots("pricePerGallon",
+                    val(val(item, GAS["gasPrice"]), GAS["pricePerGallon"]))
+            ctx.fillSlots("gasStationLabel",
+                    val(val(item, GAS["gasStation"]), RDFS.label))
+        except (TypeError, ValueError):
+            pass
             
         return ctx.tag
 
 graph = Graph()
 graph.parse(FileInputSource(open("gas.rdf")))
-
 
 car = GAS['car/drewHonda']
 
