@@ -1,0 +1,31 @@
+from twisted.application import internet, service
+from nevow import appserver
+from nevow import loaders, rend, static, tags as T
+from rdflib.sparql.sparqlGraph import SPARQLGraph as Graph
+from rdflib import URIRef, Literal, BNode, Namespace, FileInputSource
+from rdflib import RDF, RDFS
+
+import mpg
+from gasuse import DC, DATE, GAS, DOLLAR, MILE, GALLON
+
+class MainPage(rend.Page):
+    docFactory = loaders.htmlfile("fillUps.html")
+    addSlash = True
+    def render_car(self, ctx, data):
+        return car
+    def data_fillUps(self, ctx, data):
+        return [1,2]
+    def render_row(self, ctx, item):
+        return ctx
+
+graph = Graph()
+graph.parse(FileInputSource(open("gas.rdf")))
+
+
+car = GAS['car/drewHonda']
+
+mpg.calcMpg(graph, car)
+
+application = service.Application('gasuse')
+webServer = internet.TCPServer(8081, appserver.NevowSite(MainPage()))
+webServer.setServiceParent(application)
