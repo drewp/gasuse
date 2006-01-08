@@ -2,23 +2,30 @@
       xmlns:n="http://nevow.com/ns/nevow/0.1">
 <head>
 <style>
+  body {
+    background-color: #eeeeee;
+  }
   table { 
-    border: 1px solid black;  
+    border: 1px solid black;
     border-collapse: collapse;
+    background-color: #ffffff;
   }
   th {
-    border: 2px solid black;
+    border: 1px solid black;
+    padding: 3px;
   }
   tr,td {
+    padding-left: 3px;
+    padding-right: 3px;
     border: 1px solid black;
     white-space: nowrap;
   }
 </style>
 </head>
 <body>
-  <p>Car: <div n:render="car"/></p>
-  Last <div n:render="string" n:data="numFillUps"/> 
-  (<div n:render="numFillupsSelector"/>) fillups:
+  <p>Car: <div n:render="car" /></p>
+  <p>Last <span n:render="string" n:data="numFillUps" /> 
+  (<span n:render="numFillupsSelector" />) fillups:</p>
   <table n:data="fillUps" n:render="sequence">
     <tr n:pattern="header">
       <th>date</th>
@@ -35,10 +42,10 @@
     <tr n:pattern="item" n:render="row">
       <td><n:slot name="http://purl.org/dc/elements/1.1/date" /></td>
       <td><n:slot name="http://bigasterisk.com/2005/11/gasuse/odometer" /></td>
-      <td><n:attr name="bgcolor"><n:slot name="mpgColor"/></n:attr>
+      <td><n:attr name="bgcolor"><n:slot name="mpgColor" /></n:attr>
         <n:slot name="mpgTrunc" />
       </td>
-      <td><n:attr name="bgcolor"><n:slot name="dpmColor"/></n:attr>
+      <td><n:attr name="bgcolor"><n:slot name="dpmColor" /></n:attr>
         <n:slot name="dollarsPerMile" />
       </td>
       <td><n:slot name="pricePerGallon" /></td>
@@ -49,5 +56,29 @@
       <td><n:slot name="http://bigasterisk.com/2005/11/gasuse/notes" /></td>
     </tr>
   </table>
+
+  <p>Station dpm</p>
+  <table n:data="stationDpm" n:render="sequence">
+    <tr n:pattern="header">
+      <th>station</th>
+      <th>2001</th>
+      <th>2002</th>
+      <th>2003</th>
+      <th>2004</th>
+      <th>2005</th>
+      <th>all</th>
+    </tr>
+    <tr n:pattern="item" n:render="stationRow">
+      <td><n:slot name="shortName"/></td>
+      <td><n:attr name="bgcolor"><n:slot name="dpmColor2001"/></n:attr><n:slot name="dpm2001"/></td>
+      <td><n:attr name="bgcolor"><n:slot name="dpmColor2002"/></n:attr><n:slot name="dpm2002"/></td>
+      <td><n:attr name="bgcolor"><n:slot name="dpmColor2003"/></n:attr><n:slot name="dpm2003"/></td>
+      <td><n:attr name="bgcolor"><n:slot name="dpmColor2004"/></n:attr><n:slot name="dpm2004"/></td>
+      <td><n:attr name="bgcolor"><n:slot name="dpmColor2005"/></n:attr><n:slot name="dpm2005"/></td>
+      <td><n:attr name="bgcolor"><n:slot name="dpmColorAll"/></n:attr><n:slot name="dpmAll"/></td>
+    </tr>
+  </table>
+
+
 </body>
 </html>

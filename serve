@@ -1,13 +1,29 @@
+"""
+todo:
+
+sort station dpm by total dpm; hide stations with too little data
+
+svg graphs of stuff
+
+map of station positions and avg prices
+"""
+
 from __future__ import division
+from sets import Set
 from twisted.application import internet, service
 from nevow import appserver
 from nevow import inevow, loaders, rend, static, url, tags as T
 from rdflib.sparql.sparqlGraph import SPARQLGraph as Graph
 from rdflib import URIRef, Literal, BNode, Namespace, FileInputSource
 from rdflib import RDF, RDFS
+from rdflib.sparql.sparqlOperators import getLiteralValue
 
 import mpg
 from gasuse import DC, DATE, GAS, DOLLAR, MILE, GALLON
+
+def htmlColor(r,g,b):
+    clamp = lambda v: max(0, min(255, v))
+    return "#%02X%02X%02X" % (clamp(r), clamp(g), clamp(b))
 
 class MainPage(rend.Page):
     docFactory = loaders.xmlfile("fillUps.html")
@@ -17,17 +33,23 @@ class MainPage(rend.Page):
     def data_numFillUps(self, ctx, data):
         args = inevow.IRequest(ctx).args
         try:
-            return int(args.get('numFillUps', [10]))[0]
-        except (TypeError, ValueError):
+            n = args['numFillUps'][0]
+            if n == 'all':
+                return 'all'
+            return int(n)
+        except (KeyError, TypeError, ValueError), e:
             return 10
     def data_fillUps(self, ctx, data):
         fillUps = [f for d,f in mpg.fillUps(graph, car)]
-        fillUps = fillUps[-self.data_numFillUps(ctx, data):]
+        n = self.data_numFillUps(ctx, data)
+        if n == 'all':
+            n = 0
+        fillUps = fillUps[-n:]
         return fillUps
     def render_numFillupsSelector(self, ctx, data):
         # 'all 165'
-        return (T.a(href=url.here.add('numFillUps', 55))["55"],
-                T.a(href=url.here.add('numFillUps', 10))["10"])
+        return [(T.a(href=url.here.add('numFillUps', n))[n]," ")
+                for n in [10,20,50,100,'all']]
     def render_row(self, ctx, item):
         val = graph.value
         slot = ctx.fillSlots
@@ -35,10 +57,8 @@ class MainPage(rend.Page):
             "http://purl.org/dc/elements/1.1/date",
             "http://bigasterisk.com/2005/11/gasuse/gallons" ,
             "http://bigasterisk.com/2005/11/gasuse/gasPrice" ,
-            "http://bigasterisk.com/2005/11/gasuse/gasStation" ,
             "http://bigasterisk.com/2005/11/gasuse/tripMeter" ,
             "http://bigasterisk.com/2005/11/gasuse/milesOnThisTank" ,
-            "http://bigasterisk.com/2005/11/gasuse/mpgOnThisTank" ,
             "http://bigasterisk.com/2005/11/gasuse/notes" ,
             "http://bigasterisk.com/2005/11/gasuse/odometer" ,
             "mpgColor", "pricePerGallon", "gasStationLabel",
@@ -55,27 +75,94 @@ class MainPage(rend.Page):
 
         if val(item, GAS["mpgOnThisTank"]) is not None:
             m = float(val(item, GAS["mpgOnThisTank"]))
-            bright = max(0, min(255, (m - 15) / (35 - 15) * 255))
-            slot("mpgColor", "#%02X%02X%02X" % (50, bright, 50))
+            bright = (m - 15) / (35 - 15) * 255
+            slot("mpgColor", htmlColor(50, bright, 50))
+
         try:
             slot("pricePerGallon",
                  val(val(item, GAS["gasPrice"]), GAS["pricePerGallon"]))
-        except (TypeError, ValueError):         pass
+        except (TypeError, ValueError):
+            pass
+
         try:
             slot("gasStationLabel",
                  val(val(item, GAS["gasStation"]), RDFS.label))
-        except (TypeError, ValueError):         pass
-        try:
-            dpm = float(val(val(item, GAS["gasPrice"]),
-                            GAS["pricePerGallon"])) / float(val(item,
-                                                        GAS["mpgOnThisTank"]))
-            slot("dollarsPerMile", "%.04f" % dpm)
-            bright = max(0, min(255, (dpm - .04) / (.10 - .04) * 255))
-            slot("dpmColor", "#%02X%02X%02X" % (bright,150,150))
-        except (TypeError, ValueError), e:
+        except (TypeError, ValueError):
             pass
 
+        try:
+            dpm = float(val(item, GAS['dollarsPerMile']))
+            slot("dollarsPerMile", "%.04f" % dpm)
+            bright = (dpm - .03) / (.10 - .03) * 255
+            slot("dpmColor", htmlColor(bright, 150, 150))
+        except (TypeError, ValueError), e:
+            pass
             
+        return ctx.tag
+    def data_stationDpm(self, ctx, data):
+        ret = Set()
+        for stn in graph.subjects(RDFS.Class, GAS['station']):
+            ret.add(graph.value(stn, GAS['shortName']))
+        ret = sorted(ret)
+        return ret
+
+    def fillUpsByShortName(self, shortName):
+        if not hasattr(self, "_fbsn"):
+            self._fbsn = {}
+        if shortName not in self._fbsn:
+            val = graph.value
+            fillUps = []
+            stns = Set()
+            for stn in graph.subjects(RDFS.Class, GAS['station']):
+                if val(stn, GAS['shortName']) == shortName:
+                    stns.add(stn)
+
+            for f in graph.subjects(RDFS.Class, GAS['fillUp']):
+                if val(f, GAS['gasStation']) in stns:
+                    fillUps.append(f)
+            print shortName, len(fillUps)
+            self._fbsn[shortName] = fillUps
+            
+        return self._fbsn[shortName]
+        
+    def dpmInDateRange(self, shortName, start, end):
+        milesFromStn = 0
+        dollarsFromStn = 0
+        totalGal = 0
+        dpm = 0
+        val = graph.value
+        try:
+            for f in self.fillUpsByShortName(shortName):
+                if not (getLiteralValue(start) <=
+                        getLiteralValue(val(f, DC['date'])) <=
+                        getLiteralValue(end)):
+                    continue
+
+                m = val(f, GAS['milesOnThisTank'])
+                milesFromStn += float(m)
+                g = val(f, GAS['gallons'])
+                d = val(val(f, GAS['gasPrice']), GAS['pricePerGallon'])
+                dollarsFromStn += float(g) * float(d)
+                totalGal += float(g)
+            dpm = dollarsFromStn / milesFromStn
+        except (TypeError, ValueError, ZeroDivisionError), e:
+            pass
+        return dpm, totalGal
+
+        
+    def render_stationRow(self, ctx, data):
+        ctx.fillSlots("shortName", data)
+        dlit = lambda d: Literal(d,
+                           datatype='http://www.w3.org/2001/XMLSchema#date')
+        for year in range(2001, 2005+1) + ['All']:
+            if year == 'All':
+                s,e = dlit("1970-01-01"), dlit("2038-01-01")
+            else:
+                s,e = dlit("%s-01-01" % year), dlit("%s-12-31" % year)
+            dpm, totalGal = self.dpmInDateRange(data, s, e)
+            ctx.fillSlots("dpm%s" % year, "%.03f (%.1f gal)" % (dpm, totalGal))
+            bright = (dpm - .03) / (.10 - .03) * 255
+            ctx.fillSlots("dpmColor%s" % year, htmlColor(bright, 150, 150))
         return ctx.tag
 
 graph = Graph()

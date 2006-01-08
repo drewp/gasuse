@@ -1,5 +1,9 @@
 #!/usr/bin/python
 
+"""
+sort fillups better, using odometer
+"""
+
 import optparse, datetime
 from rdflib.sparql.sparqlGraph import SPARQLGraph as Graph
 from rdflib.sparql import GraphPattern, Debug
@@ -33,18 +37,19 @@ def dump(graph, subject):
 
 def calcMpg(graph, car):
     prevFillup = None
+    val = graph.value
     for d,f in fillUps(graph, car):
         if prevFillup is not None:
             miles = None
             try:
                 # prefer odometer since it should have less per-reading error
-                miles = (int(graph.value(f, GAS['odometer'])) -
-                         int(graph.value(prevFillup, GAS['odometer'])))
+                miles = (int(val(f, GAS['odometer'])) -
+                         int(val(prevFillup, GAS['odometer'])))
                 if miles < 1 or miles > 600:
                     raise ValueError
             except (ValueError, TypeError), e:
                 try:
-                    miles = graph.value(f, GAS['tripMeter'])
+                    miles = val(f, GAS['tripMeter'])
                 except (ValueError, TypeError), e:
                     pass
             if miles is not None:
@@ -52,15 +57,22 @@ def calcMpg(graph, car):
                            Literal(miles, datatype=MILE)))
 
             try:
-                t = (prevFillup, GAS['mpgOnThisTank'],
-                     Literal(float(graph.value(prevFillup,
-                                               GAS['milesOnThisTank'])) /
-                             float(graph.value(prevFillup, GAS['gallons'])),
-                             datatype=GAS['type/mpg']))
-                graph.add(t)
+                mpg = (float(val(prevFillup,
+                                 GAS['milesOnThisTank'])) /
+                       float(val(prevFillup, GAS['gallons'])))
+                graph.add((prevFillup, GAS['mpgOnThisTank'],
+                           Literal(mpg, datatype=GAS['type/mpg'])))
             except (ValueError, TypeError), e:
                 pass
 
+            try:
+                dpm = (float(val(val(prevFillup, GAS["gasPrice"]),
+                                 GAS["pricePerGallon"])) /
+                       float(val(prevFillup, GAS["mpgOnThisTank"])))
+                graph.add((prevFillup, GAS['dollarsPerMile'],
+                           Literal(dpm, datatype=GAS['type/dollar'])))
+            except (ValueError, TypeError), e:
+                pass
         prevFillup = f
     
 
