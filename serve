@@ -1,6 +1,7 @@
+from __future__ import division
 from twisted.application import internet, service
 from nevow import appserver
-from nevow import loaders, rend, static, tags as T
+from nevow import inevow, loaders, rend, static, url, tags as T
 from rdflib.sparql.sparqlGraph import SPARQLGraph as Graph
 from rdflib import URIRef, Literal, BNode, Namespace, FileInputSource
 from rdflib import RDF, RDFS
@@ -9,14 +10,27 @@ import mpg
 from gasuse import DC, DATE, GAS, DOLLAR, MILE, GALLON
 
 class MainPage(rend.Page):
-    docFactory = loaders.htmlfile("fillUps.html")
+    docFactory = loaders.xmlfile("fillUps.html")
     addSlash = True
     def render_car(self, ctx, data):
         return car
+    def data_numFillUps(self, ctx, data):
+        args = inevow.IRequest(ctx).args
+        try:
+            return int(args.get('numFillUps', [10]))[0]
+        except (TypeError, ValueError):
+            return 10
     def data_fillUps(self, ctx, data):
-        return [f for d,f in mpg.fillUps(graph, car)]
+        fillUps = [f for d,f in mpg.fillUps(graph, car)]
+        fillUps = fillUps[-self.data_numFillUps(ctx, data):]
+        return fillUps
+    def render_numFillupsSelector(self, ctx, data):
+        # 'all 165'
+        return (T.a(href=url.here.add('numFillUps', 55))["55"],
+                T.a(href=url.here.add('numFillUps', 10))["10"])
     def render_row(self, ctx, item):
         val = graph.value
+        slot = ctx.fillSlots
         for p in [
             "http://purl.org/dc/elements/1.1/date",
             "http://bigasterisk.com/2005/11/gasuse/gallons" ,
@@ -27,26 +41,40 @@ class MainPage(rend.Page):
             "http://bigasterisk.com/2005/11/gasuse/mpgOnThisTank" ,
             "http://bigasterisk.com/2005/11/gasuse/notes" ,
             "http://bigasterisk.com/2005/11/gasuse/odometer" ,
-            "coloredMpg", "pricePerGallon", "gasStationLabel"]:
-            ctx.fillSlots(p, "")
+            "mpgColor", "pricePerGallon", "gasStationLabel",
+            "dpmColor", "dollarsPerMile", "mpgTrunc"]:
+            slot(p, "")
  
         for p,o in graph.predicate_objects(item):
-            ctx.fillSlots(p, str(o))
+            slot(p, str(o))
+
+        try:
+            slot("mpgTrunc", "%.2f" % float(val(item, GAS["mpgOnThisTank"])))
+        except (TypeError, ValueError):
+            pass
 
         if val(item, GAS["mpgOnThisTank"]) is not None:
             m = float(val(item, GAS["mpgOnThisTank"]))
             bright = max(0, min(255, (m - 15) / (35 - 15) * 255))
-            ctx.fillSlots("coloredMpg",
-                          T.td(bgcolor="#%02X%02X%02X" % (50,
-                                                          bright,
-                                                          50))[str(m)])
+            slot("mpgColor", "#%02X%02X%02X" % (50, bright, 50))
         try:
-            ctx.fillSlots("pricePerGallon",
-                    val(val(item, GAS["gasPrice"]), GAS["pricePerGallon"]))
-            ctx.fillSlots("gasStationLabel",
-                    val(val(item, GAS["gasStation"]), RDFS.label))
-        except (TypeError, ValueError):
+            slot("pricePerGallon",
+                 val(val(item, GAS["gasPrice"]), GAS["pricePerGallon"]))
+        except (TypeError, ValueError):         pass
+        try:
+            slot("gasStationLabel",
+                 val(val(item, GAS["gasStation"]), RDFS.label))
+        except (TypeError, ValueError):         pass
+        try:
+            dpm = float(val(val(item, GAS["gasPrice"]),
+                            GAS["pricePerGallon"])) / float(val(item,
+                                                        GAS["mpgOnThisTank"]))
+            slot("dollarsPerMile", "%.04f" % dpm)
+            bright = max(0, min(255, (dpm - .04) / (.10 - .04) * 255))
+            slot("dpmColor", "#%02X%02X%02X" % (bright,150,150))
+        except (TypeError, ValueError), e:
             pass
+
             
         return ctx.tag
 

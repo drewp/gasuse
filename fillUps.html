@@ -1,23 +1,53 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" 
-      xmlns:n="http://nevow.com/ns/nevow/0.1"
-      xmlns:nevow="http://nevow.com/ns/nevow/0.1">
+      xmlns:n="http://nevow.com/ns/nevow/0.1">
+<head>
+<style>
+  table { 
+    border: 1px solid black;  
+    border-collapse: collapse;
+  }
+  th {
+    border: 2px solid black;
+  }
+  tr,td {
+    border: 1px solid black;
+    white-space: nowrap;
+  }
+</style>
+</head>
 <body>
-<p>Car: <div n:render="car"/></p>
-Fillups:
-<table n:data="fillUps" n:render="sequence" border="1">
-  <tr n:pattern="item" n:render="row">
- <td><nevow:slot name="http://purl.org/dc/elements/1.1/date" /></td>
- <td><nevow:slot name="http://bigasterisk.com/2005/11/gasuse/gallons" /></td>
- <td><nevow:slot name="pricePerGallon" /></td>
- <td><nevow:slot name="gasStationLabel" /></td>
- <td><nevow:slot name="http://bigasterisk.com/2005/11/gasuse/tripMeter" /></td>
- <td><nevow:slot name="http://bigasterisk.com/2005/11/gasuse/milesOnThisTank" /></td>
- <nevow:slot name="coloredMpg" />
- <td><nevow:slot name="http://bigasterisk.com/2005/11/gasuse/notes" /></td>
- <td><nevow:slot name="http://bigasterisk.com/2005/11/gasuse/odometer" /></td>
- 
-  </tr>
-</table>
-
+  <p>Car: <div n:render="car"/></p>
+  Last <div n:render="string" n:data="numFillUps"/> 
+  (<div n:render="numFillupsSelector"/>) fillups:
+  <table n:data="fillUps" n:render="sequence">
+    <tr n:pattern="header">
+      <th>date</th>
+      <th>odometer</th>
+      <th>mpgOnThisTank</th>
+      <th>dollarsPerMile</th>
+      <th>pricePerGallon</th>
+      <th>gallons</th>
+      <th>gasStationLabel</th>
+      <th>tripMeter</th>
+      <th>milesOnThisTank</th>
+      <th>notes</th>
+    </tr>
+    <tr n:pattern="item" n:render="row">
+      <td><n:slot name="http://purl.org/dc/elements/1.1/date" /></td>
+      <td><n:slot name="http://bigasterisk.com/2005/11/gasuse/odometer" /></td>
+      <td><n:attr name="bgcolor"><n:slot name="mpgColor"/></n:attr>
+        <n:slot name="mpgTrunc" />
+      </td>
+      <td><n:attr name="bgcolor"><n:slot name="dpmColor"/></n:attr>
+        <n:slot name="dollarsPerMile" />
+      </td>
+      <td><n:slot name="pricePerGallon" /></td>
+      <td><n:slot name="http://bigasterisk.com/2005/11/gasuse/gallons" /></td>
+      <td><n:slot name="gasStationLabel" /></td>
+      <td><n:slot name="http://bigasterisk.com/2005/11/gasuse/tripMeter" /></td>
+      <td><n:slot name="http://bigasterisk.com/2005/11/gasuse/milesOnThisTank" /></td>
+      <td><n:slot name="http://bigasterisk.com/2005/11/gasuse/notes" /></td>
+    </tr>
+  </table>
 </body>
 </html>
