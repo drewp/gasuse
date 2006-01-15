@@ -1,0 +1,20 @@
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   version="1.0"
+   x="0.0000000"
+   y="0.0000000"
+   width="250" height="260"
+   style="font-size:4;font-family:helvetica;"
+   id="svg1">
+  <rect width="230" height="250" x="8" y="8" rx="10" stroke="black" fill="none" />
+
+  <line fill="#99B9FF" stroke="#678ED3" x1="20" y1="20" x2="50" y2="180"/>
+  <text x="20" y="40">
+    <tspan x="20" y="40">mytext</tspan>
+    <tspan x="20" y="60">mytext</tspan>
+  </text>
+</svg>

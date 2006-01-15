@@ -1,0 +1,30 @@
+from __future__ import division
+from twisted.application import internet, service
+from nevow import appserver
+from nevow import inevow, loaders, rend, static, url, tags as T
+from rdflib.sparql.sparqlGraph import SPARQLGraph as Graph
+from rdflib import URIRef, Literal, BNode, Namespace, FileInputSource
+from rdflib import RDF, RDFS
+
+import mpg
+from gasuse import DC, DATE, GAS, DOLLAR, MILE, GALLON
+
+class LineGraph(rend.Page):
+    docFactory = loaders.stan(T.Tag("svg")(xmlns="http://www.w3.org/2000/svg",
+                                           width=250, height=260)[
+        T.Tag("rect")(width=230, height=230, x=10, y=10, stroke="black", fill="none"),
+        T.Tag("line")(stroke="#678ED3", x1=20, y1=20, x2=50, y2=180),
+        ])
+
+class MainPage(rend.Page):
+    docFactory = loaders.stan(T.html[T.body[
+        T.p["hello"], T.Tag("embed")(src="graph", width=250, height=260)
+        ]])
+    addSlash = True
+    def child_graph(self, ctx):
+        inevow.IRequest(ctx).setHeader("Content-Type", "image/svg+xml; charset=UTF-8")
+        return LineGraph()
+
+application = service.Application('gasuse')
+webServer = internet.TCPServer(8081, appserver.NevowSite(MainPage()))
+webServer.setServiceParent(application)
