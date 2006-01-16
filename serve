@@ -13,6 +13,8 @@ from sets import Set
 from twisted.application import internet, service
 from nevow import appserver
 from nevow import inevow, loaders, rend, static, url, tags as T
+from formless import annotate, webform
+from zope.interface import implements
 from rdflib.sparql.sparqlGraph import SPARQLGraph as Graph
 from rdflib import URIRef, Literal, BNode, Namespace, FileInputSource
 from rdflib import RDF, RDFS
@@ -21,6 +23,23 @@ from rdflib.sparql.sparqlOperators import getLiteralValue
 import mpg
 from gasuse import DC, DATE, GAS, DOLLAR, MILE, GALLON
 
+class INewItem(annotate.TypedInterface):
+    def newItem(self, date=annotate.String(default="today"),
+                station=annotate.String(), addr=annotate.String(),
+                priceGal=annotate.String(), gallons=annotate.String(),
+                fee=annotate.String(), miles=annotate.String(),
+                odo=annotate.String(), notes=annotate.String()):
+        pass
+    newItem = annotate.autocallable(newItem)
+
+class SubmitPage(rend.Page):
+    implements(INewItem)
+    docFactory = loaders.stan(T.html[T.body[webform.renderForms()]])
+
+    def newItem(self, **kw):
+        print kw
+        return MainPage()
+
 def htmlColor(r,g,b):
     clamp = lambda v: max(0, min(255, v))
     return "#%02X%02X%02X" % (clamp(r), clamp(g), clamp(b))
@@ -28,6 +47,8 @@ def htmlColor(r,g,b):
 class MainPage(rend.Page):
     docFactory = loaders.xmlfile("fillUps.html")
     addSlash = True
+    def child_submit(self, ctx):
+        return SubmitPage()
     def render_car(self, ctx, data):
         return car
     def data_numFillUps(self, ctx, data):
