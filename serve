@@ -6,6 +6,8 @@ sort station dpm by total dpm; hide stations with too little data
 svg graphs of stuff
 
 map of station positions and avg prices
+
+histogram of dollars per mile (by number of miles at that price)
 """
 
 from __future__ import division
@@ -141,7 +143,6 @@ class MainPage(rend.Page):
             for f in graph.subjects(RDFS.Class, GAS['fillUp']):
                 if val(f, GAS['gasStation']) in stns:
                     fillUps.append(f)
-            print shortName, len(fillUps)
             self._fbsn[shortName] = fillUps
             
         return self._fbsn[shortName]
@@ -150,10 +151,9 @@ class MainPage(rend.Page):
         milesFromStn = 0
         dollarsFromStn = 0
         totalGal = 0
-        dpm = 0
         val = graph.value
-        try:
-            for f in self.fillUpsByShortName(shortName):
+        for f in self.fillUpsByShortName(shortName):
+            try:
                 if not (getLiteralValue(start) <=
                         getLiteralValue(val(f, DC['date'])) <=
                         getLiteralValue(end)):
@@ -165,9 +165,12 @@ class MainPage(rend.Page):
                 d = val(val(f, GAS['gasPrice']), GAS['pricePerGallon'])
                 dollarsFromStn += float(g) * float(d)
                 totalGal += float(g)
+            except (TypeError, ValueError):
+                pass
+        try:
             dpm = dollarsFromStn / milesFromStn
-        except (TypeError, ValueError, ZeroDivisionError), e:
-            pass
+        except ZeroDivisionError:
+            dpm = 0
         return dpm, totalGal
 
         
@@ -181,9 +184,14 @@ class MainPage(rend.Page):
             else:
                 s,e = dlit("%s-01-01" % year), dlit("%s-12-31" % year)
             dpm, totalGal = self.dpmInDateRange(data, s, e)
-            ctx.fillSlots("dpm%s" % year, "%.03f (%.1f gal)" % (dpm, totalGal))
             bright = (dpm - .03) / (.10 - .03) * 255
-            ctx.fillSlots("dpmColor%s" % year, htmlColor(bright, 150, 150))
+            if dpm != 0:
+                ctx.fillSlots("dpm%s" % year, "%.03f (%.1f gal)" % (dpm, totalGal))
+                ctx.fillSlots("dpmColor%s" % year, htmlColor(bright, 150, 150))
+            else:
+                ctx.fillSlots("dpm%s" % year, "")
+                ctx.fillSlots("dpmColor%s" % year, "#333333")
+
         return ctx.tag
 
 graph = Graph()
