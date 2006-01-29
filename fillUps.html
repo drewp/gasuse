@@ -58,25 +58,24 @@
   </table>
 
   <p>Station dpm</p>
-  <table n:data="stationDpm" n:render="sequence">
-    <tr n:pattern="header">
-      <th>station</th>
-      <th>2001</th>
-      <th>2002</th>
-      <th>2003</th>
-      <th>2004</th>
-      <th>2005</th>
-      <th>all</th>
+  <table border="1">
+    <tr>
+      <th>Station</th>
+      <n:invisible n:render="sequence" n:data="years">
+         <th n:pattern="item" n:render="string"/>
+      </n:invisible>
     </tr>
-    <tr n:pattern="item" n:render="stationRow">
-      <td><n:slot name="shortName"/></td>
-      <td><n:attr name="bgcolor"><n:slot name="dpmColor2001"/></n:attr><n:slot name="dpm2001"/></td>
-      <td><n:attr name="bgcolor"><n:slot name="dpmColor2002"/></n:attr><n:slot name="dpm2002"/></td>
-      <td><n:attr name="bgcolor"><n:slot name="dpmColor2003"/></n:attr><n:slot name="dpm2003"/></td>
-      <td><n:attr name="bgcolor"><n:slot name="dpmColor2004"/></n:attr><n:slot name="dpm2004"/></td>
-      <td><n:attr name="bgcolor"><n:slot name="dpmColor2005"/></n:attr><n:slot name="dpm2005"/></td>
-      <td><n:attr name="bgcolor"><n:slot name="dpmColorAll"/></n:attr><n:slot name="dpmAll"/></td>
-    </tr>
+    <n:invisible n:render="sequence" n:data="stationDpmByYear">
+      <tr n:pattern="item">
+        <td n:data="0" n:render="shortName"/>
+        <n:invisible n:render="sequence" n:data="1:">
+          <n:invisible n:pattern="item" n:render="stationDpmCell">
+            <td><n:attr name="bgcolor"><n:slot name="dpmColor"/></n:attr>
+                <n:slot name="dpm"/></td>
+          </n:invisible>
+        </n:invisible>
+      </tr>
+    </n:invisible>
   </table>
 
 

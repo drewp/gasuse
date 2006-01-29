@@ -70,15 +70,17 @@ class LineGraph(rend.Page):
         render_line, render_tics,
         ]])
 
-class MainPage(rend.Page):
-    docFactory = loaders.stan(T.html[T.body[
-        T.p["hello"], Tag("embed")(src="graph", type="image/svg+xml",
-                                   width=850, height=260)
-        ]])
-    addSlash = True
-    def child_graph(self, ctx):
-        return LineGraph([(x,math.sin(x)) for x in range(0,50)])
+if __name__ == '__main__':
+    class MainPage(rend.Page):
+        docFactory = loaders.stan(T.html[T.body[
+            T.p["svg linegraph demo"],
+            Tag("embed")(src="graph", type="image/svg+xml",
+                         width=850, height=260)
+            ]])
+        addSlash = True
+        def child_graph(self, ctx):
+            return LineGraph([(x,math.sin(x)) for x in range(0,50)])
 
-application = service.Application('')
-webServer = internet.TCPServer(8081, appserver.NevowSite(MainPage()))
-webServer.setServiceParent(application)
+    application = service.Application('')
+    webServer = internet.TCPServer(8081, appserver.NevowSite(MainPage()))
+    webServer.setServiceParent(application)

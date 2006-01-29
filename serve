@@ -11,6 +11,7 @@ histogram of dollars per mile (by number of miles at that price)
 """
 
 from __future__ import division
+import math
 from sets import Set
 from twisted.application import internet, service
 from nevow import appserver
@@ -21,9 +22,12 @@ from rdflib.sparql.sparqlGraph import SPARQLGraph as Graph
 from rdflib import URIRef, Literal, BNode, Namespace, FileInputSource
 from rdflib import RDF, RDFS
 from rdflib.sparql.sparqlOperators import getLiteralValue
-
+from linegraph import LineGraph
 import mpg
 from gasuse import DC, DATE, GAS, DOLLAR, MILE, GALLON
+
+dlit = lambda d: Literal(d,
+                         datatype='http://www.w3.org/2001/XMLSchema#date')
 
 class INewItem(annotate.TypedInterface):
     def newItem(self, date=annotate.String(default="today"),
@@ -46,7 +50,7 @@ def htmlColor(r,g,b):
     clamp = lambda v: max(0, min(255, v))
     return "#%02X%02X%02X" % (clamp(r), clamp(g), clamp(b))
 
-class MainPage(rend.Page):
+class FillupsPage(rend.Page):
     docFactory = loaders.xmlfile("fillUps.html")
     addSlash = True
     def child_submit(self, ctx):
@@ -122,12 +126,6 @@ class MainPage(rend.Page):
             pass
             
         return ctx.tag
-    def data_stationDpm(self, ctx, data):
-        ret = Set()
-        for stn in graph.subjects(RDFS.Class, GAS['station']):
-            ret.add(graph.value(stn, GAS['shortName']))
-        ret = sorted(ret)
-        return ret
 
     def fillUpsByShortName(self, shortName):
         if not hasattr(self, "_fbsn"):
@@ -173,26 +171,72 @@ class MainPage(rend.Page):
             dpm = 0
         return dpm, totalGal
 
-        
-    def render_stationRow(self, ctx, data):
-        ctx.fillSlots("shortName", data)
-        dlit = lambda d: Literal(d,
-                           datatype='http://www.w3.org/2001/XMLSchema#date')
-        for year in range(2001, 2005+1) + ['All']:
-            if year == 'All':
-                s,e = dlit("1970-01-01"), dlit("2038-01-01")
-            else:
-                s,e = dlit("%s-01-01" % year), dlit("%s-12-31" % year)
-            dpm, totalGal = self.dpmInDateRange(data, s, e)
-            bright = (dpm - .03) / (.10 - .03) * 255
-            if dpm != 0:
-                ctx.fillSlots("dpm%s" % year, "%.03f (%.1f gal)" % (dpm, totalGal))
-                ctx.fillSlots("dpmColor%s" % year, htmlColor(bright, 150, 150))
-            else:
-                ctx.fillSlots("dpm%s" % year, "")
-                ctx.fillSlots("dpmColor%s" % year, "#333333")
+    def data_years(self, ctx, data):
+        return range(2001, 2005+1) + ['All']
 
+    def data_stationDpmByYear(self, ctx, data):
+        """
+        [[u'http://bigasterisk.com/2005/11/gasuse/station/76',
+        (0.066221231927710858, 25.367000000000001),
+        (0.052104591261451727, 42.505000000000003),
+        (0.065318293788819884, 55.646999999999998),
+        (0.054380097008159559, 28.173000000000002),
+        (0.080358870535714305, 13.746), (0.060841301868802447,
+        165.43799999999999)],
+        [u'http://bigasterisk.com/2005/11/gasuse/station/761',
+        (0.066221231927710858, 25.367000000000001),
+        (0.052104591261451727, 42.505000000000003),
+        (0.065318293788819884, 55.646999999999998),
+        (0.054380097008159559, 28.173000000000002),
+        (0.080358870535714305, 13.746), (0.060841301868802447,
+        165.43799999999999)], ...]       
+        """
+        ret = []
+
+        shortNames = Set()
+        for stn in graph.subjects(RDFS.Class, GAS['station']):
+            shortName = graph.value(stn, GAS['shortName'])
+            shortNames.add(shortName)
+        
+        for shortName in sorted(shortNames):
+            row = [shortName]
+            for year in self.data_years(ctx, data):
+                if year == 'All':
+                    s,e = dlit("1970-01-01"), dlit("2038-01-01")
+                else:
+                    s,e = dlit("%s-01-01" % year), dlit("%s-12-31" % year)
+                dpm, totalGal = self.dpmInDateRange(shortName, s, e)
+                row.append((dpm, totalGal))
+            ret.append(row)
+        return ret
+        
+    def render_stationDpmCell(self, ctx, data):
+        dpm, totalGal = data
+        bright = (dpm - .03) / (.10 - .03) * 255
+        if dpm != 0:
+            ctx.fillSlots("dpm", "%.03f (%.1f gal)" % (dpm, totalGal))
+            ctx.fillSlots("dpmColor", htmlColor(bright, 150, 150))
+        else:
+            ctx.fillSlots("dpm", "")
+            ctx.fillSlots("dpmColor", "#333333")
         return ctx.tag
+
+class LineGraphDemoPage(rend.Page):
+    docFactory = loaders.stan(T.html[T.body[
+        T.p["hello"], T.Tag("embed")(src="graph", type="image/svg+xml",
+                                   width=850, height=260)
+        ]])
+    addSlash = True
+    def child_graph(self, ctx):
+        return LineGraph([(x,math.sin(x)) for x in range(0,50)])
+
+
+class MainPage(rend.Page):
+    docFactory = loaders.xmlfile("main.html")
+    def child_fillUps(self, ctx):
+        return FillupsPage()
+    def child_lineGraph(self, ctx):
+        return LineGraphDemoPage()
 
 graph = Graph()
 graph.parse(FileInputSource(open("gas.rdf")))
