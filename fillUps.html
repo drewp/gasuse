@@ -1,28 +1,5 @@
-<html xmlns="http://www.w3.org/1999/xhtml" lang="en" 
-      xmlns:n="http://nevow.com/ns/nevow/0.1">
-<head>
-<style>
-  body {
-    background-color: #eeeeee;
-  }
-  table { 
-    border: 1px solid black;
-    border-collapse: collapse;
-    background-color: #ffffff;
-  }
-  th {
-    border: 1px solid black;
-    padding: 3px;
-  }
-  tr,td {
-    padding-left: 3px;
-    padding-right: 3px;
-    border: 1px solid black;
-    white-space: nowrap;
-  }
-</style>
-</head>
-<body>
+<n:invisible xmlns="http://www.w3.org/1999/xhtml" lang="en"
+             xmlns:n="http://nevow.com/ns/nevow/0.1">
   <p>Car: <div n:render="car" /></p>
   <p>Last <span n:render="string" n:data="numFillUps" /> 
   (<span n:render="numFillupsSelector" />) fillups:</p>
@@ -56,8 +33,10 @@
       <td><n:slot name="http://bigasterisk.com/2005/11/gasuse/notes" /></td>
     </tr>
   </table>
-
-  <p>Station dpm</p>
+  <hr/>
+  <p>Station dpm (for stations with more than 
+     <n:invisible n:data="minGallonsForStationDpm" n:render="string"/> 
+     total gallons)</p>
   <table border="1">
     <tr>
       <th>Station</th>
@@ -67,7 +46,7 @@
     </tr>
     <n:invisible n:render="sequence" n:data="stationDpmByYear">
       <tr n:pattern="item">
-        <td n:data="0" n:render="shortName"/>
+        <td n:data="0" n:render="string"/>
         <n:invisible n:render="sequence" n:data="1:">
           <n:invisible n:pattern="item" n:render="stationDpmCell">
             <td><n:attr name="bgcolor"><n:slot name="dpmColor"/></n:attr>
@@ -77,7 +56,5 @@
       </tr>
     </n:invisible>
   </table>
+</n:invisible>
 
-
-</body>
-</html>

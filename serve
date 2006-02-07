@@ -29,6 +29,12 @@ from gasuse import DC, DATE, GAS, DOLLAR, MILE, GALLON
 dlit = lambda d: Literal(d,
                          datatype='http://www.w3.org/2001/XMLSchema#date')
 
+class Page(rend.Page):
+    docFactory = loaders.xmlfile("basic.html")
+    content = "" # xml file to appear in center frame
+    def render_content(self, context, data):
+        return loaders.xmlfile(self.content)
+
 class INewItem(annotate.TypedInterface):
     def newItem(self, date=annotate.String(default="today"),
                 station=annotate.String(), addr=annotate.String(),
@@ -38,7 +44,10 @@ class INewItem(annotate.TypedInterface):
         pass
     newItem = annotate.autocallable(newItem)
 
-class SubmitPage(rend.Page):
+class SubmitFillUpPage(rend.Page):
+    # not a Page since this one is for mobile phones. but it should
+    # detect if you're a phone and draw itself accordingly (all the
+    # pages should do this)
     implements(INewItem)
     docFactory = loaders.stan(T.html[T.body[webform.renderForms()]])
 
@@ -50,8 +59,8 @@ def htmlColor(r,g,b):
     clamp = lambda v: max(0, min(255, v))
     return "#%02X%02X%02X" % (clamp(r), clamp(g), clamp(b))
 
-class FillupsPage(rend.Page):
-    docFactory = loaders.xmlfile("fillUps.html")
+class FillupsPage(Page):
+    content = "fillUps.html"
     addSlash = True
     def child_submit(self, ctx):
         return SubmitPage()
@@ -107,7 +116,8 @@ class FillupsPage(rend.Page):
 
         try:
             slot("pricePerGallon",
-                 val(val(item, GAS["gasPrice"]), GAS["pricePerGallon"]))
+                 "%.03f" %
+                 float(val(val(item, GAS["gasPrice"]), GAS["pricePerGallon"])))
         except (TypeError, ValueError):
             pass
 
@@ -207,12 +217,17 @@ class FillupsPage(rend.Page):
                     s,e = dlit("%s-01-01" % year), dlit("%s-12-31" % year)
                 dpm, totalGal = self.dpmInDateRange(shortName, s, e)
                 row.append((dpm, totalGal))
-            ret.append(row)
+            allYearTotalGal = row[-1][1]
+            if allYearTotalGal > self.data_minGallonsForStationDpm(ctx, data):
+                ret.append(row)
         return ret
+
+    def data_minGallonsForStationDpm(self, ctx, data):
+        return 20
         
     def render_stationDpmCell(self, ctx, data):
         dpm, totalGal = data
-        bright = (dpm - .03) / (.10 - .03) * 255
+        bright = (dpm - .05) / (.085 - .05) * 255
         if dpm != 0:
             ctx.fillSlots("dpm", "%.03f (%.1f gal)" % (dpm, totalGal))
             ctx.fillSlots("dpmColor", htmlColor(bright, 150, 150))
@@ -223,20 +238,36 @@ class FillupsPage(rend.Page):
 
 class LineGraphDemoPage(rend.Page):
     docFactory = loaders.stan(T.html[T.body[
-        T.p["hello"], T.Tag("embed")(src="graph", type="image/svg+xml",
-                                   width=850, height=260)
+        T.p["pricePerGallon by fillup number"],
+        T.Tag("embed")(src="graph", type="image/svg+xml",
+                       width=850, height=260)
         ]])
     addSlash = True
     def child_graph(self, ctx):
-        return LineGraph([(x,math.sin(x)) for x in range(0,50)])
+        vals = []
+        for i, (date, f) in enumerate(mpg.fillUps(graph, car)):
+            try:
+                # clean up the data- i should be able to screen for datatype
+                if not date.startswith("200") or len(date) != 10:
+                    continue
+                
+                v = graph.value(graph.value(f, GAS['gasPrice']),
+                                GAS['pricePerGallon'])
+                if v is not None:
+                    vals.append((date, float(v)))
+            except ValueError:
+                pass
+        return LineGraph(vals)
 
 
-class MainPage(rend.Page):
-    docFactory = loaders.xmlfile("main.html")
+class MainPage(Page):
+    content = "main.html"
     def child_fillUps(self, ctx):
         return FillupsPage()
     def child_lineGraph(self, ctx):
         return LineGraphDemoPage()
+    def child_submitFillUp(self, ctx):
+        return SubmitFillUpPage()
 
 graph = Graph()
 graph.parse(FileInputSource(open("gas.rdf")))
