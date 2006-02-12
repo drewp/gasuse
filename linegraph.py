@@ -12,14 +12,30 @@ def floatOrLiteral(x):
         return getLiteralValue(x)
     return x
 
+def rangeWithoutOutliers(vals, maxOutliers=5, outlierFrac=.2):
+    """omit up to maxOutliers vals that would stretch the range by
+    more than outlierFrac"""
+    spread = lambda x: max(x) - min(x)
+    vals = sorted(list(vals))
+    vals = vals[5:-5]
+    s = spread(vals)
+    return min(vals), max(vals)
+    approved = vals[:-5]
+    for maybe in vals[-5:]:
+        s1 = spread(vals)
+        s2 = spread(vals + [maybe])
+        if abs(s2 - s1) < (1 + outlierFrac) * s1:
+            vals.append(maybe)
+    return min(vals), max(vals)
+    
+
 class LineGraph(rend.Page):
     """pts are (x,y), where x could be date like '2006-01-02'"""
     def __init__(self, pts):
         self.pts = pts
         self.xrange = min(pts)[0], max(pts)[0]
         ys = [p[1] for p in pts]
-        self.yrange = min(ys), max(ys)
-        print "width", self.xrange, self.xwidth()
+        self.yrange = rangeWithoutOutliers(ys)
     def beforeRender(self, ctx):
         inevow.IRequest(ctx).setHeader("Content-Type",
                                        "image/svg+xml; charset=UTF-8")
@@ -118,7 +134,6 @@ class MainPage(rend.Page):
         return LineGraph([(x,math.sin(x)) for x in range(0,50)])
 
 application = service.Application('')
-print __name__
 if __name__ in ('__builtin__', '__main__'):
     webServer = internet.TCPServer(8081, appserver.NevowSite(MainPage()))
     webServer.setServiceParent(application)
