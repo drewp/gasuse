@@ -236,13 +236,18 @@ class FillupsPage(Page):
             ctx.fillSlots("dpmColor", "#333333")
         return ctx.tag
 
-class LineGraphDemoPage(rend.Page):
-    docFactory = loaders.stan(T.html[T.body[
-        T.p["pricePerGallon by fillup number"],
+class LineGraphPage(Page):
+    addSlash = True
+    def __init__(self, fillUpFunc, label):
+        self.fillUpFunc, self.label = fillUpFunc, label
+        
+    def render_content(self, context, data):
+        return loaders.stan(T.html[T.body[
+        T.p[self.label, " by fillup date"],
         T.Tag("embed")(src="graph", type="image/svg+xml",
                        width=850, height=260)
         ]])
-    addSlash = True
+    
     def child_graph(self, ctx):
         vals = []
         for i, (date, f) in enumerate(mpg.fillUps(graph, car)):
@@ -251,21 +256,39 @@ class LineGraphDemoPage(rend.Page):
                 if not date.startswith("200") or len(date) != 10:
                     continue
                 
-                v = graph.value(graph.value(f, GAS['gasPrice']),
-                                GAS['pricePerGallon'])
+                v = self.fillUpFunc(f)
                 if v is not None:
                     vals.append((date, float(v)))
             except ValueError:
                 pass
         return LineGraph(vals)
-
+    
+    def locateChild(self, ctx, segments):
+        print "locate", segments
+        if segments[-1] == 'graph':
+            return LineGraphPage(*self.funcDesc(segments[0])).child_graph(ctx), []
+        if segments[0] == '':
+            return LineGraphPage(self.fillUpFunc, self.label), []
+        return LineGraphPage(*self.funcDesc(segments[0])), []
+    
+    def funcDesc(self, word):
+        if word == 'dollarsPerMile':
+            return (lambda fillUp: graph.value(fillUp, GAS['dollarsPerMile']),
+                    'dollarsPerMile')
+        return (lambda fillUp: graph.value(graph.value(fillUp,
+                                                      GAS['gasPrice']),
+                                          GAS['pricePerGallon']),
+                "pricePerGallon")
 
 class MainPage(Page):
     content = "main.html"
     def child_fillUps(self, ctx):
         return FillupsPage()
     def child_lineGraph(self, ctx):
-        return LineGraphDemoPage()
+        return LineGraphPage(lambda fillUp: graph.value(graph.value(fillUp,
+                                                            GAS['gasPrice']),
+                                                        GAS['pricePerGallon']),
+                             "pricePerGallon")
     def child_submitFillUp(self, ctx):
         return SubmitFillUpPage()
 
