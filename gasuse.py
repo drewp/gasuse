@@ -6,6 +6,10 @@ DATE = URIRef("http://www.w3.org/2001/XMLSchema#date")
 GAS = Namespace("http://bigasterisk.com/2005/11/gasuse/")
 
 # should be standard datatypes, but I can't find any
+
+# they're in SUMO; see #swig logs from 2006-02-11. also use fragments
+# for datatypes to avoid breaking cwm
+
 DOLLAR = GAS["type/dollar"]
 MILE = GAS["type/mile"]
 GALLON = GAS["type/gallon"]
