@@ -84,7 +84,7 @@ class FillupsPage(Page):
         return fillUps
     def render_numFillupsSelector(self, ctx, data):
         # 'all 165'
-        return [(T.a(href=url.here.add('numFillUps', n))[n]," ")
+        return [(T.a(href=url.URL.fromString("http://gasuse.bigasterisk.com/fillUps").add('numFillUps', n))[n]," ")
                 for n in [10,20,50,100,'all']]
     def render_row(self, ctx, item):
         val = graph.value
