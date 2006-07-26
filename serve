@@ -11,20 +11,21 @@ histogram of dollars per mile (by number of miles at that price)
 """
 
 from __future__ import division
-import math
+import math, time
 from sets import Set
 from twisted.application import internet, service
 from nevow import appserver
 from nevow import inevow, loaders, rend, static, url, tags as T
 from formless import annotate, webform
 from zope.interface import implements
-from rdflib.sparql.sparqlGraph import SPARQLGraph as Graph
-from rdflib import URIRef, Literal, BNode, Namespace, FileInputSource
+from rdflib.sparql.sparqlGraph import SPARQLGraph
+from rdflib import URIRef, Literal, BNode, Namespace, FileInputSource, Graph
 from rdflib import RDF, RDFS
 from rdflib.sparql.sparqlOperators import getLiteralValue
 from linegraph import LineGraph
 import mpg
 from gasuse import DC, DATE, GAS, DOLLAR, MILE, GALLON
+XS = Namespace("http://www.w3.org/2001/XMLSchema#")
 
 dlit = lambda d: Literal(d,
                          datatype='http://www.w3.org/2001/XMLSchema#date')
@@ -36,13 +37,35 @@ class Page(rend.Page):
         return loaders.xmlfile(self.content)
 
 class INewItem(annotate.TypedInterface):
-    def newItem(self, date=annotate.String(default="today"),
-                station=annotate.String(), addr=annotate.String(),
-                priceGal=annotate.String(), gallons=annotate.String(),
-                fee=annotate.String(), miles=annotate.String(),
-                odo=annotate.String(), notes=annotate.String()):
+    def newItem(date=annotate.String(default="today"),
+                station=annotate.String(null="", description="e.g. shell"),
+                addr=annotate.String(null="", label="address",
+                                     description="e.g. oak and main SF"),
+                priceGal=annotate.String(null=""),
+                gallons=annotate.String(null=""),
+                fee=annotate.String(null=""),
+                odo=annotate.String(null=""),
+                notes=annotate.String(null="")):
         pass
     newItem = annotate.autocallable(newItem)
+
+def stationUri(existingGraph, newGraph, station, addr):
+    """
+    station like "chevon"
+    addr like "foothill SL"
+    """
+    s = GAS['station/hash%s' % hash(station + addr)]
+    typeStmt = (s, RDF.type, GAS['Station'])
+    if typeStmt not in existingGraph:
+        newGraph.add(typeStmt)
+        if addr:
+            newGraph.add((s, GAS['shortAddress'], Literal(addr)))
+        if station:
+            newGraph.add((s, GAS['shortName'], Literal(station)))
+        if addr or station:
+            newGraph.add((s, RDFS.label,
+                          Literal("%s near %s" % (station, addr))))
+    return s
 
 class SubmitFillUpPage(rend.Page):
     # not a Page since this one is for mobile phones. but it should
@@ -51,9 +74,38 @@ class SubmitFillUpPage(rend.Page):
     implements(INewItem)
     docFactory = loaders.stan(T.html[T.body[webform.renderForms()]])
 
-    def newItem(self, **kw):
-        print kw
-        return MainPage()
+    def newItem(self, date, station, addr, priceGal, gallons, fee, odo, notes):
+        g = graph.get_context(GAS['webAdded#context'])
+
+        car = GAS['car/drewCivicHybrid']
+
+        if date == 'today':
+            date = time.strftime("%Y-%m-%d")
+        date = Literal(date, datatype=XS['date'])
+
+        station = stationUri(graph, g, station, addr)
+
+        price = BNode()
+        g.add((price, GAS['gasStation'], station))
+        g.add((price, GAS['pricePerGallon'],
+               Literal(priceGal, datatype=GAS['type#dollar'])))
+        g.add((price, DC['date'], date))
+
+        fill = BNode()
+        g.add((fill, RDF.type, GAS['FillUp']))
+        g.add((fill, DC['date'], date))
+        for s, o in dict(car=car,
+                         gallons=Literal(gallons, datatype=GAS['type#gallon']),
+                         gasPrice=price,
+                         gasStation=station,
+                         odometer=Literal(odo, datatype=GAS['type#mile']),
+                         notes=Literal(notes),
+                         ).items():
+            if o:
+                g.add((fill, GAS[s], o))        
+        
+        g.serialize("web_added.nt", format="nt")
+        return loaders.stan("saved; webAdded now has %s nodes" % len(g))
 
 def htmlColor(r,g,b):
     clamp = lambda v: max(0, min(255, v))
@@ -292,9 +344,9 @@ class MainPage(Page):
     def child_submitFillUp(self, ctx):
         return SubmitFillUpPage()
 
-graph = Graph()
+graph = SPARQLGraph(Graph())
 graph.parse(FileInputSource(open("gas.rdf")))
-
+graph.parse("web_added.nt", publicID=GAS['webAdded#context'], format="nt")
 car = GAS['car/drewHonda']
 
 mpg.calcMpg(graph, car)

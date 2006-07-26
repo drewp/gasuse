@@ -1,0 +1,69 @@
+#Processed by Id: cwm.py,v 1.177 2005/08/28 22:53:56 syosi Exp 
+        #    using base file:/home/drewp/projects/gasuse/gas2.rdf
+        
+#  Notation3 generation by
+#       notation3.py,v 1.183 2005/08/22 21:12:53 timbl Exp
+
+#   Base was: file:/home/drewp/projects/gasuse/gas2.rdf
+     @prefix : <http://bigasterisk.com/2005/11/gasuse/> .
+     @prefix XML: <http://www.w3.org/2001/XMLSchema#> .
+     @prefix dc: <http://purl.org/dc/elements/1.1/> .
+     @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+     @prefix sta: <http://bigasterisk.com/2005/11/gasuse/station/> .
+     @prefix type: <http://bigasterisk.com/2005/11/gasuse/type#> .
+    
+      sta:chevron1a     
+         :shortAddress "";
+         :shortName "chevron";
+         rdfs:Class :station;
+         rdfs:label "chevron near 700 polhemus, san mateo" .
+
+      [      :car <http://bigasterisk.com/2005/11/gasuse/car/drewCivicHybrid>;
+             :gallons "10.237"^^type:gallon;
+             :gasPrice  [
+                 :gasStation sta:chevron1a;
+                 :pricePerGallon "3.259"^^type:dollar;
+                 dc:date "2006-05-12"^^XML:date ];
+             :gasStation sta:chevron1a;
+             :odometer "22993"^^type:mile;
+             :notes "this tank, first one for the car, is 482.5";
+             dc:date "2006-05-12"^^XML:date;
+             rdfs:Class :fillUp ].
+
+      [      :car <http://bigasterisk.com/2005/11/gasuse/car/drewCivicHybrid>;
+             :gallons "10.823"^^type:gallon;
+             :gasPrice  [
+                 :gasStation sta:chevron1a;
+                 :pricePerGallon "3.299"^^type:dollar;
+                 dc:date "2006-05-12"^^XML:date ];
+             :gasStation sta:chevron1a;
+             :odometer "23499"^^type:mile;
+             dc:date "2006-05-18"^^XML:date;
+             rdfs:Class :fillUp ].
+
+      [      :car <http://bigasterisk.com/2005/11/gasuse/car/drewCivicHybrid>;
+             :gallons "10.255"^^type:gallon;
+             :gasPrice  [
+                 :gasStation sta:chevron1a;
+                 :pricePerGallon "3.23"^^type:dollar;
+                 dc:date "2006-06-18"^^XML:date ];
+             :gasStation sta:seventysix1;
+             :odometer "24438"^^type:mile;
+             dc:date "2006-06-18"^^XML:date;
+             rdfs:Class :fillUp ].
+
+
+
+      
+
+# $3.359 10.444 23982 2006-06-01 valero foster city blvd & triton dr, FC
+
+# 3.079 10.320  24882 2006-06-28 chevron  foster city blvd & E hillsdale, FC
+
+# 2006-07-08 25373 10.6 3.339 eville shell
+
+# 2006-07-13 25826 10.465   3.159 foothill valero, SL
+
+# 2006-07-24 26267 chevron foothill san leandro 10.411 3.179
+    
+#ENDS
