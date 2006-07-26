@@ -13,6 +13,7 @@ histogram of dollars per mile (by number of miles at that price)
 from __future__ import division
 import math, time
 from sets import Set
+from xml.utils import iso8601
 from twisted.application import internet, service
 from nevow import appserver
 from nevow import inevow, loaders, rend, static, url, tags as T
@@ -93,6 +94,8 @@ class SubmitFillUpPage(rend.Page):
 
         fill = BNode()
         g.add((fill, RDF.type, GAS['FillUp']))
+        g.add((fill, DC['created'],
+               Literal(iso8601.tostring(time.time(), timezone=time.altzone))))
         g.add((fill, DC['date'], date))
         for s, o in dict(car=car,
                          gallons=Literal(gallons, datatype=GAS['type#gallon']),
