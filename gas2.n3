@@ -11,11 +11,12 @@
      @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
      @prefix sta: <http://bigasterisk.com/2005/11/gasuse/station/> .
      @prefix type: <http://bigasterisk.com/2005/11/gasuse/type#> .
-    
+     @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+
       sta:chevron1a     
-         :shortAddress "";
+         :shortAddress "700 polhemus, san mateo";
          :shortName "chevron";
-         rdfs:Class :station;
+         rdf:type :Station;
          rdfs:label "chevron near 700 polhemus, san mateo" .
 
       [      :car <http://bigasterisk.com/2005/11/gasuse/car/drewCivicHybrid>;
@@ -28,7 +29,7 @@
              :odometer "22993"^^type:mile;
              :notes "this tank, first one for the car, is 482.5";
              dc:date "2006-05-12"^^XML:date;
-             rdfs:Class :fillUp ].
+             rdf:type :FillUp ].
 
       [      :car <http://bigasterisk.com/2005/11/gasuse/car/drewCivicHybrid>;
              :gallons "10.823"^^type:gallon;
@@ -39,31 +40,102 @@
              :gasStation sta:chevron1a;
              :odometer "23499"^^type:mile;
              dc:date "2006-05-18"^^XML:date;
-             rdfs:Class :fillUp ].
+             rdf:type :FillUp ].
 
+      sta:seventysix1 a :Station;
+        :shortName "76";
+        rdfs:label "76" .
       [      :car <http://bigasterisk.com/2005/11/gasuse/car/drewCivicHybrid>;
              :gallons "10.255"^^type:gallon;
              :gasPrice  [
-                 :gasStation sta:chevron1a;
+                 :gasStation sta:chevron1a; # ambiguous- fillup was 76
                  :pricePerGallon "3.23"^^type:dollar;
                  dc:date "2006-06-18"^^XML:date ];
-             :gasStation sta:seventysix1;
+             :gasStation sta:seventysix1; # ambiguous- price was chevron
              :odometer "24438"^^type:mile;
              dc:date "2006-06-18"^^XML:date;
-             rdfs:Class :fillUp ].
-
-
-
-      
+             rdf:type :FillUp ].
+ 
 
 # $3.359 10.444 23982 2006-06-01 valero foster city blvd & triton dr, FC
+ sta:valero1a a :Station;
+   :shortAddress "foster city blvd & triton dr, FC";
+   :shortName "valero";
+   rdfs:label "valero near foster city blvd & triton dr, FC" .
+
+      [ a :FillUp;
+        :car <http://bigasterisk.com/2005/11/gasuse/car/drewCivicHybrid>;
+        :gallons "10.444"^^type:gallon;
+        :gasPrice [
+          :gasStation sta:valero1a;
+          :pricePerGallon "3.359"^^type:dollar;
+          dc:date "2006-06-01"^^XML:date ];
+        :gasStation sta:valero1a;
+        :odometer "23982"^^type:mile;
+        dc:date "2006-06-01"^^XML:date ].
 
 # 3.079 10.320  24882 2006-06-28 chevron  foster city blvd & E hillsdale, FC
+sta:chevron2a a :Station;
+    :shortName "chevron";
+    :shortAddress "foster city blvd & E hillsdale, FC";
+    rdfs:label "chevron near foster city blvd & E hillsdale, FC".
+[ a :FillUp;
+  :car <http://bigasterisk.com/2005/11/gasuse/car/drewCivicHybrid>;
+  :gallons "10.320"^^type:gallon;
+  :gasStation sta:chevron2a;
+  :odometer "24882"^^type:mile;
+  dc:date "2006-06-28"^^XML:date;
+  :gasPrice [
+    :gasStation sta:chevron2a;
+    :pricePerGallon "3.079"^^type:dollar;
+    dc:date "2006-06-28"^^XML:date ]].
 
 # 2006-07-08 25373 10.6 3.339 eville shell
+sta:shell1a a :Station;
+  :shortName "shell";
+  :shortAddress "eville";
+  rdfs:label "shell near eville" .
+[ a :FillUp;
+  :car <http://bigasterisk.com/2005/11/gasuse/car/drewCivicHybrid>;
+  :gallons "10.6"^^type:gallon;
+  :gasStation sta:shell1a;
+  :odometer "25373"^^type:mile;
+  dc:date "2006-07-08"^^XML:date;
+  :gasPrice [
+    :gasStation sta:shell1a;
+    :pricePerGallon "3.079"^^type:dollar;
+    dc:date "2006-07-08"^^XML:date ]].
 
 # 2006-07-13 25826 10.465   3.159 foothill valero, SL
+sta:valero2a a :Station;
+  :shortName "valero";
+  :shortAddress "SL";
+  rdfs:label "valero near SL" .
+[ a :FillUp;
+  :car <http://bigasterisk.com/2005/11/gasuse/car/drewCivicHybrid>;
+  :gallons "10.465"^^type:gallon;
+  :gasStation sta:valero2a;
+  :odometer "25826"^^type:mile;
+  dc:date "2006-07-13"^^XML:date;
+  :gasPrice [
+    :gasStation sta:valero2a;
+    :pricePerGallon "3.159"^^type:dollar;
+    dc:date "2006-07-13"^^XML:date ]].
 
 # 2006-07-24 26267 chevron foothill san leandro 10.411 3.179
+sta:chevron3a a :Station;
+  :shortName "chevron";
+  :shortAddress "foothill san leandro";
+  rdfs:label "chevron near foothill san leandro" .
+[ a :FillUp;
+  :car <http://bigasterisk.com/2005/11/gasuse/car/drewCivicHybrid>;
+  :gallons "10.411"^^type:gallon;
+  :gasStation sta:chevron3a;
+  :odometer "26267"^^type:mile;
+  dc:date "2006-07-24"^^XML:date;
+  :gasPrice [
+    :gasStation sta:chevron3a;
+    :pricePerGallon "3.179"^^type:dollar;
+    dc:date "2006-07-24"^^XML:date ]].
     
 #ENDS

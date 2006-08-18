@@ -15,8 +15,9 @@ import math, time
 from sets import Set
 from xml.utils import iso8601
 from twisted.application import internet, service
+from twisted.cred import portal, checkers, credentials
 from nevow import appserver
-from nevow import inevow, loaders, rend, static, url, tags as T
+from nevow import inevow, loaders, rend, static, url, tags as T, guard
 from formless import annotate, webform
 from zope.interface import implements
 from rdflib.sparql.sparqlGraph import SPARQLGraph
@@ -120,7 +121,10 @@ class FillupsPage(Page):
     def child_submit(self, ctx):
         return SubmitPage()
     def render_car(self, ctx, data):
-        return car
+        args = inevow.IRequest(ctx).args
+        if 'car' in args:
+            return GAS['car/%s' % args['car'][0]]
+        return GAS['car/drewCivicHybrid']
     def data_numFillUps(self, ctx, data):
         args = inevow.IRequest(ctx).args
         try:
@@ -131,7 +135,7 @@ class FillupsPage(Page):
         except (KeyError, TypeError, ValueError), e:
             return 10
     def data_fillUps(self, ctx, data):
-        fillUps = [f for d,f in mpg.fillUps(graph, car)]
+        fillUps = [f for d,f in mpg.fillUps(graph, self.render_car(ctx, data))]
         n = self.data_numFillUps(ctx, data)
         if n == 'all':
             n = 0
@@ -192,30 +196,31 @@ class FillupsPage(Page):
             
         return ctx.tag
 
-    def fillUpsByShortName(self, shortName):
+    def fillUpsByShortName(self, car, shortName):
         if not hasattr(self, "_fbsn"):
             self._fbsn = {}
         if shortName not in self._fbsn:
             val = graph.value
             fillUps = []
             stns = Set()
-            for stn in graph.subjects(RDFS.Class, GAS['station']):
+            for stn in graph.subjects(RDF.type, GAS['Station']):
                 if val(stn, GAS['shortName']) == shortName:
                     stns.add(stn)
 
-            for f in graph.subjects(RDFS.Class, GAS['fillUp']):
-                if val(f, GAS['gasStation']) in stns:
+            for f in graph.subjects(RDF.type, GAS['FillUp']):
+                if (val(f, GAS['car']) == car and
+                    val(f, GAS['gasStation']) in stns):
                     fillUps.append(f)
             self._fbsn[shortName] = fillUps
             
         return self._fbsn[shortName]
         
-    def dpmInDateRange(self, shortName, start, end):
+    def dpmInDateRange(self, car, shortName, start, end):
         milesFromStn = 0
         dollarsFromStn = 0
         totalGal = 0
         val = graph.value
-        for f in self.fillUpsByShortName(shortName):
+        for f in self.fillUpsByShortName(car, shortName):
             try:
                 if not (getLiteralValue(start) <=
                         getLiteralValue(val(f, DC['date'])) <=
@@ -237,7 +242,7 @@ class FillupsPage(Page):
         return dpm, totalGal
 
     def data_years(self, ctx, data):
-        return range(2001, 2005+1) + ['All']
+        return range(2001, 2006+1) + ['All']
 
     def data_stationDpmByYear(self, ctx, data):
         """
@@ -259,7 +264,7 @@ class FillupsPage(Page):
         ret = []
 
         shortNames = Set()
-        for stn in graph.subjects(RDFS.Class, GAS['station']):
+        for stn in graph.subjects(RDF.type, GAS['Station']):
             shortName = graph.value(stn, GAS['shortName'])
             shortNames.add(shortName)
         
@@ -270,7 +275,8 @@ class FillupsPage(Page):
                     s,e = dlit("1970-01-01"), dlit("2038-01-01")
                 else:
                     s,e = dlit("%s-01-01" % year), dlit("%s-12-31" % year)
-                dpm, totalGal = self.dpmInDateRange(shortName, s, e)
+                dpm, totalGal = self.dpmInDateRange(self.render_car(ctx, data),
+                                                    shortName, s, e)
                 row.append((dpm, totalGal))
             allYearTotalGal = row[-1][1]
             if allYearTotalGal > self.data_minGallonsForStationDpm(ctx, data):
@@ -335,6 +341,44 @@ class LineGraphPage(Page):
                                           GAS['pricePerGallon']),
                 "pricePerGallon")
 
+
+### Authentication
+def noLogout():
+    return None
+
+class Realm:
+    implements(portal.IRealm)
+    def requestAvatar(self, avatarId, mind, *interfaces):
+        """  @returns: a deferred which will fire a tuple of (interface,
+            avatarAspect, logout), or the tuple itself.  The interface will be
+            one of the interfaces passed in the 'interfaces' argument.  The
+            'avatarAspect' will implement that interface.  The 'logout' object
+            is a callable which will detach the mind from the avatar."""
+        print "requestAvatar", self, avatarId, mind, interfaces
+        for iface in interfaces:
+            if iface is inevow.IResource:
+                if avatarId is checkers.ANONYMOUS:
+                    print "avatar is anon"
+                    resc = SubmitFillUpPage()
+                    resc.realm = self
+                    return (inevow.IResource, resc, noLogout)
+                else:
+                    print "avatar is not anon"
+                    resc = SubmitFillUpPage(avatarId)
+                    resc.realm = self
+                    return (inevow.IResource, resc, resc.logout)
+ 
+        raise NotImplementedError("Can't support that interface.")
+ 
+    
+ptl = portal.Portal(Realm())
+myChecker = checkers.InMemoryUsernamePasswordDatabaseDontUse()
+myChecker.addUser("user","password")
+ptl.registerChecker(checkers.AllowAnonymousAccess(), credentials.IAnonymous)
+ptl.registerChecker(myChecker)
+res = guard.SessionWrapper(ptl)
+res.locateConfigurable = SubmitFillUpPage().locateConfigurable
+
 class MainPage(Page):
     content = "main.html"
     def child_fillUps(self, ctx):
@@ -345,14 +389,16 @@ class MainPage(Page):
                                                         GAS['pricePerGallon']),
                              "pricePerGallon")
     def child_submitFillUp(self, ctx):
-        return SubmitFillUpPage()
-
+        #return SubmitFillUpPage()
+        return res
+    
 graph = SPARQLGraph(Graph())
 graph.parse(FileInputSource(open("gas.rdf")))
+graph.parse(FileInputSource(open("gas2.n3")), format="n3")
 graph.parse("web_added.nt", publicID=GAS['webAdded#context'], format="nt")
-car = GAS['car/drewHonda']
-
-mpg.calcMpg(graph, car)
+for car in [GAS['car/drewCivicHybrid'],
+            GAS['car/drewHonda']]:
+    mpg.calcMpg(graph, car)
 
 application = service.Application('gasuse')
 webServer = internet.TCPServer(8081, appserver.NevowSite(MainPage()))

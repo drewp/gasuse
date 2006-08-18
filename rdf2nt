@@ -1,0 +1,7 @@
+#!/usr/local/bin/python
+import sys
+from rdflib import Graph, FileInputSource
+
+graph = Graph()
+graph.parse(FileInputSource(open(sys.argv[1])))
+print graph.serialize(format="nt")

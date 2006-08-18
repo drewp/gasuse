@@ -18,10 +18,10 @@ def fillUps(graph, car):
 
     should sort by odometer if date is missing
     """
-    ret = graph.query(("?date", "?fillUp"), 
-                      GraphPattern([("?fillUp", RDFS.Class, GAS['fillUp']),
+    ret = list(graph.query(("?date", "?fillUp"), 
+                      GraphPattern([("?fillUp", RDF.type, GAS['FillUp']),
                                     ("?fillUp", DC['date'], "?date"),
-                                    ("?fillUp", GAS['car'], car)]))
+                                    ("?fillUp", GAS['car'], car)])))
     ret.sort()
     return ret
 
@@ -84,7 +84,7 @@ if __name__ == '__main__':
 
     knownNames = graph.query("?shortName",
                              GraphPattern([
-        ("?station", RDFS.Class, GAS['station']),
+        ("?station", RDFS.Class, GAS['Station']),
         ("?station", GAS['shortName'], "?shortName"),
         ("?station", GAS['shortAddress'], "?shortAddress"),
         ]))
@@ -100,7 +100,7 @@ if __name__ == '__main__':
 
     Debug = True
 
-    car = GAS['car/drewHonda']
+    car = GAS['car/drewCivicHybrid']
 
     calcMpg(graph, car)
 
