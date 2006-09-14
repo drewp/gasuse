@@ -139,3 +139,33 @@ sta:chevron3a a :Station;
     dc:date "2006-07-24"^^XML:date ]].
     
 #ENDS
+
+sta:bp1a a :Station;
+  :shortName "bp";
+  :shortAddress "1101 broadway RWC";
+  rdfs:label "bp near 1101 broadway RWC" .
+[ a :FillUp;
+  :car <http://bigasterisk.com/2005/11/gasuse/car/drewHonda>; # sic
+  :gallons "14.453"^^type:gallon;
+  :gasStation sta:bp1a;
+  :odometer "177540"^^type:mile;
+  dc:date "2006-08-24"^^XML:date;
+  :gasPrice [
+    :gasStation sta:bp1a;
+    :pricePerGallon "3.099"^^type:dollar;
+    dc:date "2006-08-24"^^XML:date ]].
+
+sta:shell2a a :Station;
+ :shortName "shell";
+ :shortAddress "fairfield";
+ rdfs:label "shell near fairfield" .
+[ a :FillUp;
+ :car <http://bigasterisk.com/2005/11/gasuse/car/drewCivicHybrid>;
+  :gallons "10.561"^^type:gallon;
+  :gasStation sta:shell2a;
+  :odometer "28561"^^type:mile;
+  dc:date "2006-08-24"^^XML:date;
+  :gasPrice [
+    :gasStation sta:shell2a;
+    :pricePerGallon "3.299"^^type:dollar;
+    dc:date "2006-08-24"^^XML:date ]].
