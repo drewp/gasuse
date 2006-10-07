@@ -1,130 +1,160 @@
-_:tvDVIrCA463 <http://bigasterisk.com/2005/11/gasuse/gasStation> <http://bigasterisk.com/2005/11/gasuse/station/hash-1324720533>.
-_:tvDVIrCA463 <http://purl.org/dc/elements/1.1/date> "2006-09-09"^^<http://www.w3.org/2001/XMLSchema#date>.
 _:tvDVIrCA463 <http://bigasterisk.com/2005/11/gasuse/pricePerGallon> "2.97"^^<http://bigasterisk.com/2005/11/gasuse/type#dollar>.
-_:LeWpnlOI462 <http://bigasterisk.com/2005/11/gasuse/gasStation> <http://bigasterisk.com/2005/11/gasuse/station/hash238145682>.
-_:LeWpnlOI462 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://bigasterisk.com/2005/11/gasuse/FillUp>.
-_:LeWpnlOI462 <http://purl.org/dc/elements/1.1/date> "2006-09-14"^^<http://www.w3.org/2001/XMLSchema#date>.
+_:tvDVIrCA463 <http://purl.org/dc/elements/1.1/date> "2006-09-09"^^<http://www.w3.org/2001/XMLSchema#date>.
+_:tvDVIrCA463 <http://bigasterisk.com/2005/11/gasuse/gasStation> <http://bigasterisk.com/2005/11/gasuse/station/hash-1324720533>.
+_:ntlfKcgk439 <http://bigasterisk.com/2005/11/gasuse/pricePerGallon> "3.069"^^<http://bigasterisk.com/2005/11/gasuse/type#dollar>.
+_:ntlfKcgk439 <http://purl.org/dc/elements/1.1/date> "2006-07-29"^^<http://www.w3.org/2001/XMLSchema#date>.
+_:ntlfKcgk439 <http://bigasterisk.com/2005/11/gasuse/gasStation> <http://bigasterisk.com/2005/11/gasuse/station/hash-81753483>.
+_:qYxhrRoR439 <http://bigasterisk.com/2005/11/gasuse/pricePerGallon> "3.099"^^<http://bigasterisk.com/2005/11/gasuse/type#dollar>.
+_:qYxhrRoR439 <http://purl.org/dc/elements/1.1/date> "2006-08-05"^^<http://www.w3.org/2001/XMLSchema#date>.
+_:qYxhrRoR439 <http://bigasterisk.com/2005/11/gasuse/gasStation> <http://bigasterisk.com/2005/11/gasuse/station/hash-1940330485>.
+_:KoVmBwjK461 <http://bigasterisk.com/2005/11/gasuse/pricePerGallon> "2.599"^^<http://bigasterisk.com/2005/11/gasuse/type#dollar>.
+_:KoVmBwjK461 <http://purl.org/dc/elements/1.1/date> "2006-10-06"^^<http://www.w3.org/2001/XMLSchema#date>.
+_:KoVmBwjK461 <http://bigasterisk.com/2005/11/gasuse/gasStation> <http://bigasterisk.com/2005/11/gasuse/station/hash425852842>.
+_:pmMjWtJR462 <http://bigasterisk.com/2005/11/gasuse/gallons> "10.059"^^<http://bigasterisk.com/2005/11/gasuse/type#gallon>.
+_:pmMjWtJR462 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://bigasterisk.com/2005/11/gasuse/FillUp>.
+_:pmMjWtJR462 <http://purl.org/dc/elements/1.1/created> "2006-09-30T12:12:41.73-07:00".
+_:pmMjWtJR462 <http://bigasterisk.com/2005/11/gasuse/odometer> "30778"^^<http://bigasterisk.com/2005/11/gasuse/type#mile>.
+_:pmMjWtJR462 <http://bigasterisk.com/2005/11/gasuse/car> <http://bigasterisk.com/2005/11/gasuse/car/drewCivicHybrid>.
+_:pmMjWtJR462 <http://bigasterisk.com/2005/11/gasuse/gasStation> <http://bigasterisk.com/2005/11/gasuse/station/hash-2135428198>.
+_:pmMjWtJR462 <http://bigasterisk.com/2005/11/gasuse/gasPrice> _:pmMjWtJR461.
+_:pmMjWtJR462 <http://purl.org/dc/elements/1.1/date> "2006-09-29"^^<http://www.w3.org/2001/XMLSchema#date>.
+_:YXZpMwYr464 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://bigasterisk.com/2005/11/gasuse/FillUp>.
+_:YXZpMwYr464 <http://purl.org/dc/elements/1.1/created> "2006-08-31T20:27:45.46-07:00".
+_:YXZpMwYr464 <http://bigasterisk.com/2005/11/gasuse/car> <http://bigasterisk.com/2005/11/gasuse/car/drewCivicHybrid>.
+_:YXZpMwYr464 <http://bigasterisk.com/2005/11/gasuse/gasStation> <http://bigasterisk.com/2005/11/gasuse/station/hash0>.
+_:YXZpMwYr464 <http://bigasterisk.com/2005/11/gasuse/gasPrice> _:YXZpMwYr463.
+_:YXZpMwYr464 <http://purl.org/dc/elements/1.1/date> "2006-08-31"^^<http://www.w3.org/2001/XMLSchema#date>.
 _:LeWpnlOI462 <http://bigasterisk.com/2005/11/gasuse/gallons> "10.09"^^<http://bigasterisk.com/2005/11/gasuse/type#gallon>.
 _:LeWpnlOI462 <http://bigasterisk.com/2005/11/gasuse/car> <http://bigasterisk.com/2005/11/gasuse/car/drewCivicHybrid>.
-_:LeWpnlOI462 <http://bigasterisk.com/2005/11/gasuse/odometer> "30331"^^<http://bigasterisk.com/2005/11/gasuse/type#mile>.
+_:LeWpnlOI462 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://bigasterisk.com/2005/11/gasuse/FillUp>.
 _:LeWpnlOI462 <http://purl.org/dc/elements/1.1/created> "2006-09-14T13:28:01.71-07:00".
+_:LeWpnlOI462 <http://bigasterisk.com/2005/11/gasuse/odometer> "30331"^^<http://bigasterisk.com/2005/11/gasuse/type#mile>.
+_:LeWpnlOI462 <http://purl.org/dc/elements/1.1/date> "2006-09-14"^^<http://www.w3.org/2001/XMLSchema#date>.
+_:LeWpnlOI462 <http://bigasterisk.com/2005/11/gasuse/gasStation> <http://bigasterisk.com/2005/11/gasuse/station/hash238145682>.
 _:LeWpnlOI462 <http://bigasterisk.com/2005/11/gasuse/gasPrice> _:LeWpnlOI461.
-_:tvDVIrCA462 <http://bigasterisk.com/2005/11/gasuse/gasPrice> _:tvDVIrCA461.
-_:tvDVIrCA462 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://bigasterisk.com/2005/11/gasuse/FillUp>.
-_:tvDVIrCA462 <http://bigasterisk.com/2005/11/gasuse/gasStation> <http://bigasterisk.com/2005/11/gasuse/station/hash-1781041155>.
-_:tvDVIrCA462 <http://purl.org/dc/elements/1.1/date> "2006-09-06"^^<http://www.w3.org/2001/XMLSchema#date>.
-_:tvDVIrCA462 <http://bigasterisk.com/2005/11/gasuse/gallons> "10.134"^^<http://bigasterisk.com/2005/11/gasuse/type#gallon>.
-_:tvDVIrCA462 <http://bigasterisk.com/2005/11/gasuse/car> <http://bigasterisk.com/2005/11/gasuse/car/drewCivicHybrid>.
-_:tvDVIrCA462 <http://bigasterisk.com/2005/11/gasuse/odometer> "29462"^^<http://bigasterisk.com/2005/11/gasuse/type#mile>.
-_:tvDVIrCA462 <http://purl.org/dc/elements/1.1/created> "2006-09-06T08:11:57.17-07:00".
-_:tvDVIrCA461 <http://bigasterisk.com/2005/11/gasuse/gasStation> <http://bigasterisk.com/2005/11/gasuse/station/hash-1781041155>.
-_:tvDVIrCA461 <http://purl.org/dc/elements/1.1/date> "2006-09-06"^^<http://www.w3.org/2001/XMLSchema#date>.
-_:tvDVIrCA461 <http://bigasterisk.com/2005/11/gasuse/pricePerGallon> "2.899"^^<http://bigasterisk.com/2005/11/gasuse/type#dollar>.
-_:ntlfKcgk439 <http://bigasterisk.com/2005/11/gasuse/gasStation> <http://bigasterisk.com/2005/11/gasuse/station/hash-81753483>.
-_:ntlfKcgk439 <http://purl.org/dc/elements/1.1/date> "2006-07-29"^^<http://www.w3.org/2001/XMLSchema#date>.
-_:ntlfKcgk439 <http://bigasterisk.com/2005/11/gasuse/pricePerGallon> "3.069"^^<http://bigasterisk.com/2005/11/gasuse/type#dollar>.
-<http://bigasterisk.com/2005/11/gasuse/station/hash-95278330> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://bigasterisk.com/2005/11/gasuse/Station>.
+_:YXZpMwYr462 <http://bigasterisk.com/2005/11/gasuse/gallons> "10.209"^^<http://bigasterisk.com/2005/11/gasuse/type#gallon>.
+_:YXZpMwYr462 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://bigasterisk.com/2005/11/gasuse/FillUp>.
+_:YXZpMwYr462 <http://purl.org/dc/elements/1.1/created> "2006-08-31T20:27:41.72-07:00".
+_:YXZpMwYr462 <http://bigasterisk.com/2005/11/gasuse/odometer> "29011"^^<http://bigasterisk.com/2005/11/gasuse/type#mile>.
+_:YXZpMwYr462 <http://bigasterisk.com/2005/11/gasuse/car> <http://bigasterisk.com/2005/11/gasuse/car/drewCivicHybrid>.
+_:YXZpMwYr462 <http://bigasterisk.com/2005/11/gasuse/gasStation> <http://bigasterisk.com/2005/11/gasuse/station/hash1750483189>.
+_:YXZpMwYr462 <http://bigasterisk.com/2005/11/gasuse/gasPrice> _:YXZpMwYr461.
+_:YXZpMwYr462 <http://purl.org/dc/elements/1.1/date> "2006-08-31"^^<http://www.w3.org/2001/XMLSchema#date>.
+<http://bigasterisk.com/2005/11/gasuse/station/hash-2135428198> <http://bigasterisk.com/2005/11/gasuse/shortName> "chevron".
+<http://bigasterisk.com/2005/11/gasuse/station/hash-2135428198> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://bigasterisk.com/2005/11/gasuse/Station>.
+<http://bigasterisk.com/2005/11/gasuse/station/hash-2135428198> <http://www.w3.org/2000/01/rdf-schema#label> "chevron near foothill, SL".
+<http://bigasterisk.com/2005/11/gasuse/station/hash-2135428198> <http://bigasterisk.com/2005/11/gasuse/shortAddress> "foothill, SL".
+<http://bigasterisk.com/2005/11/gasuse/station/hash0> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://bigasterisk.com/2005/11/gasuse/Station>.
 <http://bigasterisk.com/2005/11/gasuse/station/hash-95278330> <http://bigasterisk.com/2005/11/gasuse/shortName> "chevron".
+<http://bigasterisk.com/2005/11/gasuse/station/hash-95278330> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://bigasterisk.com/2005/11/gasuse/Station>.
 <http://bigasterisk.com/2005/11/gasuse/station/hash-95278330> <http://www.w3.org/2000/01/rdf-schema#label> "chevron near polhemus & de anza, SM".
 <http://bigasterisk.com/2005/11/gasuse/station/hash-95278330> <http://bigasterisk.com/2005/11/gasuse/shortAddress> "polhemus & de anza, SM".
-<http://bigasterisk.com/2005/11/gasuse/station/hash-1940330485> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://bigasterisk.com/2005/11/gasuse/Station>.
-<http://bigasterisk.com/2005/11/gasuse/station/hash-1940330485> <http://bigasterisk.com/2005/11/gasuse/shortName> "chevron".
-<http://bigasterisk.com/2005/11/gasuse/station/hash-1940330485> <http://www.w3.org/2000/01/rdf-schema#label> "chevron near 21501 foothill, SL".
-<http://bigasterisk.com/2005/11/gasuse/station/hash-1940330485> <http://bigasterisk.com/2005/11/gasuse/shortAddress> "21501 foothill, SL".
-_:ntlfKcgk440 <http://bigasterisk.com/2005/11/gasuse/gasPrice> _:ntlfKcgk439.
-_:ntlfKcgk440 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://bigasterisk.com/2005/11/gasuse/FillUp>.
-_:ntlfKcgk440 <http://bigasterisk.com/2005/11/gasuse/gasStation> <http://bigasterisk.com/2005/11/gasuse/station/hash-81753483>.
-_:ntlfKcgk440 <http://purl.org/dc/elements/1.1/date> "2006-07-29"^^<http://www.w3.org/2001/XMLSchema#date>.
-_:ntlfKcgk440 <http://bigasterisk.com/2005/11/gasuse/gallons> "9.845"^^<http://bigasterisk.com/2005/11/gasuse/type#gallon>.
-_:ntlfKcgk440 <http://bigasterisk.com/2005/11/gasuse/car> <http://bigasterisk.com/2005/11/gasuse/car/drewCivicHybrid>.
-_:ntlfKcgk440 <http://bigasterisk.com/2005/11/gasuse/odometer> "26694"^^<http://bigasterisk.com/2005/11/gasuse/type#mile>.
-_:ntlfKcgk440 <http://purl.org/dc/elements/1.1/created> "2006-07-29T21:06:15.62-07:00".
-<http://bigasterisk.com/2005/11/gasuse/station/hash1750483189> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://bigasterisk.com/2005/11/gasuse/Station>.
-<http://bigasterisk.com/2005/11/gasuse/station/hash1750483189> <http://bigasterisk.com/2005/11/gasuse/shortName> "arco".
-<http://bigasterisk.com/2005/11/gasuse/station/hash1750483189> <http://www.w3.org/2000/01/rdf-schema#label> "arco near 1801 woodside RWC ".
-<http://bigasterisk.com/2005/11/gasuse/station/hash1750483189> <http://bigasterisk.com/2005/11/gasuse/shortAddress> "1801 woodside RWC ".
-<http://bigasterisk.com/2005/11/gasuse/station/hash238145682> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://bigasterisk.com/2005/11/gasuse/Station>.
 <http://bigasterisk.com/2005/11/gasuse/station/hash238145682> <http://bigasterisk.com/2005/11/gasuse/shortName> "chevron".
+<http://bigasterisk.com/2005/11/gasuse/station/hash238145682> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://bigasterisk.com/2005/11/gasuse/Station>.
 <http://bigasterisk.com/2005/11/gasuse/station/hash238145682> <http://www.w3.org/2000/01/rdf-schema#label> "chevron near millbrae".
 <http://bigasterisk.com/2005/11/gasuse/station/hash238145682> <http://bigasterisk.com/2005/11/gasuse/shortAddress> "millbrae".
-_:YXZpMwYr463 <http://bigasterisk.com/2005/11/gasuse/gasStation> <http://bigasterisk.com/2005/11/gasuse/station/hash0>.
-_:YXZpMwYr463 <http://purl.org/dc/elements/1.1/date> "2006-08-31"^^<http://www.w3.org/2001/XMLSchema#date>.
-_:YXZpMwYr463 <http://bigasterisk.com/2005/11/gasuse/pricePerGallon> ""^^<http://bigasterisk.com/2005/11/gasuse/type#dollar>.
-_:LeWpnlOI461 <http://bigasterisk.com/2005/11/gasuse/gasStation> <http://bigasterisk.com/2005/11/gasuse/station/hash238145682>.
-_:LeWpnlOI461 <http://purl.org/dc/elements/1.1/date> "2006-09-14"^^<http://www.w3.org/2001/XMLSchema#date>.
-_:LeWpnlOI461 <http://bigasterisk.com/2005/11/gasuse/pricePerGallon> "3.059"^^<http://bigasterisk.com/2005/11/gasuse/type#dollar>.
-<http://bigasterisk.com/2005/11/gasuse/station/hash-1324720533> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://bigasterisk.com/2005/11/gasuse/Station>.
-<http://bigasterisk.com/2005/11/gasuse/station/hash-1324720533> <http://bigasterisk.com/2005/11/gasuse/shortName> "76".
-<http://bigasterisk.com/2005/11/gasuse/station/hash-1324720533> <http://www.w3.org/2000/01/rdf-schema#label> "76 near emeryville".
-<http://bigasterisk.com/2005/11/gasuse/station/hash-1324720533> <http://bigasterisk.com/2005/11/gasuse/shortAddress> "emeryville".
-<http://bigasterisk.com/2005/11/gasuse/station/hash-1781041155> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://bigasterisk.com/2005/11/gasuse/Station>.
-<http://bigasterisk.com/2005/11/gasuse/station/hash-1781041155> <http://bigasterisk.com/2005/11/gasuse/shortName> "bp".
-<http://bigasterisk.com/2005/11/gasuse/station/hash-1781041155> <http://www.w3.org/2000/01/rdf-schema#label> "bp near broadway RWC".
-<http://bigasterisk.com/2005/11/gasuse/station/hash-1781041155> <http://bigasterisk.com/2005/11/gasuse/shortAddress> "broadway RWC".
-_:ItLBKslL439 <http://bigasterisk.com/2005/11/gasuse/gasStation> <http://bigasterisk.com/2005/11/gasuse/station/hash-95278330>.
-_:ItLBKslL439 <http://purl.org/dc/elements/1.1/date> "2006-08-08"^^<http://www.w3.org/2001/XMLSchema#date>.
-_:ItLBKslL439 <http://bigasterisk.com/2005/11/gasuse/pricePerGallon> "3.099"^^<http://bigasterisk.com/2005/11/gasuse/type#dollar>.
-_:YXZpMwYr464 <http://bigasterisk.com/2005/11/gasuse/gasStation> <http://bigasterisk.com/2005/11/gasuse/station/hash0>.
-_:YXZpMwYr464 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://bigasterisk.com/2005/11/gasuse/FillUp>.
-_:YXZpMwYr464 <http://purl.org/dc/elements/1.1/date> "2006-08-31"^^<http://www.w3.org/2001/XMLSchema#date>.
-_:YXZpMwYr464 <http://bigasterisk.com/2005/11/gasuse/car> <http://bigasterisk.com/2005/11/gasuse/car/drewCivicHybrid>.
-_:YXZpMwYr464 <http://purl.org/dc/elements/1.1/created> "2006-08-31T20:27:45.46-07:00".
-_:YXZpMwYr464 <http://bigasterisk.com/2005/11/gasuse/gasPrice> _:YXZpMwYr463.
-_:YXZpMwYr462 <http://bigasterisk.com/2005/11/gasuse/gasPrice> _:YXZpMwYr461.
-_:YXZpMwYr462 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://bigasterisk.com/2005/11/gasuse/FillUp>.
-_:YXZpMwYr462 <http://bigasterisk.com/2005/11/gasuse/gasStation> <http://bigasterisk.com/2005/11/gasuse/station/hash1750483189>.
-_:YXZpMwYr462 <http://purl.org/dc/elements/1.1/date> "2006-08-31"^^<http://www.w3.org/2001/XMLSchema#date>.
-_:YXZpMwYr462 <http://bigasterisk.com/2005/11/gasuse/gallons> "10.209"^^<http://bigasterisk.com/2005/11/gasuse/type#gallon>.
-_:YXZpMwYr462 <http://bigasterisk.com/2005/11/gasuse/car> <http://bigasterisk.com/2005/11/gasuse/car/drewCivicHybrid>.
-_:YXZpMwYr462 <http://bigasterisk.com/2005/11/gasuse/odometer> "29011"^^<http://bigasterisk.com/2005/11/gasuse/type#mile>.
-_:YXZpMwYr462 <http://purl.org/dc/elements/1.1/created> "2006-08-31T20:27:41.72-07:00".
-_:ExDZmddh440 <http://bigasterisk.com/2005/11/gasuse/gasPrice> _:ExDZmddh439.
-_:ExDZmddh440 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://bigasterisk.com/2005/11/gasuse/FillUp>.
-_:ExDZmddh440 <http://bigasterisk.com/2005/11/gasuse/gasStation> <http://bigasterisk.com/2005/11/gasuse/station/hash-35007765>.
-_:ExDZmddh440 <http://purl.org/dc/elements/1.1/date> "2006-08-17"^^<http://www.w3.org/2001/XMLSchema#date>.
-_:ExDZmddh440 <http://bigasterisk.com/2005/11/gasuse/gallons> "10.182"^^<http://bigasterisk.com/2005/11/gasuse/type#gallon>.
-_:ExDZmddh440 <http://bigasterisk.com/2005/11/gasuse/car> <http://bigasterisk.com/2005/11/gasuse/car/drewCivicHybrid>.
-_:ExDZmddh440 <http://bigasterisk.com/2005/11/gasuse/odometer> "28093"^^<http://bigasterisk.com/2005/11/gasuse/type#mile>.
-_:ExDZmddh440 <http://purl.org/dc/elements/1.1/created> "2006-08-17T08:08:57.71-07:00".
-_:YXZpMwYr461 <http://bigasterisk.com/2005/11/gasuse/gasStation> <http://bigasterisk.com/2005/11/gasuse/station/hash1750483189>.
-_:YXZpMwYr461 <http://purl.org/dc/elements/1.1/date> "2006-08-31"^^<http://www.w3.org/2001/XMLSchema#date>.
-_:YXZpMwYr461 <http://bigasterisk.com/2005/11/gasuse/pricePerGallon> "2.959"^^<http://bigasterisk.com/2005/11/gasuse/type#dollar>.
-<http://bigasterisk.com/2005/11/gasuse/station/hash-81753483> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://bigasterisk.com/2005/11/gasuse/Station>.
-<http://bigasterisk.com/2005/11/gasuse/station/hash-81753483> <http://bigasterisk.com/2005/11/gasuse/shortName> "76".
-<http://bigasterisk.com/2005/11/gasuse/station/hash-81753483> <http://www.w3.org/2000/01/rdf-schema#label> "76 near fair oaks and watt, sacto".
-<http://bigasterisk.com/2005/11/gasuse/station/hash-81753483> <http://bigasterisk.com/2005/11/gasuse/shortAddress> "fair oaks and watt, sacto".
-_:qYxhrRoR440 <http://bigasterisk.com/2005/11/gasuse/gasPrice> _:qYxhrRoR439.
-_:qYxhrRoR440 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://bigasterisk.com/2005/11/gasuse/FillUp>.
-_:qYxhrRoR440 <http://bigasterisk.com/2005/11/gasuse/gasStation> <http://bigasterisk.com/2005/11/gasuse/station/hash-1940330485>.
-_:qYxhrRoR440 <http://purl.org/dc/elements/1.1/date> "2006-08-05"^^<http://www.w3.org/2001/XMLSchema#date>.
-_:qYxhrRoR440 <http://bigasterisk.com/2005/11/gasuse/gallons> "10.677"^^<http://bigasterisk.com/2005/11/gasuse/type#gallon>.
-_:qYxhrRoR440 <http://bigasterisk.com/2005/11/gasuse/car> <http://bigasterisk.com/2005/11/gasuse/car/drewCivicHybrid>.
-_:qYxhrRoR440 <http://bigasterisk.com/2005/11/gasuse/odometer> "27157"^^<http://bigasterisk.com/2005/11/gasuse/type#mile>.
-_:qYxhrRoR440 <http://purl.org/dc/elements/1.1/created> "2006-08-05T10:00:25.01-07:00".
-_:ItLBKslL440 <http://bigasterisk.com/2005/11/gasuse/gasPrice> _:ItLBKslL439.
-_:ItLBKslL440 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://bigasterisk.com/2005/11/gasuse/FillUp>.
-_:ItLBKslL440 <http://bigasterisk.com/2005/11/gasuse/gasStation> <http://bigasterisk.com/2005/11/gasuse/station/hash-95278330>.
-_:ItLBKslL440 <http://purl.org/dc/elements/1.1/date> "2006-08-08"^^<http://www.w3.org/2001/XMLSchema#date>.
-_:ItLBKslL440 <http://bigasterisk.com/2005/11/gasuse/gallons> "10.759"^^<http://bigasterisk.com/2005/11/gasuse/type#gallon>.
-_:ItLBKslL440 <http://bigasterisk.com/2005/11/gasuse/car> <http://bigasterisk.com/2005/11/gasuse/car/drewCivicHybrid>.
-_:ItLBKslL440 <http://bigasterisk.com/2005/11/gasuse/odometer> "27628"^^<http://bigasterisk.com/2005/11/gasuse/type#mile>.
-_:ItLBKslL440 <http://purl.org/dc/elements/1.1/created> "2006-08-08T21:11:18.52-07:00".
-_:ExDZmddh439 <http://bigasterisk.com/2005/11/gasuse/gasStation> <http://bigasterisk.com/2005/11/gasuse/station/hash-35007765>.
-_:ExDZmddh439 <http://purl.org/dc/elements/1.1/date> "2006-08-17"^^<http://www.w3.org/2001/XMLSchema#date>.
-_:ExDZmddh439 <http://bigasterisk.com/2005/11/gasuse/pricePerGallon> "3.099"^^<http://bigasterisk.com/2005/11/gasuse/type#dollar>.
-<http://bigasterisk.com/2005/11/gasuse/station/hash-35007765> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://bigasterisk.com/2005/11/gasuse/Station>.
+<http://bigasterisk.com/2005/11/gasuse/station/hash-1940330485> <http://bigasterisk.com/2005/11/gasuse/shortName> "chevron".
+<http://bigasterisk.com/2005/11/gasuse/station/hash-1940330485> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://bigasterisk.com/2005/11/gasuse/Station>.
+<http://bigasterisk.com/2005/11/gasuse/station/hash-1940330485> <http://www.w3.org/2000/01/rdf-schema#label> "chevron near 21501 foothill, SL".
+<http://bigasterisk.com/2005/11/gasuse/station/hash-1940330485> <http://bigasterisk.com/2005/11/gasuse/shortAddress> "21501 foothill, SL".
 <http://bigasterisk.com/2005/11/gasuse/station/hash-35007765> <http://bigasterisk.com/2005/11/gasuse/shortName> "chevron".
+<http://bigasterisk.com/2005/11/gasuse/station/hash-35007765> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://bigasterisk.com/2005/11/gasuse/Station>.
 <http://bigasterisk.com/2005/11/gasuse/station/hash-35007765> <http://www.w3.org/2000/01/rdf-schema#label> "chevron near polhemus, SM".
 <http://bigasterisk.com/2005/11/gasuse/station/hash-35007765> <http://bigasterisk.com/2005/11/gasuse/shortAddress> "polhemus, SM".
-_:qYxhrRoR439 <http://bigasterisk.com/2005/11/gasuse/gasStation> <http://bigasterisk.com/2005/11/gasuse/station/hash-1940330485>.
-_:qYxhrRoR439 <http://purl.org/dc/elements/1.1/date> "2006-08-05"^^<http://www.w3.org/2001/XMLSchema#date>.
-_:qYxhrRoR439 <http://bigasterisk.com/2005/11/gasuse/pricePerGallon> "3.099"^^<http://bigasterisk.com/2005/11/gasuse/type#dollar>.
-<http://bigasterisk.com/2005/11/gasuse/station/hash0> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://bigasterisk.com/2005/11/gasuse/Station>.
-_:tvDVIrCA464 <http://bigasterisk.com/2005/11/gasuse/gasPrice> _:tvDVIrCA463.
-_:tvDVIrCA464 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://bigasterisk.com/2005/11/gasuse/FillUp>.
-_:tvDVIrCA464 <http://bigasterisk.com/2005/11/gasuse/gasStation> <http://bigasterisk.com/2005/11/gasuse/station/hash-1324720533>.
-_:tvDVIrCA464 <http://purl.org/dc/elements/1.1/date> "2006-09-09"^^<http://www.w3.org/2001/XMLSchema#date>.
+_:qYxhrRoR440 <http://bigasterisk.com/2005/11/gasuse/gallons> "10.677"^^<http://bigasterisk.com/2005/11/gasuse/type#gallon>.
+_:qYxhrRoR440 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://bigasterisk.com/2005/11/gasuse/FillUp>.
+_:qYxhrRoR440 <http://purl.org/dc/elements/1.1/created> "2006-08-05T10:00:25.01-07:00".
+_:qYxhrRoR440 <http://bigasterisk.com/2005/11/gasuse/odometer> "27157"^^<http://bigasterisk.com/2005/11/gasuse/type#mile>.
+_:qYxhrRoR440 <http://bigasterisk.com/2005/11/gasuse/car> <http://bigasterisk.com/2005/11/gasuse/car/drewCivicHybrid>.
+_:qYxhrRoR440 <http://bigasterisk.com/2005/11/gasuse/gasStation> <http://bigasterisk.com/2005/11/gasuse/station/hash-1940330485>.
+_:qYxhrRoR440 <http://bigasterisk.com/2005/11/gasuse/gasPrice> _:qYxhrRoR439.
+_:qYxhrRoR440 <http://purl.org/dc/elements/1.1/date> "2006-08-05"^^<http://www.w3.org/2001/XMLSchema#date>.
+_:YXZpMwYr461 <http://bigasterisk.com/2005/11/gasuse/pricePerGallon> "2.959"^^<http://bigasterisk.com/2005/11/gasuse/type#dollar>.
+_:YXZpMwYr461 <http://purl.org/dc/elements/1.1/date> "2006-08-31"^^<http://www.w3.org/2001/XMLSchema#date>.
+_:YXZpMwYr461 <http://bigasterisk.com/2005/11/gasuse/gasStation> <http://bigasterisk.com/2005/11/gasuse/station/hash1750483189>.
+_:tvDVIrCA462 <http://bigasterisk.com/2005/11/gasuse/gallons> "10.134"^^<http://bigasterisk.com/2005/11/gasuse/type#gallon>.
+_:tvDVIrCA462 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://bigasterisk.com/2005/11/gasuse/FillUp>.
+_:tvDVIrCA462 <http://purl.org/dc/elements/1.1/created> "2006-09-06T08:11:57.17-07:00".
+_:tvDVIrCA462 <http://bigasterisk.com/2005/11/gasuse/odometer> "29462"^^<http://bigasterisk.com/2005/11/gasuse/type#mile>.
+_:tvDVIrCA462 <http://bigasterisk.com/2005/11/gasuse/car> <http://bigasterisk.com/2005/11/gasuse/car/drewCivicHybrid>.
+_:tvDVIrCA462 <http://bigasterisk.com/2005/11/gasuse/gasStation> <http://bigasterisk.com/2005/11/gasuse/station/hash-1781041155>.
+_:tvDVIrCA462 <http://bigasterisk.com/2005/11/gasuse/gasPrice> _:tvDVIrCA461.
+_:tvDVIrCA462 <http://purl.org/dc/elements/1.1/date> "2006-09-06"^^<http://www.w3.org/2001/XMLSchema#date>.
+_:YXZpMwYr463 <http://bigasterisk.com/2005/11/gasuse/pricePerGallon> ""^^<http://bigasterisk.com/2005/11/gasuse/type#dollar>.
+_:YXZpMwYr463 <http://purl.org/dc/elements/1.1/date> "2006-08-31"^^<http://www.w3.org/2001/XMLSchema#date>.
+_:YXZpMwYr463 <http://bigasterisk.com/2005/11/gasuse/gasStation> <http://bigasterisk.com/2005/11/gasuse/station/hash0>.
+_:ExDZmddh439 <http://bigasterisk.com/2005/11/gasuse/pricePerGallon> "3.099"^^<http://bigasterisk.com/2005/11/gasuse/type#dollar>.
+_:ExDZmddh439 <http://purl.org/dc/elements/1.1/date> "2006-08-17"^^<http://www.w3.org/2001/XMLSchema#date>.
+_:ExDZmddh439 <http://bigasterisk.com/2005/11/gasuse/gasStation> <http://bigasterisk.com/2005/11/gasuse/station/hash-35007765>.
+_:ExDZmddh440 <http://bigasterisk.com/2005/11/gasuse/gallons> "10.182"^^<http://bigasterisk.com/2005/11/gasuse/type#gallon>.
+_:ExDZmddh440 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://bigasterisk.com/2005/11/gasuse/FillUp>.
+_:ExDZmddh440 <http://purl.org/dc/elements/1.1/created> "2006-08-17T08:08:57.71-07:00".
+_:ExDZmddh440 <http://bigasterisk.com/2005/11/gasuse/odometer> "28093"^^<http://bigasterisk.com/2005/11/gasuse/type#mile>.
+_:ExDZmddh440 <http://bigasterisk.com/2005/11/gasuse/car> <http://bigasterisk.com/2005/11/gasuse/car/drewCivicHybrid>.
+_:ExDZmddh440 <http://bigasterisk.com/2005/11/gasuse/gasStation> <http://bigasterisk.com/2005/11/gasuse/station/hash-35007765>.
+_:ExDZmddh440 <http://bigasterisk.com/2005/11/gasuse/gasPrice> _:ExDZmddh439.
+_:ExDZmddh440 <http://purl.org/dc/elements/1.1/date> "2006-08-17"^^<http://www.w3.org/2001/XMLSchema#date>.
+_:KoVmBwjK462 <http://bigasterisk.com/2005/11/gasuse/gallons> "9.735"^^<http://bigasterisk.com/2005/11/gasuse/type#gallon>.
+_:KoVmBwjK462 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://bigasterisk.com/2005/11/gasuse/FillUp>.
+_:KoVmBwjK462 <http://purl.org/dc/elements/1.1/created> "2006-10-06T17:40:25.97-07:00".
+_:KoVmBwjK462 <http://bigasterisk.com/2005/11/gasuse/odometer> "31210"^^<http://bigasterisk.com/2005/11/gasuse/type#mile>.
+_:KoVmBwjK462 <http://bigasterisk.com/2005/11/gasuse/car> <http://bigasterisk.com/2005/11/gasuse/car/drewCivicHybrid>.
+_:KoVmBwjK462 <http://bigasterisk.com/2005/11/gasuse/gasStation> <http://bigasterisk.com/2005/11/gasuse/station/hash425852842>.
+_:KoVmBwjK462 <http://bigasterisk.com/2005/11/gasuse/gasPrice> _:KoVmBwjK461.
+_:KoVmBwjK462 <http://purl.org/dc/elements/1.1/date> "2006-10-06"^^<http://www.w3.org/2001/XMLSchema#date>.
+<http://bigasterisk.com/2005/11/gasuse/station/hash425852842> <http://bigasterisk.com/2005/11/gasuse/shortName> "valero".
+<http://bigasterisk.com/2005/11/gasuse/station/hash425852842> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://bigasterisk.com/2005/11/gasuse/Station>.
+<http://bigasterisk.com/2005/11/gasuse/station/hash425852842> <http://www.w3.org/2000/01/rdf-schema#label> "valero near 503 whipple, RWC".
+<http://bigasterisk.com/2005/11/gasuse/station/hash425852842> <http://bigasterisk.com/2005/11/gasuse/shortAddress> "503 whipple, RWC".
+<http://bigasterisk.com/2005/11/gasuse/station/hash-1324720533> <http://bigasterisk.com/2005/11/gasuse/shortName> "76".
+<http://bigasterisk.com/2005/11/gasuse/station/hash-1324720533> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://bigasterisk.com/2005/11/gasuse/Station>.
+<http://bigasterisk.com/2005/11/gasuse/station/hash-1324720533> <http://www.w3.org/2000/01/rdf-schema#label> "76 near emeryville".
+<http://bigasterisk.com/2005/11/gasuse/station/hash-1324720533> <http://bigasterisk.com/2005/11/gasuse/shortAddress> "emeryville".
+<http://bigasterisk.com/2005/11/gasuse/station/hash-81753483> <http://bigasterisk.com/2005/11/gasuse/shortName> "76".
+<http://bigasterisk.com/2005/11/gasuse/station/hash-81753483> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://bigasterisk.com/2005/11/gasuse/Station>.
+<http://bigasterisk.com/2005/11/gasuse/station/hash-81753483> <http://www.w3.org/2000/01/rdf-schema#label> "76 near fair oaks and watt, sacto".
+<http://bigasterisk.com/2005/11/gasuse/station/hash-81753483> <http://bigasterisk.com/2005/11/gasuse/shortAddress> "fair oaks and watt, sacto".
+_:ItLBKslL440 <http://bigasterisk.com/2005/11/gasuse/gallons> "10.759"^^<http://bigasterisk.com/2005/11/gasuse/type#gallon>.
+_:ItLBKslL440 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://bigasterisk.com/2005/11/gasuse/FillUp>.
+_:ItLBKslL440 <http://purl.org/dc/elements/1.1/created> "2006-08-08T21:11:18.52-07:00".
+_:ItLBKslL440 <http://bigasterisk.com/2005/11/gasuse/odometer> "27628"^^<http://bigasterisk.com/2005/11/gasuse/type#mile>.
+_:ItLBKslL440 <http://bigasterisk.com/2005/11/gasuse/car> <http://bigasterisk.com/2005/11/gasuse/car/drewCivicHybrid>.
+_:ItLBKslL440 <http://bigasterisk.com/2005/11/gasuse/gasStation> <http://bigasterisk.com/2005/11/gasuse/station/hash-95278330>.
+_:ItLBKslL440 <http://bigasterisk.com/2005/11/gasuse/gasPrice> _:ItLBKslL439.
+_:ItLBKslL440 <http://purl.org/dc/elements/1.1/date> "2006-08-08"^^<http://www.w3.org/2001/XMLSchema#date>.
 _:tvDVIrCA464 <http://bigasterisk.com/2005/11/gasuse/gallons> "10.181"^^<http://bigasterisk.com/2005/11/gasuse/type#gallon>.
-_:tvDVIrCA464 <http://bigasterisk.com/2005/11/gasuse/car> <http://bigasterisk.com/2005/11/gasuse/car/drewCivicHybrid>.
-_:tvDVIrCA464 <http://bigasterisk.com/2005/11/gasuse/odometer> "29896"^^<http://bigasterisk.com/2005/11/gasuse/type#mile>.
+_:tvDVIrCA464 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://bigasterisk.com/2005/11/gasuse/FillUp>.
 _:tvDVIrCA464 <http://purl.org/dc/elements/1.1/created> "2006-09-09T21:05:40.25-07:00".
+_:tvDVIrCA464 <http://bigasterisk.com/2005/11/gasuse/odometer> "29896"^^<http://bigasterisk.com/2005/11/gasuse/type#mile>.
+_:tvDVIrCA464 <http://bigasterisk.com/2005/11/gasuse/car> <http://bigasterisk.com/2005/11/gasuse/car/drewCivicHybrid>.
+_:tvDVIrCA464 <http://bigasterisk.com/2005/11/gasuse/gasStation> <http://bigasterisk.com/2005/11/gasuse/station/hash-1324720533>.
+_:tvDVIrCA464 <http://bigasterisk.com/2005/11/gasuse/gasPrice> _:tvDVIrCA463.
+_:tvDVIrCA464 <http://purl.org/dc/elements/1.1/date> "2006-09-09"^^<http://www.w3.org/2001/XMLSchema#date>.
+<http://bigasterisk.com/2005/11/gasuse/station/hash-1781041155> <http://bigasterisk.com/2005/11/gasuse/shortName> "bp".
+<http://bigasterisk.com/2005/11/gasuse/station/hash-1781041155> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://bigasterisk.com/2005/11/gasuse/Station>.
+<http://bigasterisk.com/2005/11/gasuse/station/hash-1781041155> <http://www.w3.org/2000/01/rdf-schema#label> "bp near broadway RWC".
+<http://bigasterisk.com/2005/11/gasuse/station/hash-1781041155> <http://bigasterisk.com/2005/11/gasuse/shortAddress> "broadway RWC".
+_:ItLBKslL439 <http://bigasterisk.com/2005/11/gasuse/pricePerGallon> "3.099"^^<http://bigasterisk.com/2005/11/gasuse/type#dollar>.
+_:ItLBKslL439 <http://purl.org/dc/elements/1.1/date> "2006-08-08"^^<http://www.w3.org/2001/XMLSchema#date>.
+_:ItLBKslL439 <http://bigasterisk.com/2005/11/gasuse/gasStation> <http://bigasterisk.com/2005/11/gasuse/station/hash-95278330>.
+_:tvDVIrCA461 <http://bigasterisk.com/2005/11/gasuse/pricePerGallon> "2.899"^^<http://bigasterisk.com/2005/11/gasuse/type#dollar>.
+_:tvDVIrCA461 <http://purl.org/dc/elements/1.1/date> "2006-09-06"^^<http://www.w3.org/2001/XMLSchema#date>.
+_:tvDVIrCA461 <http://bigasterisk.com/2005/11/gasuse/gasStation> <http://bigasterisk.com/2005/11/gasuse/station/hash-1781041155>.
+<http://bigasterisk.com/2005/11/gasuse/station/hash1750483189> <http://bigasterisk.com/2005/11/gasuse/shortName> "arco".
+<http://bigasterisk.com/2005/11/gasuse/station/hash1750483189> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://bigasterisk.com/2005/11/gasuse/Station>.
+<http://bigasterisk.com/2005/11/gasuse/station/hash1750483189> <http://www.w3.org/2000/01/rdf-schema#label> "arco near 1801 woodside RWC ".
+<http://bigasterisk.com/2005/11/gasuse/station/hash1750483189> <http://bigasterisk.com/2005/11/gasuse/shortAddress> "1801 woodside RWC ".
+_:ntlfKcgk440 <http://bigasterisk.com/2005/11/gasuse/gallons> "9.845"^^<http://bigasterisk.com/2005/11/gasuse/type#gallon>.
+_:ntlfKcgk440 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://bigasterisk.com/2005/11/gasuse/FillUp>.
+_:ntlfKcgk440 <http://purl.org/dc/elements/1.1/created> "2006-07-29T21:06:15.62-07:00".
+_:ntlfKcgk440 <http://bigasterisk.com/2005/11/gasuse/odometer> "26694"^^<http://bigasterisk.com/2005/11/gasuse/type#mile>.
+_:ntlfKcgk440 <http://bigasterisk.com/2005/11/gasuse/car> <http://bigasterisk.com/2005/11/gasuse/car/drewCivicHybrid>.
+_:ntlfKcgk440 <http://bigasterisk.com/2005/11/gasuse/gasStation> <http://bigasterisk.com/2005/11/gasuse/station/hash-81753483>.
+_:ntlfKcgk440 <http://bigasterisk.com/2005/11/gasuse/gasPrice> _:ntlfKcgk439.
+_:ntlfKcgk440 <http://purl.org/dc/elements/1.1/date> "2006-07-29"^^<http://www.w3.org/2001/XMLSchema#date>.
+_:LeWpnlOI461 <http://bigasterisk.com/2005/11/gasuse/pricePerGallon> "3.059"^^<http://bigasterisk.com/2005/11/gasuse/type#dollar>.
+_:LeWpnlOI461 <http://purl.org/dc/elements/1.1/date> "2006-09-14"^^<http://www.w3.org/2001/XMLSchema#date>.
+_:LeWpnlOI461 <http://bigasterisk.com/2005/11/gasuse/gasStation> <http://bigasterisk.com/2005/11/gasuse/station/hash238145682>.
+_:pmMjWtJR461 <http://bigasterisk.com/2005/11/gasuse/pricePerGallon> "2.679"^^<http://bigasterisk.com/2005/11/gasuse/type#dollar>.
+_:pmMjWtJR461 <http://purl.org/dc/elements/1.1/date> "2006-09-29"^^<http://www.w3.org/2001/XMLSchema#date>.
+_:pmMjWtJR461 <http://bigasterisk.com/2005/11/gasuse/gasStation> <http://bigasterisk.com/2005/11/gasuse/station/hash-2135428198>.
