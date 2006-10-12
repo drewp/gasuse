@@ -39,7 +39,9 @@ class Page(rend.Page):
         return loaders.xmlfile(self.content)
 
 class INewItem(annotate.TypedInterface):
-    def newItem(date=annotate.String(default="today"),
+    # i wish i could hide the password field when you're logged in
+    def newItem(password=annotate.String(null=""),
+                date=annotate.String(default="today"),
                 station=annotate.String(null="", description="e.g. shell"),
                 addr=annotate.String(null="", label="address",
                                      description="e.g. oak and main SF"),
@@ -75,8 +77,25 @@ class SubmitFillUpPage(rend.Page):
     # pages should do this)
     implements(INewItem)
     docFactory = loaders.stan(T.html[T.body[webform.renderForms()]])
+    def __init__(self, ctx):
+        self.ctx = ctx
 
-    def newItem(self, date, station, addr, priceGal, gallons, fee, odo, notes):
+    def newItem(self, password, date, station, addr, priceGal, gallons,
+                fee, odo, notes):
+        sess = inevow.ISession(self.ctx)
+        if hasattr(sess, 'password'):
+            print "already had password", sess.password
+        else:
+            correctPassword = (Graph().parse("password.nt",
+                                             format="nt").value(GAS['site'],
+                                                               GAS['password'])
+            if password == correctPassword:
+                print "logged in"
+                sess.password = True
+            else:
+                print "no correct password, not submitting"
+                return
+
         g = graph.get_context(GAS['webAdded#context'])
 
         car = GAS['car/drewCivicHybrid']
@@ -118,8 +137,6 @@ def htmlColor(r,g,b):
 class FillupsPage(Page):
     content = "fillUps.html"
     addSlash = True
-    def child_submit(self, ctx):
-        return SubmitPage()
     def render_car(self, ctx, data):
         args = inevow.IRequest(ctx).args
         if 'car' in args:
@@ -341,44 +358,6 @@ class LineGraphPage(Page):
                                           GAS['pricePerGallon']),
                 "pricePerGallon")
 
-
-### Authentication
-def noLogout():
-    return None
-
-class Realm:
-    implements(portal.IRealm)
-    def requestAvatar(self, avatarId, mind, *interfaces):
-        """  @returns: a deferred which will fire a tuple of (interface,
-            avatarAspect, logout), or the tuple itself.  The interface will be
-            one of the interfaces passed in the 'interfaces' argument.  The
-            'avatarAspect' will implement that interface.  The 'logout' object
-            is a callable which will detach the mind from the avatar."""
-        print "requestAvatar", self, avatarId, mind, interfaces
-        for iface in interfaces:
-            if iface is inevow.IResource:
-                if avatarId is checkers.ANONYMOUS:
-                    print "avatar is anon"
-                    resc = SubmitFillUpPage()
-                    resc.realm = self
-                    return (inevow.IResource, resc, noLogout)
-                else:
-                    print "avatar is not anon"
-                    resc = SubmitFillUpPage(avatarId)
-                    resc.realm = self
-                    return (inevow.IResource, resc, resc.logout)
- 
-        raise NotImplementedError("Can't support that interface.")
- 
-    
-ptl = portal.Portal(Realm())
-myChecker = checkers.InMemoryUsernamePasswordDatabaseDontUse()
-myChecker.addUser("user","password")
-ptl.registerChecker(checkers.AllowAnonymousAccess(), credentials.IAnonymous)
-ptl.registerChecker(myChecker)
-res = guard.SessionWrapper(ptl)
-res.locateConfigurable = SubmitFillUpPage().locateConfigurable
-
 class MainPage(Page):
     content = "main.html"
     def child_fillUps(self, ctx):
@@ -389,8 +368,7 @@ class MainPage(Page):
                                                         GAS['pricePerGallon']),
                              "pricePerGallon")
     def child_submitFillUp(self, ctx):
-        #return SubmitFillUpPage()
-        return res
+        return SubmitFillUpPage(ctx)
     
 graph = SPARQLGraph(Graph())
 graph.parse(FileInputSource(open("gas.rdf")))
