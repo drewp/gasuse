@@ -25,6 +25,7 @@ from rdflib import URIRef, Literal, BNode, Namespace, FileInputSource, Graph
 from rdflib import RDF, RDFS
 from rdflib.sparql.sparqlOperators import getLiteralValue
 from linegraph import LineGraph
+from vhostfakeroot import VhostFakeRoot
 import mpg
 from gasuse import DC, DATE, GAS, DOLLAR, MILE, GALLON
 XS = Namespace("http://www.w3.org/2001/XMLSchema#")
@@ -402,5 +403,5 @@ for car in [GAS['car/drewCivicHybrid'],
     mpg.calcMpg(graph, car)
 
 application = service.Application('gasuse')
-webServer = internet.TCPServer(8081, appserver.NevowSite(MainPage()))
+webServer = internet.TCPServer(8081, appserver.NevowSite(VhostFakeRoot(MainPage())))
 webServer.setServiceParent(application)
