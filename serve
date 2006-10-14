@@ -61,35 +61,50 @@ class SubmitFillUpPage(formal.ResourceMixin, rend.Page):
     # detect if you're a phone and draw itself accordingly (all the
     # pages should do this)
 
-    docFactory = loaders.stan(T.html[T.head[
-        T.link(rel='stylesheet', type='text/css', href=url.root.child('formal.css')),
-        T.script(type='text/javascript', src='js/formal.js'),
-        ], T.body[T.directive('form21')]])
-
-#    def render_form1(self, ctx, _=None):
-#        return T.directive("form1")
-
-    def form1(self, ctx):
-        print "create form"
+    docFactory = loaders.stan(
+        T.html[
+          T.head[
+            T.link(rel='stylesheet', type='text/css', href=url.root.child('formal.css')),
+            T.script(type='text/javascript', src='js/formal.js'),
+            T.style["""
+        div.1-fee-field { background: #ff0000; border: 11px }
+            """]
+            ],
+          T.body[T.div[
+            T.div(render=T.directive("loggedIn")),
+            T.directive('form 1')
+            ]
+            ]
+          ])
+    def render_loggedIn(self, ctx, data):
+        if hasattr(inevow.ISession(ctx), 'password'):
+            return "[logged in]"
+        else:
+            return ""
+        
+    def form_1(self, ctx):
         form = formal.Form()
-        form.addField('password', formal.String())
-        form.addField('date', formal.String()) #String(default="today"),
-        form.addField('station', formal.String())#=annotate.String(null="", description="e.g. shell"),
-        form.addField('addr', formal.String())#=annotate.String(null="", label="address",
+        if not hasattr(inevow.ISession(ctx), 'password'):
+            form.addField('password', formal.String())
+        form.addField('date', formal.String())
+        form.data['date'] = 'today'
+        form.addField('station', formal.String(missing=""))# description="e.g. shell"),
+        form.addField('addr', formal.String(missing=""))# label="address",
 #                             description="e.g. oak and main SF"),
-        form.addField('priceGal', formal.String())#=annotate.String(null=""),
-        form.addField('gallons', formal.String())#=annotate.String(null=""),
-        form.addField('fee', formal.String())#=annotate.String(null=""),
-        form.addField('odo', formal.String())#=annotate.String(null=""),
-        form.addField('notes', formal.String())#=annotate.String(null="")):
+        form.addField('priceGal', formal.String(missing=""))
+        form.addField('gallons', formal.String(missing=""))
+        form.addField('fee', formal.String(missing=""))
+        form.addField('odo', formal.String(missing=""))
+        form.addField('notes', formal.String(missing=""))
         form.addAction(self.newItem)
-        print "done"
         return form
 
     def newItem(self, ctx, form, data):
-        password, date, station, addr, priceGal, gallons, fee, odo, notes = [data.get(x) for x in "password date station addr priceGal gallons fee odo notes"]
-                
-        sess = inevow.ISession(self.ctx)
+        password, date, station, addr, priceGal, gallons, fee, odo, notes = [
+          data.get(x) for x in
+          "password date station addr priceGal gallons fee odo notes".split()]
+
+        sess = inevow.ISession(ctx)
         if hasattr(sess, 'password'):
             print "already had password", sess.password
         else:
@@ -100,8 +115,7 @@ class SubmitFillUpPage(formal.ResourceMixin, rend.Page):
                 print "logged in"
                 sess.password = True
             else:
-                print "no correct password, not submitting"
-                return
+                return static.staticHTML("incorrect password, not submitting")
 
         g = graph.get_context(GAS['webAdded#context'])
 
@@ -135,7 +149,7 @@ class SubmitFillUpPage(formal.ResourceMixin, rend.Page):
                 g.add((fill, GAS[s], o))        
         
         g.serialize("web_added.nt", format="nt")
-        return loaders.stan("saved; webAdded now has %s nodes" % len(g))
+        return static.staticHTML("saved; webAdded now has %s nodes" % len(g))
 
 def htmlColor(r,g,b):
     clamp = lambda v: max(0, min(255, v))
@@ -375,8 +389,9 @@ class MainPage(Page):
                                                         GAS['pricePerGallon']),
                              "pricePerGallon")
     def child_submitFillUp(self, ctx):
-        print "make sfu page"
-        return SubmitFillUpPage(ctx)
+        return SubmitFillUpPage()
+setattr(MainPage, 'child_formal.css', formal.defaultCSS)
+setattr(MainPage, 'child_js', formal.formsJS)
     
 graph = SPARQLGraph(Graph())
 graph.parse(FileInputSource(open("gas.rdf")))
