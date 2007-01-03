@@ -23,6 +23,7 @@ def fillUps(graph, car):
                                     ("?fillUp", DC['date'], "?date"),
                                     ("?fillUp", GAS['car'], car)])))
     ret.sort()
+    print "return %s fillups for %s" % (len(ret), car)
     return ret
 
 def shorten(graph, uri):

@@ -18,6 +18,7 @@ from twisted.application import internet, service
 import formal
 from nevow import appserver
 from nevow import inevow, loaders, rend, static, url, tags as T, guard
+from nevow.vhost import VHostMonsterResource
 from formless import annotate, webform
 from zope.interface import implements
 from rdflib.sparql.sparqlGraph import SPARQLGraph
@@ -25,7 +26,6 @@ from rdflib import URIRef, Literal, BNode, Namespace, FileInputSource, Graph
 from rdflib import RDF, RDFS
 from rdflib.sparql.sparqlOperators import getLiteralValue
 from linegraph import LineGraph
-from vhostfakeroot import VhostFakeRoot
 import mpg
 from gasuse import DC, DATE, GAS, DOLLAR, MILE, GALLON
 XS = Namespace("http://www.w3.org/2001/XMLSchema#")
@@ -182,7 +182,7 @@ class FillupsPage(Page):
         return fillUps
     def render_numFillupsSelector(self, ctx, data):
         # 'all 165'
-        return [(T.a(href=url.URL.fromString("http://gasuse.bigasterisk.com/fillUps").add('numFillUps', n))[n]," ")
+        return [(T.a(href=url.here.add('numFillUps', n))[n]," ")
                 for n in [10,20,50,100,'all']]
     def render_row(self, ctx, item):
         val = graph.value
@@ -220,8 +220,9 @@ class FillupsPage(Page):
             pass
 
         try:
-            slot("gasStationLabel",
-                 val(val(item, GAS["gasStation"]), RDFS.label))
+            stns = graph.objects(item, GAS["gasStation"])
+            labels = [graph.label(s) for s in stns]
+            slot("gasStationLabel", labels)
         except (TypeError, ValueError):
             pass
 
@@ -243,7 +244,7 @@ class FillupsPage(Page):
             fillUps = []
             stns = Set()
             for stn in graph.subjects(RDF.type, GAS['Station']):
-                if val(stn, GAS['shortName']) == shortName:
+                if val(stn, GAS['shortName'], any=True) == shortName:
                     stns.add(stn)
 
             for f in graph.subjects(RDF.type, GAS['FillUp']):
@@ -304,7 +305,7 @@ class FillupsPage(Page):
 
         shortNames = Set()
         for stn in graph.subjects(RDF.type, GAS['Station']):
-            shortName = graph.value(stn, GAS['shortName'])
+            shortName = graph.value(stn, GAS['shortName'], any=True)
             shortNames.add(shortName)
         
         for shortName in sorted(shortNames):
@@ -395,13 +396,19 @@ setattr(MainPage, 'child_formal.css', formal.defaultCSS)
 setattr(MainPage, 'child_js', formal.formsJS)
     
 graph = SPARQLGraph(Graph())
-graph.parse(FileInputSource(open("gas.rdf")))
-graph.parse(FileInputSource(open("gas2.n3")), format="n3")
+graph.parse(FileInputSource(open("gas.rdf")), publicID=GAS['gas1#context'])
+print "%s triples after gas.rdf" % len(graph)
+graph.parse(FileInputSource(open("gas2.n3")), publicID=GAS['gas2#context'], format="n3")
+print "%s triples after gas2.n3" % len(graph)
 graph.parse("web_added.nt", publicID=GAS['webAdded#context'], format="nt")
 for car in [GAS['car/drewCivicHybrid'],
             GAS['car/drewHonda']]:
     mpg.calcMpg(graph, car)
 
 application = service.Application('gasuse')
-webServer = internet.TCPServer(8081, appserver.NevowSite(VhostFakeRoot(MainPage())))
+main = MainPage()
+from nevow.vhost import VHostMonsterResource
+main.putChild('vhost', VHostMonsterResource())
+
+webServer = internet.TCPServer(8081, appserver.NevowSite((main)))
 webServer.setServiceParent(application)
