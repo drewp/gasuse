@@ -394,6 +394,7 @@ class MainPage(Page):
         return SubmitFillUpPage()
 setattr(MainPage, 'child_formal.css', formal.defaultCSS)
 setattr(MainPage, 'child_js', formal.formsJS)
+setattr(MainPage, 'child_doap.rdf', static.File("doap.rdf"))
     
 graph = SPARQLGraph(Graph())
 graph.parse(FileInputSource(open("gas.rdf")), publicID=GAS['gas1#context'])
