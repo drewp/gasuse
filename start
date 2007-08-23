@@ -1,0 +1,3 @@
+#!/bin/sh
+cd /my/proj/gasuse
+exec twistd -noy serve

@@ -6,25 +6,25 @@ sort fillups better, using odometer
 
 import optparse, datetime
 from rdflib.sparql.sparqlGraph import SPARQLGraph as Graph
-from rdflib.sparql import GraphPattern, Debug
+from rdflib.sparql.bison import GraphPattern
+from rdflib.sparql import Debug
 import rdflib.sparql.sparqlOperators as op
-from rdflib import URIRef, Literal, BNode, Namespace, FileInputSource
+from rdflib import URIRef, Literal, Variable, BNode, Namespace, FileInputSource
 from rdflib import RDF, RDFS
 
-from gasuse import DC, DATE, GAS, DOLLAR, MILE, GALLON
+from gasuse import DC, DATE, GAS, DOLLAR, MILE, GALLON, TYPE
 
 def fillUps(graph, car):
     """sorted list of (date, fillUp)
 
     should sort by odometer if date is missing
     """
-    ret = list(graph.query(("?date", "?fillUp"), 
-                      GraphPattern([("?fillUp", RDF.type, GAS['FillUp']),
-                                    ("?fillUp", DC['date'], "?date"),
-                                    ("?fillUp", GAS['car'], car)])))
-    ret.sort()
+    ret = list(graph.query("""SELECT ?date ?odo ?fillUp WHERE { 
+                      ?fillUp a gas:FillUp; gas:odometer ?odo; dc:date ?date; gas:car ?car .
+   }""", initNs=dict(gas=GAS, dc=DC), initBindings={Variable("?car") : car}))
+    ret.sort() # alpha sort on odo
     print "return %s fillups for %s" % (len(ret), car)
-    return ret
+    return [(f[0], f[2]) for f in ret]
 
 def shorten(graph, uri):
     for prefix, namespace in graph.namespaces():
@@ -62,7 +62,7 @@ def calcMpg(graph, car):
                                  GAS['milesOnThisTank'])) /
                        float(val(prevFillup, GAS['gallons'])))
                 graph.add((prevFillup, GAS['mpgOnThisTank'],
-                           Literal(mpg, datatype=GAS['type/mpg'])))
+                           Literal(mpg, datatype=TYPE['mpg'])))
             except (ValueError, TypeError), e:
                 pass
 
@@ -71,7 +71,7 @@ def calcMpg(graph, car):
                                  GAS["pricePerGallon"])) /
                        float(val(prevFillup, GAS["mpgOnThisTank"])))
                 graph.add((prevFillup, GAS['dollarsPerMile'],
-                           Literal(dpm, datatype=GAS['type/dollar'])))
+                           Literal(dpm, datatype=DOLLAR)))
             except (ValueError, TypeError), e:
                 pass
         prevFillup = f

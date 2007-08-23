@@ -1,0 +1,3384 @@
+# this is gas.rdf and gas2.n3, with a few edits. Then I converted to complete1.rdf for import, since rdflib can't read something in this n3 file.
+
+
+#Processed by Id: cwm.py,v 1.190 2006/08/09 23:20:42 syosi Exp 
+        #    using base file:///my/proj/gasuse/
+        
+#  Notation3 generation by
+#       notation3.py,v 1.191 2006/08/01 01:14:04 syosi Exp
+
+#   Base was: file:///my/proj/gasuse/
+@prefix : <http://bigasterisk.com/2005/11/gasuse/> .
+@prefix Sta: <http://bigasterisk.com/2005/11/gasuse/Station/> .
+@prefix XML: <http://www.w3.org/2001/XMLSchema#> .
+@prefix _4: <http://purl.org/dc/elements/1.1/> .
+@prefix ca: <http://bigasterisk.com/2005/11/gasuse/car/> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix sta: <http://bigasterisk.com/2005/11/gasuse/station/> .
+@prefix typ: <http://bigasterisk.com/2005/11/gasuse/type#> .
+@prefix type: <http://bigasterisk.com/2005/11/gasuse/type#> .
+    
+    Sta:     a :Station;
+         :shortAddress "";
+         :shortName "";
+         rdfs:label " at " .
+    
+    Sta:76     a :Station;
+         :shortAddress "";
+         :shortName "76";
+         rdfs:label "76 at " .
+    
+    Sta:761     a :Station;
+         :shortAddress "livermore, ca";
+         :shortName "76";
+         rdfs:label "76 at livermore, ca" .
+    
+    Sta:7610     a :Station;
+         :shortAddress "700 west a st, hayward";
+         :shortName "76";
+         rdfs:label "76 at 700 west a st, hayward" .
+    
+    Sta:762     a :Station;
+         :shortAddress "la";
+         :shortName "76";
+         rdfs:label "76 at la" .
+    
+    Sta:763     a :Station;
+         :shortAddress "mayfair ave, daly city";
+         :shortName "76";
+         rdfs:label "76 at mayfair ave, daly city" .
+    
+    Sta:764     a :Station;
+         :shortAddress "claremont";
+         :shortName "76";
+         rdfs:label "76 at claremont" .
+    
+    Sta:765     a :Station;
+         :shortAddress "lakeshore";
+         :shortName "76";
+         rdfs:label "76 at lakeshore" .
+    
+    Sta:766     a :Station;
+         :shortAddress "221 airport blvd, s sf";
+         :shortName "76";
+         rdfs:label "76 at 221 airport blvd, s sf" .
+    
+    Sta:767     a :Station;
+         :shortAddress "134 pittman rd, cordelia ca";
+         :shortName "76";
+         rdfs:label "76 at 134 pittman rd, cordelia ca" .
+    
+    Sta:768     a :Station;
+         :shortAddress "3200 lakeshore";
+         :shortName "76";
+         rdfs:label "76 at 3200 lakeshore" .
+    
+    Sta:769     a :Station;
+         :shortAddress "2690 san miguel rd, newport beach";
+         :shortName "76";
+         rdfs:label "76 at 2690 san miguel rd, newport beach" .
+    
+    <http://bigasterisk.com/2005/11/gasuse/Station/?>     a :Station;
+         :shortAddress "?";
+         :shortName "?";
+         rdfs:label "? at ?" .
+    
+    <http://bigasterisk.com/2005/11/gasuse/Station/?1>     a :Station;
+         :shortAddress "?";
+         :shortName "?";
+         rdfs:label "? at ?" .
+    
+    <http://bigasterisk.com/2005/11/gasuse/Station/?2>     a :Station;
+         :shortAddress "lost hills ca";
+         :shortName "?";
+         rdfs:label "? at lost hills ca" .
+    
+    <http://bigasterisk.com/2005/11/gasuse/Station/A&Agas>     a :Station;
+         :shortAddress "138 jackson st, hayward";
+         :shortName "A & A gas";
+         rdfs:label "A & A gas at 138 jackson st, hayward" .
+    
+    Sta:ampm     a :Station;
+         :shortAddress "shattuck/ashby";
+         :shortName "ampm";
+         rdfs:label "ampm at shattuck/ashby" .
+    
+    Sta:ampm1     a :Station;
+         :shortAddress "auto mall";
+         :shortName "ampm";
+         rdfs:label "ampm at auto mall" .
+    
+    Sta:arco     a :Station;
+         :shortAddress "33 university";
+         :shortName "arco";
+         rdfs:label "arco at 33 university" .
+    
+    Sta:arco1     a :Station;
+         :shortAddress "";
+         :shortName "arco";
+         rdfs:label "arco at " .
+    
+    Sta:arco10     a :Station;
+         :shortAddress "3704 cahuenga blvd, n hollywood";
+         :shortName "arco";
+         rdfs:label "arco at 3704 cahuenga blvd, n hollywood" .
+    
+    Sta:arco11     a :Station;
+         :shortAddress "1700 middlefield rd, redwood city";
+         :shortName "arco";
+         rdfs:label "arco at 1700 middlefield rd, redwood city" .
+    
+    Sta:arco12     a :Station;
+         :shortAddress "3400 san pablo ave oakland";
+         :shortName "arco";
+         rdfs:label "arco at 3400 san pablo ave oakland" .
+    
+    Sta:arco13     a :Station;
+         :shortAddress "365 w jackson st, hayward";
+         :shortName "arco";
+         rdfs:label "arco at 365 w jackson st, hayward" .
+    
+    Sta:arco14     a :Station;
+         :shortAddress "2770 castro valley, CV";
+         :shortName "arco";
+         rdfs:label "arco at 2770 castro valley, CV" .
+    
+    Sta:arco15     a :Station;
+         :shortAddress "?";
+         :shortName "arco";
+         rdfs:label "arco at ?" .
+    
+    Sta:arco2     a :Station;
+         :shortAddress "833 university";
+         :shortName "arco";
+         rdfs:label "arco at 833 university" .
+    
+    Sta:arco3     a :Station;
+         :shortAddress "6407 telegraph";
+         :shortName "arco";
+         rdfs:label "arco at 6407 telegraph" .
+    
+    Sta:arco4     a :Station;
+         :shortAddress "5131 shattuck";
+         :shortName "arco";
+         rdfs:label "arco at 5131 shattuck" .
+    
+    Sta:arco5     a :Station;
+         :shortAddress "195 niblick rd, paso robles";
+         :shortName "arco";
+         rdfs:label "arco at 195 niblick rd, paso robles" .
+    
+    Sta:arco6     a :Station;
+         :shortAddress "4449 central pl, fairfield";
+         :shortName "arco";
+         rdfs:label "arco at 4449 central pl, fairfield" .
+    
+    Sta:arco7     a :Station;
+         :shortAddress "3000 shattuck";
+         :shortName "arco";
+         rdfs:label "arco at 3000 shattuck" .
+    
+    Sta:arco8     a :Station;
+         :shortAddress "35?1 fair oaks blvd, sacramento";
+         :shortName "arco";
+         rdfs:label "arco at 35?1 fair oaks blvd, sacramento" .
+    
+    Sta:arco9     a :Station;
+         :shortAddress "6001 goodyear rd, benecia";
+         :shortName "arco";
+         rdfs:label "arco at 6001 goodyear rd, benecia" .
+    
+    Sta:beacon     a :Station;
+         :shortAddress "richmond";
+         :shortName "beacon";
+         rdfs:label "beacon at richmond" .
+    
+    Sta:beacon1     a :Station;
+         :shortAddress "4507 howard rd, westley ca";
+         :shortName "beacon";
+         rdfs:label "beacon at 4507 howard rd, westley ca" .
+    
+    Sta:bp     a :Station;
+         :shortAddress "rwc";
+         :shortName "bp";
+         rdfs:label "bp at rwc" .
+    
+    Sta:broadwayautobp     a :Station;
+         :shortAddress "1101 broadway, redwood city";
+         :shortName "broadway auto bp";
+         rdfs:label "broadway auto bp at 1101 broadway, redwood city" .
+    
+    Sta:chevron     a :Station;
+         :shortAddress "1500 university";
+         :shortName "chevron";
+         rdfs:label "chevron at 1500 university" .
+    
+    Sta:chevron1     a :Station;
+         :shortAddress "3048 ashby";
+         :shortName "chevron";
+         rdfs:label "chevron at 3048 ashby" .
+    
+    Sta:chevron10     a :Station;
+         :shortAddress "3411 blume dr richmond";
+         :shortName "chevron";
+         rdfs:label "chevron at 3411 blume dr richmond" .
+    
+    Sta:chevron11     a :Station;
+         :shortAddress "1000 harrison st, sf";
+         :shortName "chevron";
+         rdfs:label "chevron at 1000 harrison st, sf" .
+    
+    Sta:chevron12     a :Station;
+         :shortAddress "2920 castro vll blvd, castro valley";
+         :shortName "chevron";
+         rdfs:label "chevron at 2920 castro vll blvd, castro valley" .
+    
+    Sta:chevron13     a :Station;
+         :shortAddress "16304 foothill blvd, san leandro";
+         :shortName "chevron";
+         rdfs:label "chevron at 16304 foothill blvd, san leandro" .
+    
+    Sta:chevron14     a :Station;
+         :shortAddress "3026 lakeshore ave, oakland";
+         :shortName "chevron";
+         rdfs:label "chevron at 3026 lakeshore ave, oakland" .
+    
+    Sta:chevron15     a :Station;
+         :shortAddress "unknown";
+         :shortName "chevron";
+         rdfs:label "chevron at unknown" .
+    
+    Sta:chevron16     a :Station;
+         :shortAddress "2045 ralston ave, belmont";
+         :shortName "chevron";
+         rdfs:label "chevron at 2045 ralston ave, belmont" .
+    
+    Sta:chevron2     a :Station;
+         :shortAddress "2998 telegraph";
+         :shortName "chevron";
+         rdfs:label "chevron at 2998 telegraph" .
+    
+    Sta:chevron3     a :Station;
+         :shortAddress "westley, ca";
+         :shortName "chevron";
+         rdfs:label "chevron at westley, ca" .
+    
+    Sta:chevron4     a :Station;
+         :shortAddress "firebaugh, ca";
+         :shortName "chevron";
+         rdfs:label "chevron at firebaugh, ca" .
+    
+    Sta:chevron5     a :Station;
+         :shortAddress "?";
+         :shortName "chevron";
+         rdfs:label "chevron at ?" .
+    
+    Sta:chevron6     a :Station;
+         :shortAddress "cutting blvd, richmond";
+         :shortName "chevron";
+         rdfs:label "chevron at cutting blvd, richmond" .
+    
+    Sta:chevron7     a :Station;
+         :shortAddress "airport blvd, south sf";
+         :shortName "chevron";
+         rdfs:label "chevron at airport blvd, south sf" .
+    
+    Sta:chevron8     a :Station;
+         :shortAddress "1400 powell emeryville";
+         :shortName "chevron";
+         rdfs:label "chevron at 1400 powell emeryville" .
+    
+    Sta:chevron9     a :Station;
+         :shortAddress "200 so main st, yreka";
+         :shortName "chevron";
+         rdfs:label "chevron at 200 so main st, yreka" .
+    
+    Sta:costco     a :Station;
+         :shortAddress "richmond";
+         :shortName "costco";
+         rdfs:label "costco at richmond" .
+    
+    Sta:emerybaypetroleum     a :Station;
+         :shortAddress "1700 powell st emeryville";
+         :shortName "emery bay petroleum";
+         rdfs:label "emery bay petroleum at 1700 powell st emeryville" .
+    
+    Sta:exxon     a :Station;
+         :shortAddress "bakersfield, ca";
+         :shortName "exxon";
+         rdfs:label "exxon at bakersfield, ca" .
+    
+    Sta:flyingj     a :Station;
+         :shortAddress "lebec, ca";
+         :shortName "flying j";
+         rdfs:label "flying j at lebec, ca" .
+    
+    <http://bigasterisk.com/2005/11/gasuse/Station/gas&shop>     a :Station;
+         :shortAddress "morgan hill, ca";
+         :shortName "gas&shop";
+         rdfs:label "gas&shop at morgan hill, ca" .
+    
+    Sta:grandgas     a :Station;
+         :shortAddress "san leandro, ca";
+         :shortName "grand gas";
+         rdfs:label "grand gas at san leandro, ca" .
+    
+    Sta:haddadentinc     a :Station;
+         :shortAddress "pasadena";
+         :shortName "haddad ent inc";
+         rdfs:label "haddad ent inc at pasadena" .
+    
+    Sta:haipham     a :Station;
+         :shortAddress "3374 grand ave, oakland";
+         :shortName "hai pham";
+         rdfs:label "hai pham at 3374 grand ave, oakland" .
+    
+    Sta:hamilton     a :Station;
+         :shortAddress "1200 ashby";
+         :shortName "hamilton";
+         rdfs:label "hamilton at 1200 ashby" .
+    
+    Sta:kwikserv     a :Station;
+         :shortAddress "escalon, ca";
+         :shortName "kwik serv";
+         rdfs:label "kwik serv at escalon, ca" .
+    
+    <http://bigasterisk.com/2005/11/gasuse/Station/manfredi'sdepot>     a :Station;
+         :shortAddress "dunsmuir, ca";
+         :shortName "manfredi's depot";
+         rdfs:label "manfredi's depot at dunsmuir, ca" .
+    
+    Sta:mlksuperstop     a :Station;
+         :shortAddress "5509 mlk, oakland";
+         :shortName "mlk super stop";
+         rdfs:label "mlk super stop at 5509 mlk, oakland" .
+    
+    Sta:mobil     a :Station;
+         :shortAddress "kettleman city, ca";
+         :shortName "mobil";
+         rdfs:label "mobil at kettleman city, ca" .
+    
+    Sta:number1gas     a :Station;
+         :shortAddress "1800 mlk berkeley";
+         :shortName "number 1 gas";
+         rdfs:label "number 1 gas at 1800 mlk berkeley" .
+    
+    Sta:oregondunesdelimart     a :Station;
+         :shortAddress "1575 hwy 121, reedsport, or";
+         :shortName "oregon dunes deli mart";
+         rdfs:label "oregon dunes deli mart at 1575 hwy 121, reedsport, or" .
+    
+    Sta:oysterpetroleum     a :Station;
+         :shortAddress "davis, ca";
+         :shortName "oyster petroleum";
+         rdfs:label "oyster petroleum at davis, ca" .
+    
+    Sta:rottenrobbie     a :Station;
+         :shortAddress "los gatos, ca";
+         :shortName "rotten robbie";
+         rdfs:label "rotten robbie at los gatos, ca" .
+    
+    Sta:shell     a :Station;
+         :shortAddress "29 wildwood";
+         :shortName "shell";
+         rdfs:label "shell at 29 wildwood" .
+    
+    Sta:shell1     a :Station;
+         :shortAddress "1701 park, alameda";
+         :shortName "shell";
+         rdfs:label "shell at 1701 park, alameda" .
+    
+    Sta:shell10     a :Station;
+         :shortAddress "610 market st, oakland";
+         :shortName "shell";
+         rdfs:label "shell at 610 market st, oakland" .
+    
+    Sta:shell11     a :Station;
+         :shortAddress "630 high st, oakland";
+         :shortName "shell";
+         rdfs:label "shell at 630 high st, oakland" .
+    
+    Sta:shell12     a :Station;
+         :shortAddress "1600 jamboree, newport beach";
+         :shortName "shell";
+         rdfs:label "shell at 1600 jamboree, newport beach" .
+    
+    Sta:shell13     a :Station;
+         :shortAddress "1898 van ness,sf";
+         :shortName "shell";
+         rdfs:label "shell at 1898 van ness,sf" .
+    
+    Sta:shell14     a :Station;
+         :shortAddress "1582? san leandro";
+         :shortName "shell";
+         rdfs:label "shell at 1582? san leandro" .
+    
+    Sta:shell15     a :Station;
+         :shortAddress "31301 alvarado-niles, union city";
+         :shortName "shell";
+         rdfs:label "shell at 31301 alvarado-niles, union city" .
+    
+    Sta:shell2     a :Station;
+         :shortAddress "piedmont/mac";
+         :shortName "shell";
+         rdfs:label "shell at piedmont/mac" .
+    
+    Sta:shell3     a :Station;
+         :shortAddress "43921 osgood";
+         :shortName "shell";
+         rdfs:label "shell at 43921 osgood" .
+    
+    Sta:shell4     a :Station;
+         :shortAddress "el sobrante";
+         :shortName "shell";
+         rdfs:label "shell at el sobrante" .
+    
+    Sta:shell5     a :Station;
+         :shortAddress "?";
+         :shortName "shell";
+         rdfs:label "shell at ?" .
+    
+    Sta:shell6     a :Station;
+         :shortAddress "25712 ward dr, kettleman city";
+         :shortName "shell";
+         rdfs:label "shell at 25712 ward dr, kettleman city" .
+    
+    Sta:shell7     a :Station;
+         :shortAddress "?";
+         :shortName "shell";
+         rdfs:label "shell at ?" .
+    
+    Sta:shell8     a :Station;
+         :shortAddress "29541 stockdale, bakersfield ca";
+         :shortName "shell";
+         rdfs:label "shell at 29541 stockdale, bakersfield ca" .
+    
+    Sta:shell9     a :Station;
+         :shortAddress "1800 ½ powell";
+         :shortName "shell";
+         rdfs:label "shell at 1800 ½ powell" .
+    
+    Sta:texaco     a :Station;
+         :shortAddress "manteca, ca";
+         :shortName "texaco";
+         rdfs:label "texaco at manteca, ca" .
+    
+    Sta:touchless     a :Station;
+         :shortAddress "";
+         :shortName "touchless";
+         rdfs:label "touchless at " .
+    
+    Sta:touchless1     a :Station;
+         :shortAddress "2176 kittredge st";
+         :shortName "touchless";
+         rdfs:label "touchless at 2176 kittredge st" .
+    
+    <http://bigasterisk.com/2005/11/gasuse/Station/touchless?>     a :Station;
+         :shortAddress "";
+         :shortName "touchless?";
+         rdfs:label "touchless? at " .
+    
+    Sta:travelcenters     a :Station;
+         :shortAddress "12310 s hwy 33 & i, santa nella, ca";
+         :shortName "travel centers";
+         rdfs:label "travel centers at 12310 s hwy 33 & i, santa nella, ca" .
+    
+    Sta:unocal     a :Station;
+         :shortAddress "lebec, ca";
+         :shortName "unocal";
+         rdfs:label "unocal at lebec, ca" .
+    
+    Sta:unocal1     a :Station;
+         :shortAddress "5425 mlk oakland";
+         :shortName "unocal";
+         rdfs:label "unocal at 5425 mlk oakland" .
+    
+    Sta:valero     a :Station;
+         :shortAddress "1894 university";
+         :shortName "valero";
+         rdfs:label "valero at 1894 university" .
+    
+    Sta:valero1     a :Station;
+         :shortAddress "503 whipple ave redwood city";
+         :shortName "valero";
+         rdfs:label "valero at 503 whipple ave redwood city" .
+    
+    Sta:valero2     a :Station;
+         :shortAddress "890 coleman, san jose";
+         :shortName "valero";
+         rdfs:label "valero at 890 coleman, san jose" .
+    
+    Sta:valero3     a :Station;
+         :shortAddress "16210 foothill, san leandro";
+         :shortName "valero";
+         rdfs:label "valero at 16210 foothill, san leandro" .
+    
+    Sta:valero4     a :Station;
+         :shortAddress "stn 06490305001";
+         :shortName "valero";
+         rdfs:label "valero at stn 06490305001" .
+    
+    Sta:valero5     a :Station;
+         :shortAddress "340 highland ave, piedmont";
+         :shortName "valero";
+         rdfs:label "valero at 340 highland ave, piedmont" .
+    
+    Sta:xtra     a :Station;
+         :shortAddress "shattuck/ashby";
+         :shortName "xtra";
+         rdfs:label "xtra at shattuck/ashby" .
+    
+    Sta:xtra1     a :Station;
+         :shortAddress "2996 shattuck";
+         :shortName "xtra";
+         rdfs:label "xtra at 2996 shattuck" .
+    
+    sta:bp1a     a :Station;
+         :shortAddress "1101 broadway RWC";
+         :shortName "bp";
+         rdfs:label "bp near 1101 broadway RWC" .
+    
+    sta:chevron1a     a :Station;
+         :shortAddress "700 polhemus, san mateo";
+         :shortName "chevron";
+         rdfs:label "chevron near 700 polhemus, san mateo" .
+    
+    sta:chevron2a     a :Station;
+         :shortAddress "foster city blvd & E hillsdale, FC";
+         :shortName "chevron";
+         rdfs:label "chevron near foster city blvd & E hillsdale, FC" .
+    
+    sta:chevron3a     a :Station;
+         :shortAddress "foothill san leandro";
+         :shortName "chevron";
+         rdfs:label "chevron near foothill san leandro" .
+    
+    sta:hash-557807718     a :Station;
+         :shortAddress "cottonwood, ca";
+         :shortName "chevron";
+         rdfs:label "chevron near cottonwood, ca" .
+    
+    sta:seventysix1     a :Station;
+         :shortName "76";
+         rdfs:label "76" .
+    
+    sta:shell1a     a :Station;
+         :shortAddress "eville";
+         :shortName "shell";
+         rdfs:label "shell near eville" .
+    
+    sta:shell2a     a :Station;
+         :shortAddress "fairfield";
+         :shortName "shell";
+         rdfs:label "shell near fairfield" .
+    
+    sta:valero1a     a :Station;
+         :shortAddress "foster city blvd & triton dr, FC";
+         :shortName "valero";
+         rdfs:label "valero near foster city blvd & triton dr, FC" .
+    
+    sta:valero2a     a :Station;
+         :shortAddress "SL";
+         :shortName "valero";
+         rdfs:label "valero near SL" .
+      [      a :FillUp;
+             :car ca:drewHonda;
+             :gallons "12.75"^^typ:gallon;
+             :gasPrice  [
+                 :gasStation Sta:76;
+                 :pricePerGallon ""^^typ:dollar;
+                 _4:date "2001-02-24"^^XML:date ];
+             :gasStation Sta:76;
+             :tripMeter "270"^^typ:mile;
+             _4:date "2001-02-24"^^XML:date ].
+    
+      [      a :FillUp;
+             :car ca:drewHonda;
+             :fee "0.35"^^typ:dollar;
+             :gallons "14.299"^^typ:gallon;
+             :gasPrice  [
+                 :gasStation Sta:arco3;
+                 :pricePerGallon "2.179"^^typ:dollar;
+                 _4:date "2004-05-30"^^XML:date ];
+             :gasStation Sta:arco3;
+             :notes "miles are wrong";
+             :odometer "14105"^^typ:mile;
+             :tripMeter "409.2"^^typ:mile;
+             _4:date "2004-05-30"^^XML:date ].
+    
+      [      a :FillUp;
+             :car ca:drewHonda;
+             :gallons "11.11"^^typ:gallon;
+             :gasPrice  [
+                 :gasStation Sta:texaco;
+                 :pricePerGallon "1.599"^^typ:dollar;
+                 _4:date "2001-07-17"^^XML:date ];
+             :gasStation Sta:texaco;
+             :tripMeter "249"^^typ:mile;
+             _4:date "2001-07-17"^^XML:date ].
+    
+      [      a :FillUp;
+             :car ca:drewHonda;
+             :gallons "14.51"^^typ:gallon;
+             :gasPrice  [
+                 :gasStation Sta:chevron16;
+                 :pricePerGallon "2.359"^^typ:dollar;
+                 _4:date "2005-06-10"^^XML:date ];
+             :gasStation Sta:chevron16;
+             :odometer "166344"^^typ:mile;
+             :tripMeter "428"^^typ:mile;
+             _4:date "2005-06-10"^^XML:date ].
+    
+      [      a :FillUp;
+             :car ca:drewHonda;
+             :fee "0.35"^^typ:dollar;
+             :gallons "15.479"^^typ:gallon;
+             :gasPrice  [
+                 :gasStation Sta:arco13;
+                 :pricePerGallon "2.039"^^typ:dollar;
+                 _4:date "2004-08-06"^^XML:date ];
+             :gasStation Sta:arco13;
+             :odometer "147524"^^typ:mile;
+             :tripMeter "460"^^typ:mile;
+             _4:date "2004-08-06"^^XML:date ].
+    
+      [      a :FillUp;
+             :car ca:drewHonda;
+             :gallons "12.972"^^typ:gallon;
+             :gasPrice  [
+                 :gasStation Sta:valero;
+                 :pricePerGallon "1.359"^^typ:dollar;
+                 _4:date "2002-01-03"^^XML:date ];
+             :gasStation Sta:valero;
+             :notes "some from la";
+             :odometer "93304"^^typ:mile;
+             :tripMeter "360"^^typ:mile;
+             _4:date "2002-01-03"^^XML:date ].
+    
+      [      a :FillUp;
+             :car ca:drewHonda;
+             :gallons "14.463"^^typ:gallon;
+             :gasPrice  [
+                 :gasStation Sta:xtra1;
+                 :pricePerGallon "1.729"^^typ:dollar;
+                 _4:date "2003-06-08"^^XML:date ];
+             :gasStation Sta:xtra1;
+             :odometer "119009"^^typ:mile;
+             :tripMeter "425"^^typ:mile;
+             _4:date "2003-06-08"^^XML:date ].
+    
+      [      a :FillUp;
+             :car ca:drewHonda;
+             :gallons "15.109"^^typ:gallon;
+             :gasPrice  [
+                 :gasStation Sta:broadwayautobp;
+                 :pricePerGallon "1.799"^^typ:dollar;
+                 _4:date "2004-02-03"^^XML:date ];
+             :gasStation Sta:broadwayautobp;
+             :odometer "135113"^^typ:mile;
+             :tripMeter "451"^^typ:mile;
+             _4:date "2004-02-03"^^XML:date ].
+    
+      [      a :FillUp;
+             :car ca:drewHonda;
+             :fee "0.35"^^typ:dollar;
+             :gallons "14.283"^^typ:gallon;
+             :gasPrice  [
+                 :gasStation Sta:arco4;
+                 :pricePerGallon "1.539"^^typ:dollar;
+                 _4:date "2002-12-25"^^XML:date ];
+             :gasStation Sta:arco4;
+             :notes "paso robles trip, paid by kelsi";
+             :odometer "108912"^^typ:mile;
+             :tripMeter "420"^^typ:mile;
+             _4:date "2002-12-25"^^XML:date ].
+    
+      [      a :FillUp;
+             :car ca:drewHonda;
+             :gallons "13.277"^^typ:gallon;
+             :gasPrice  [
+                 :gasStation Sta:chevron13;
+                 :pricePerGallon "2.199"^^typ:dollar;
+                 _4:date "2004-09-27"^^XML:date ];
+             :gasStation Sta:chevron13;
+             :odometer "151036"^^typ:mile;
+             :tripMeter "408"^^typ:mile;
+             _4:date "2004-09-27"^^XML:date ].
+    
+      [      a :FillUp;
+             :car ca:drewHonda;
+             :gallons "14.323"^^typ:gallon;
+             :gasPrice  [
+                 :gasStation Sta:hamilton;
+                 :pricePerGallon "1.999"^^typ:dollar;
+                 _4:date "2001-07-01"^^XML:date ];
+             :gasStation Sta:hamilton;
+             :tripMeter "325"^^typ:mile;
+             _4:date "2001-07-01"^^XML:date ].
+    
+      [      a :FillUp;
+             :car ca:drewHonda;
+             :gallons "13.789"^^typ:gallon;
+             :gasPrice  [
+                 :gasStation Sta:valero;
+                 :pricePerGallon "1.699"^^typ:dollar;
+                 _4:date "2002-06-19"^^XML:date ];
+             :gasStation Sta:valero;
+             :notes "kelsi's note";
+             :tripMeter "364"^^typ:mile;
+             _4:date "2002-06-19"^^XML:date ].
+    
+      [      a :FillUp;
+             :car ca:drewHonda;
+             :gallons "15.328"^^typ:gallon;
+             :gasPrice  [
+                 :gasStation Sta:broadwayautobp;
+                 :pricePerGallon "2.159"^^typ:dollar;
+                 _4:date "2004-03-25"^^XML:date ];
+             :gasStation Sta:broadwayautobp;
+             :odometer "138303"^^typ:mile;
+             :tripMeter "472"^^typ:mile;
+             _4:date "2004-03-25"^^XML:date ].
+    
+      [      a :FillUp;
+             :car ca:drewHonda;
+             :gallons "13.014"^^typ:gallon;
+             :gasPrice  [
+                 :gasStation Sta:;
+                 :pricePerGallon ""^^typ:dollar;
+                 _4:date "2001-04-15"^^XML:date ];
+             :gasStation Sta:;
+             :notes "trip to la";
+             :tripMeter "320"^^typ:mile;
+             _4:date "2001-04-15"^^XML:date ].
+    
+      [      a :FillUp;
+             :car ca:drewHonda;
+             :gallons "14.807"^^typ:gallon;
+             :gasPrice  [
+                 :gasStation Sta:unocal1;
+                 :pricePerGallon "1.979"^^typ:dollar;
+                 _4:date "2003-04-29"^^XML:date ];
+             :gasStation Sta:unocal1;
+             :odometer "115584"^^typ:mile;
+             :tripMeter "389"^^typ:mile;
+             _4:date "2003-04-29"^^XML:date ].
+    
+      [      a :FillUp;
+             :car ca:drewHonda;
+             :fee "0.35"^^typ:dollar;
+             :gallons "15.11"^^typ:gallon;
+             :gasPrice  [
+                 :gasStation Sta:arco11;
+                 :pricePerGallon "2.039"^^typ:dollar;
+                 _4:date "2003-09-04"^^XML:date ];
+             :gasStation Sta:arco11;
+             :notes "pdi cinesaver frys";
+             :odometer "125957"^^typ:mile;
+             :tripMeter "444"^^typ:mile;
+             _4:date "2003-09-04"^^XML:date ].
+    
+      [      a :FillUp;
+             :car ca:drewHonda;
+             :gallons "13.645"^^typ:gallon;
+             :gasPrice  [
+                 :gasStation <http://bigasterisk.com/2005/11/gasuse/Station/A&Agas>;
+                 :pricePerGallon "2.299"^^typ:dollar;
+                 _4:date "2004-10-22"^^XML:date ];
+             :gasStation <http://bigasterisk.com/2005/11/gasuse/Station/A&Agas>;
+             :odometer "152859"^^typ:mile;
+             :tripMeter "391"^^typ:mile;
+             _4:date "2004-10-22"^^XML:date ].
+    
+      [      a :FillUp;
+             :car ca:drewHonda;
+             :gallons "10.934"^^typ:gallon;
+             :gasPrice  [
+                 :gasStation Sta:;
+                 :pricePerGallon "1.759"^^typ:dollar;
+                 _4:date "16/0-8/--8"^^XML:date ];
+             :gasStation Sta:;
+             :notes "pinecrest r.t.";
+             :tripMeter "340"^^typ:mile;
+             _4:date "16/0-8/--8"^^XML:date ].
+    
+      [      a :FillUp;
+             :car ca:drewHonda;
+             :gallons "13.612"^^typ:gallon;
+             :gasPrice  [
+                 :gasStation Sta:768;
+                 :pricePerGallon "1.699"^^typ:dollar;
+                 _4:date "2003-12-29"^^XML:date ];
+             :gasStation Sta:768;
+             :odometer "133310"^^typ:mile;
+             :tripMeter "426"^^typ:mile;
+             _4:date "2003-12-29"^^XML:date ].
+    
+      [      a :FillUp;
+             :car ca:drewHonda;
+             :gallons "13.642"^^typ:gallon;
+             :gasPrice  [
+                 :gasStation Sta:763;
+                 :pricePerGallon "1.739"^^typ:dollar;
+                 _4:date "2002-04-04"^^XML:date ];
+             :gasStation Sta:763;
+             :odometer "97306"^^typ:mile;
+             :tripMeter "318"^^typ:mile;
+             _4:date "2002-04-04"^^XML:date ].
+    
+      [      a :FillUp;
+             :car ca:drewHonda;
+             :gallons "14.779"^^typ:gallon;
+             :gasPrice  [
+                 :gasStation Sta:768;
+                 :pricePerGallon "1.939"^^typ:dollar;
+                 _4:date "2003-07-09"^^XML:date ];
+             :gasStation Sta:768;
+             :notes "reset at 359";
+             :odometer "121040"^^typ:mile;
+             :tripMeter "355"^^typ:mile;
+             _4:date "2003-07-09"^^XML:date ].
+    
+      [      a :FillUp;
+             :car ca:drewHonda;
+             :gallons "14.187"^^typ:gallon;
+             :gasPrice  [
+                 :gasStation Sta:764;
+                 :pricePerGallon "?"^^typ:dollar;
+                 _4:date "2002-05-13"^^XML:date ];
+             :gasStation Sta:764;
+             :notes "kelsi via phone";
+             :tripMeter "337.8"^^typ:mile;
+             _4:date "2002-05-13"^^XML:date ].
+    
+      [      a :FillUp;
+             :car ca:drewHonda;
+             :gallons "14.534"^^typ:gallon;
+             :gasPrice  [
+                 :gasStation Sta:valero;
+                 :pricePerGallon "1.599"^^typ:dollar;
+                 _4:date "2002-11-14"^^XML:date ];
+             :gasStation Sta:valero;
+             :notes "mostly k";
+             :odometer "106279"^^typ:mile;
+             :tripMeter "384"^^typ:mile;
+             _4:date "2002-11-14"^^XML:date ].
+    
+      [      a :FillUp;
+             :car ca:drewHonda;
+             :gallons "14.238"^^typ:gallon;
+             :gasPrice  [
+                 :gasStation Sta:chevron4;
+                 :pricePerGallon "1.759"^^typ:dollar;
+                 _4:date "2001-11-09"^^XML:date ];
+             :gasStation Sta:chevron4;
+             :notes "left for la at 260, ac";
+             :tripMeter "362"^^typ:mile;
+             _4:date "2001-11-09"^^XML:date ].
+    
+      [      a :FillUp;
+             :car ca:drewHonda;
+             :gallons "14.337"^^typ:gallon;
+             :gasPrice  [
+                 :gasStation Sta:chevron8;
+                 :pricePerGallon "1.779"^^typ:dollar;
+                 _4:date "2002-11-08"^^XML:date ];
+             :gasStation Sta:chevron8;
+             :odometer "105895"^^typ:mile;
+             :tripMeter "350"^^typ:mile;
+             _4:date "2002-11-08"^^XML:date ].
+    
+      [      a :FillUp;
+             :car ca:drewHonda;
+             :fee "0.35"^^typ:dollar;
+             :gallons "15.479"^^typ:gallon;
+             :gasPrice  [
+                 :gasStation Sta:arco13;
+                 :pricePerGallon "2.039"^^typ:dollar;
+                 _4:date "2004-08-06"^^XML:date ];
+             :gasStation Sta:arco13;
+             :odometer "147524"^^typ:mile;
+             :tripMeter "460"^^typ:mile;
+             _4:date "2004-08-06"^^XML:date ].
+    
+      [      a :FillUp;
+             :car ca:drewHonda;
+             :fee "0.35"^^typ:dollar;
+             :gallons "15.164"^^typ:gallon;
+             :gasPrice  [
+                 :gasStation Sta:arco3;
+                 :pricePerGallon "1.659"^^typ:dollar;
+                 _4:date "2003-11-16"^^XML:date ];
+             :gasStation Sta:arco3;
+             :odometer "131012"^^typ:mile;
+             :tripMeter "462"^^typ:mile;
+             _4:date "2003-11-16"^^XML:date ].
+    
+      [      a :FillUp;
+             :car ca:drewHonda;
+             :gallons "12.341"^^typ:gallon;
+             :gasPrice  [
+                 :gasStation Sta:shell8;
+                 :pricePerGallon "2.039"^^typ:dollar;
+                 _4:date "2003-07-29"^^XML:date ];
+             :gasStation Sta:shell8;
+             :odometer "122614"^^typ:mile;
+             :tripMeter "403"^^typ:mile;
+             _4:date "2003-07-29"^^XML:date ].
+    
+      [      a :FillUp;
+             :car ca:drewHonda;
+             :fee "0.35"^^typ:dollar;
+             :gallons "13.802"^^typ:gallon;
+             :gasPrice  [
+                 :gasStation Sta:arco3;
+                 :pricePerGallon "1.529"^^typ:dollar;
+                 _4:date "2002-12-11"^^XML:date ];
+             :gasStation Sta:arco3;
+             :odometer "107838"^^typ:mile;
+             :tripMeter "140"^^typ:mile;
+             _4:date "2002-12-11"^^XML:date ].
+    
+      [      a :FillUp;
+             :car ca:drewHonda;
+             :gallons "14.582"^^typ:gallon;
+             :gasPrice  [
+                 :gasStation Sta:unocal1;
+                 :pricePerGallon "1.939"^^typ:dollar;
+                 _4:date "2003-05-19"^^XML:date ];
+             :gasStation Sta:unocal1;
+             :odometer "116336"^^typ:mile;
+             :tripMeter "374"^^typ:mile;
+             _4:date "2003-05-19"^^XML:date ].
+    
+      [      a :FillUp;
+             :car ca:drewHonda;
+             :gallons "14.432"^^typ:gallon;
+             :gasPrice  [
+                 :gasStation Sta:shell;
+                 :pricePerGallon "1.839"^^typ:dollar;
+                 _4:date "2003-01-28"^^XML:date ];
+             :gasStation Sta:shell;
+             :notes "paid by kelsi";
+             :odometer "110421"^^typ:mile;
+             :tripMeter "334"^^typ:mile;
+             _4:date "2003-01-28"^^XML:date ].
+    
+      [      a :FillUp;
+             :car ca:drewHonda;
+             :gallons "15.104"^^typ:gallon;
+             :gasPrice  [
+                 :gasStation Sta:broadwayautobp;
+                 :pricePerGallon "2.159"^^typ:dollar;
+                 _4:date "2004-03-31"^^XML:date ];
+             :gasStation Sta:broadwayautobp;
+             :odometer "138801"^^typ:mile;
+             :tripMeter "497"^^typ:mile;
+             _4:date "2004-03-31"^^XML:date ].
+    
+      [      a :FillUp;
+             :car ca:drewHonda;
+             :gallons "14.049"^^typ:gallon;
+             :gasPrice  [
+                 :gasStation Sta:chevron;
+                 :pricePerGallon "1.799"^^typ:dollar;
+                 _4:date "2001-01-15"^^XML:date ];
+             :gasStation Sta:chevron;
+             :notes "with 1/8";
+             :tripMeter "312"^^typ:mile;
+             _4:date "2001-01-15"^^XML:date ].
+    
+      [      a :FillUp;
+             :car ca:drewHonda;
+             :gallons "13.995"^^typ:gallon;
+             :gasPrice  [
+                 :gasStation Sta:chevron1;
+                 :pricePerGallon "1.689"^^typ:dollar;
+                 _4:date "2001-08-26"^^XML:date ];
+             :gasStation Sta:chevron1;
+             :tripMeter "343"^^typ:mile;
+             _4:date "2001-08-26"^^XML:date ].
+    
+      [      a :FillUp;
+             :car ca:drewHonda;
+             :gallons "13.82"^^typ:gallon;
+             :gasPrice  [
+                 :gasStation Sta:valero;
+                 :pricePerGallon "2.399"^^typ:dollar;
+                 _4:date "2004-11-02"^^XML:date ];
+             :gasStation Sta:valero;
+             :notes "ran out - kelsi bought some extra gas in a can";
+             :odometer "153786"^^typ:mile;
+             :tripMeter "476"^^typ:mile;
+             _4:date "2004-11-02"^^XML:date ].
+    
+      [      a :FillUp;
+             :car ca:drewHonda;
+             :fee "0.35"^^typ:dollar;
+             :gallons "10.153"^^typ:gallon;
+             :gasPrice  [
+                 :gasStation Sta:arco12;
+                 :pricePerGallon "1.619"^^typ:dollar;
+                 _4:date "2004-01-12"^^XML:date ];
+             :gasStation Sta:arco12;
+             :odometer "133738"^^typ:mile;
+             :tripMeter "427"^^typ:mile;
+             _4:date "2004-01-12"^^XML:date ].
+    
+      [      a :FillUp;
+             :car ca:drewHonda;
+             :gallons "14.297"^^typ:gallon;
+             :gasPrice  [
+                 :gasStation Sta:chevron;
+                 :pricePerGallon "1.919"^^typ:dollar;
+                 _4:date "2001-07-26"^^XML:date ];
+             :gasStation Sta:chevron;
+             :odometer "83614"^^typ:mile;
+             :tripMeter "335"^^typ:mile;
+             _4:date "2001-07-26"^^XML:date ].
+    
+      [      a :FillUp;
+             :car ca:drewHonda;
+             :gallons "14.255"^^typ:gallon;
+             :gasPrice  [
+                 :gasStation Sta:shell6;
+                 :pricePerGallon "1.919"^^typ:dollar;
+                 _4:date "2003-02-17"^^XML:date ];
+             :gasStation Sta:shell6;
+             :notes "from 111 is drive to la, some cruise. carrying monitor and computer";
+             :odometer "111626"^^typ:mile;
+             :tripMeter "386"^^typ:mile;
+             _4:date "2003-02-17"^^XML:date ].
+    
+      [      a :FillUp;
+             :car ca:drewHonda;
+             :gallons "14.509"^^typ:gallon;
+             :gasPrice  [
+                 :gasStation Sta:broadwayautobp;
+                 :pricePerGallon "1.699"^^typ:dollar;
+                 _4:date "2003-12-05"^^XML:date ];
+             :gasStation Sta:broadwayautobp;
+             :odometer "131976"^^typ:mile;
+             :tripMeter "468"^^typ:mile;
+             _4:date "2003-12-05"^^XML:date ].
+    
+      [      a :FillUp;
+             :car ca:drewHonda;
+             :fee "0.35"^^typ:dollar;
+             :gallons "13.262"^^typ:gallon;
+             :gasPrice  [
+                 :gasStation Sta:arco3;
+                 :pricePerGallon "2.339"^^typ:dollar;
+                 _4:date "2004-10-08"^^XML:date ];
+             :gasStation Sta:arco3;
+             :odometer "152008"^^typ:mile;
+             :tripMeter "414"^^typ:mile;
+             _4:date "2004-10-08"^^XML:date ].
+    
+      [      a :FillUp;
+             :car ca:drewHonda;
+             :gallons "14.263"^^typ:gallon;
+             :gasPrice  [
+                 :gasStation Sta:765;
+                 :pricePerGallon "1.679"^^typ:dollar;
+                 _4:date "2002-07-20"^^XML:date ];
+             :gasStation Sta:765;
+             :odometer "101999"^^typ:mile;
+             :tripMeter "335"^^typ:mile;
+             _4:date "2002-07-20"^^XML:date ].
+    
+      [      a :FillUp;
+             :car ca:drewHonda;
+             :gallons "15.716"^^typ:gallon;
+             :gasPrice  [
+                 :gasStation Sta:shell9;
+                 :pricePerGallon "2.099"^^typ:dollar;
+                 _4:date "2004-08-13"^^XML:date ];
+             :gasStation Sta:shell9;
+             :odometer "147995"^^typ:mile;
+             :tripMeter "470"^^typ:mile;
+             _4:date "2004-08-13"^^XML:date ].
+    
+      [      a :FillUp;
+             :car ca:drewHonda;
+             :gallons "14.715"^^typ:gallon;
+             :gasPrice  [
+                 :gasStation Sta:valero;
+                 :pricePerGallon "1.899"^^typ:dollar;
+                 _4:date "2003-02-03"^^XML:date ];
+             :gasStation Sta:valero;
+             :notes "419 reset";
+             :odometer "113836"^^typ:mile;
+             :tripMeter "413"^^typ:mile;
+             _4:date "2003-02-03"^^XML:date ].
+    
+      [      a :FillUp;
+             :car ca:drewHonda;
+             :gallons "5.172"^^typ:gallon;
+             :gasPrice  [
+                 :gasStation Sta:761;
+                 :pricePerGallon "2.059"^^typ:dollar;
+                 _4:date "2001-06-10"^^XML:date ];
+             :gasStation Sta:761;
+             :notes "la to sf, not a fill?";
+             :odometer "80706"^^typ:mile;
+             :tripMeter "443"^^typ:mile;
+             _4:date "2001-06-10"^^XML:date ].
+    
+      [      a :FillUp;
+             :car ca:drewHonda;
+             :gallons "13.677"^^typ:gallon;
+             :gasPrice  [
+                 :gasStation Sta:shell;
+                 :pricePerGallon "1.679"^^typ:dollar;
+                 _4:date "2002-08-30"^^XML:date ];
+             :gasStation Sta:shell;
+             :notes "come from pinecrest";
+             :odometer "103026"^^typ:mile;
+             :tripMeter "390"^^typ:mile;
+             _4:date "2002-08-30"^^XML:date ].
+    
+      [      a :FillUp;
+             :car ca:drewHonda;
+             :gallons "13.36"^^typ:gallon;
+             :gasPrice  [
+                 :gasStation Sta:shell;
+                 :pricePerGallon "2.299"^^typ:dollar;
+                 _4:date "2005-02-27"^^XML:date ];
+             :gasStation Sta:shell;
+             :odometer "160742"^^typ:mile;
+             :tripMeter "382"^^typ:mile;
+             _4:date "2005-02-27"^^XML:date ].
+    
+      [      a :FillUp;
+             :car ca:drewHonda;
+             :gallons "13.311"^^typ:gallon;
+             :gasPrice  [
+                 :gasStation Sta:arco;
+                 :pricePerGallon "1.559"^^typ:dollar;
+                 _4:date "2001-01-27"^^XML:date ];
+             :gasStation Sta:arco;
+             :notes "kelsi to sf";
+             :tripMeter "370"^^typ:mile;
+             _4:date "2001-01-27"^^XML:date ].
+    
+      [      a :FillUp;
+             :car ca:drewHonda;
+             :gallons "14.524"^^typ:gallon;
+             :gasPrice  [
+                 :gasStation Sta:valero5;
+                 :pricePerGallon "2.419"^^typ:dollar;
+                 _4:date "2005-06-17"^^XML:date ];
+             :gasStation Sta:valero5;
+             :odometer "166748"^^typ:mile;
+             :tripMeter "404"^^typ:mile;
+             _4:date "2005-06-17"^^XML:date ].
+    
+      [      a :FillUp;
+             :car ca:drewHonda;
+             :gallons "10.945"^^typ:gallon;
+             :gasPrice  [
+                 :gasStation <http://bigasterisk.com/2005/11/gasuse/Station/?1>;
+                 :pricePerGallon "1.76"^^typ:dollar;
+                 _4:date "2002-11-26"^^XML:date ];
+             :gasStation <http://bigasterisk.com/2005/11/gasuse/Station/?1>;
+             :notes "paid by kelsi";
+             :odometer "106928"^^typ:mile;
+             :tripMeter "264"^^typ:mile;
+             _4:date "2002-11-26"^^XML:date ].
+    
+      [      a :FillUp;
+             :car ca:drewHonda;
+             :gallons "5.691"^^typ:gallon;
+             :gasPrice  [
+                 :gasStation Sta:arco9;
+                 :pricePerGallon "2.139"^^typ:dollar;
+                 _4:date "2003-03-08"^^XML:date ];
+             :gasStation Sta:arco9;
+             :notes "paid by kelsi";
+             :odometer "113313"^^typ:mile;
+             :tripMeter "174"^^typ:mile;
+             _4:date "2003-03-08"^^XML:date ].
+    
+      [      a :FillUp;
+             :car ca:drewHonda;
+             :gallons "14.418"^^typ:gallon;
+             :gasPrice  [
+                 :gasStation Sta:shell3;
+                 :pricePerGallon "1.739"^^typ:dollar;
+                 _4:date "2001-08-02"^^XML:date ];
+             :gasStation Sta:shell3;
+             :tripMeter "337.9"^^typ:mile;
+             _4:date "2001-08-02"^^XML:date ].
+    
+      [      a :FillUp;
+             :car ca:drewHonda;
+             :gallons "14.87"^^typ:gallon;
+             :gasPrice  [
+                 :gasStation Sta:chevron13;
+                 :pricePerGallon "2.199"^^typ:dollar;
+                 _4:date "2004-08-02"^^XML:date ];
+             :gasStation Sta:chevron13;
+             :odometer "149289"^^typ:mile;
+             :tripMeter "455"^^typ:mile;
+             _4:date "2004-08-02"^^XML:date ].
+    
+      [      a :FillUp;
+             :car ca:drewHonda;
+             :gallons "13.345"^^typ:gallon;
+             :gasPrice  [
+                 :gasStation Sta:shell14;
+                 :pricePerGallon "2.019"^^typ:dollar;
+                 _4:date "2005-01-22"^^XML:date ];
+             :gasStation Sta:shell14;
+             :odometer "159111"^^typ:mile;
+             :tripMeter "398"^^typ:mile;
+             _4:date "2005-01-22"^^XML:date ].
+    
+      [      a :FillUp;
+             :car ca:drewHonda;
+             :gallons "13.703"^^typ:gallon;
+             :gasPrice  [
+                 :gasStation Sta:shell11;
+                 :pricePerGallon "2.379"^^typ:dollar;
+                 _4:date "2004-06-04"^^XML:date ];
+             :gasStation Sta:shell11;
+             :odometer "142798"^^typ:mile;
+             :tripMeter "432"^^typ:mile;
+             _4:date "2004-06-04"^^XML:date ].
+    
+      [      a :FillUp;
+             :car ca:drewHonda;
+             :gallons "14.601"^^typ:gallon;
+             :gasPrice  [
+                 :gasStation Sta:shell9;
+                 :pricePerGallon "2.199"^^typ:dollar;
+                 _4:date "2004-04-16"^^XML:date ];
+             :gasStation Sta:shell9;
+             :odometer "139723"^^typ:mile;
+             :tripMeter "435"^^typ:mile;
+             _4:date "2004-04-16"^^XML:date ].
+    
+      [      a :FillUp;
+             :car ca:drewHonda;
+             :gallons "13.931"^^typ:gallon;
+             :gasPrice  [
+                 :gasStation Sta:valero3;
+                 :pricePerGallon "2.599"^^typ:dollar;
+                 _4:date "2005-04-09"^^XML:date ];
+             :gasStation Sta:valero3;
+             :odometer "162822"^^typ:mile;
+             :tripMeter "412"^^typ:mile;
+             _4:date "2005-04-09"^^XML:date ].
+    
+      [      a :FillUp;
+             :car ca:drewHonda;
+             :fee "8.33"^^typ:dollar;
+             :gallons "?"^^typ:gallon;
+             :gasPrice  [
+                 :gasStation Sta:grandgas;
+                 :pricePerGallon "?"^^typ:dollar;
+                 _4:date "2001-09-08"^^XML:date ];
+             :gasStation Sta:grandgas;
+             :notes "card ends '7593'";
+             :tripMeter "?"^^typ:mile;
+             _4:date "2001-09-08"^^XML:date ].
+    
+      [      a :FillUp;
+             :car ca:drewHonda;
+             :gallons "14.537"^^typ:gallon;
+             :gasPrice  [
+                 :gasStation Sta:valero;
+                 :pricePerGallon "1.699"^^typ:dollar;
+                 _4:date "2002-05-20"^^XML:date ];
+             :gasStation Sta:valero;
+             :notes "lots of palo alto <-> sf traffic";
+             :odometer "99437"^^typ:mile;
+             :tripMeter "340"^^typ:mile;
+             _4:date "2002-05-20"^^XML:date ].
+    
+      [      a :FillUp;
+             :car ca:drewHonda;
+             :gallons "14.357"^^typ:gallon;
+             :gasPrice  [
+                 :gasStation Sta:chevron13;
+                 :pricePerGallon "2.259"^^typ:dollar;
+                 _4:date "2004-12-10"^^XML:date ];
+             :gasStation Sta:chevron13;
+             :odometer "155967"^^typ:mile;
+             :tripMeter "431"^^typ:mile;
+             _4:date "2004-12-10"^^XML:date ].
+    
+      [      a :FillUp;
+             :car ca:drewHonda;
+             :gallons "12.819"^^typ:gallon;
+             :gasPrice  [
+                 :gasStation Sta:beacon1;
+                 :pricePerGallon "2.199"^^typ:dollar;
+                 _4:date "2003-08-23"^^XML:date ];
+             :gasStation Sta:beacon1;
+             :notes "mostly pdi trips, paid by stef";
+             :tripMeter "419"^^typ:mile;
+             _4:date "2003-08-23"^^XML:date ].
+    
+      [      a :FillUp;
+             :car ca:drewHonda;
+             :gallons "14.272"^^typ:gallon;
+             :gasPrice  [
+                 :gasStation Sta:valero;
+                 :pricePerGallon "1.699"^^typ:dollar;
+                 _4:date "2002-06-24"^^XML:date ];
+             :gasStation Sta:valero;
+             :odometer "101318"^^typ:mile;
+             :tripMeter "385"^^typ:mile;
+             _4:date "2002-06-24"^^XML:date ].
+    
+      [      a :FillUp;
+             :car ca:drewHonda;
+             :fee "0.35"^^typ:dollar;
+             :gallons "14.126"^^typ:gallon;
+             :gasPrice  [
+                 :gasStation Sta:arco14;
+                 :pricePerGallon "2.159"^^typ:dollar;
+                 _4:date "2005-03-09"^^XML:date ];
+             :gasStation Sta:arco14;
+             :odometer "161193"^^typ:mile;
+             :tripMeter "434"^^typ:mile;
+             _4:date "2005-03-09"^^XML:date ].
+    
+      [      a :FillUp;
+             :car ca:drewHonda;
+             :gallons "?"^^typ:gallon;
+             :gasPrice  [
+                 :gasStation Sta:shell;
+                 :pricePerGallon "1.799"^^typ:dollar;
+                 _4:date "2002-09-22"^^XML:date ];
+             :gasStation Sta:shell;
+             :notes "paid by ejp";
+             :odometer "104109"^^typ:mile;
+             :tripMeter "310"^^typ:mile;
+             _4:date "2002-09-22"^^XML:date ].
+    
+      [      a :FillUp;
+             :car ca:drewHonda;
+             :gallons "14.6"^^typ:gallon;
+             :gasPrice  [
+                 :gasStation Sta:766;
+                 :pricePerGallon "1.799"^^typ:dollar;
+                 _4:date "2002-12-04"^^XML:date ];
+             :gasStation Sta:766;
+             :odometer "107309"^^typ:mile;
+             :tripMeter "380"^^typ:mile;
+             _4:date "2002-12-04"^^XML:date ].
+    
+      [      a :FillUp;
+             :car ca:drewHonda;
+             :gallons "14.9"^^typ:gallon;
+             :gasPrice  [
+                 :gasStation Sta:;
+                 :pricePerGallon ""^^typ:dollar;
+                 _4:date "2001-09-22"^^XML:date ];
+             :gasStation Sta:;
+             :notes "to la, ac";
+             :tripMeter "407"^^typ:mile;
+             _4:date "2001-09-22"^^XML:date ].
+    
+      [      a :FillUp;
+             :car ca:drewHonda;
+             :gallons "14.136"^^typ:gallon;
+             :gasPrice  [
+                 :gasStation Sta:shell9;
+                 :pricePerGallon "2.399"^^typ:dollar;
+                 _4:date "2004-05-25"^^XML:date ];
+             :gasStation Sta:shell9;
+             :odometer "142366"^^typ:mile;
+             :tripMeter "429"^^typ:mile;
+             _4:date "2004-05-25"^^XML:date ].
+    
+      [      a :FillUp;
+             :car ca:drewHonda;
+             :gallons "14.349"^^typ:gallon;
+             :gasPrice  [
+                 :gasStation Sta:valero;
+                 :pricePerGallon "1.599"^^typ:dollar;
+                 _4:date "2004-11-19"^^XML:date ];
+             :gasStation Sta:valero;
+             :notes "pdi cinesaver frys / date is an error?";
+             :odometer "?"^^typ:mile;
+             :tripMeter "384"^^typ:mile;
+             _4:date "2004-11-19"^^XML:date ].
+    
+      [      a :FillUp;
+             :car ca:drewHonda;
+             :gallons "14.208"^^typ:gallon;
+             :gasPrice  [
+                 :gasStation Sta:haddadentinc;
+                 :pricePerGallon "1.699"^^typ:dollar;
+                 _4:date "2003-07-28"^^XML:date ];
+             :gasStation Sta:haddadentinc;
+             :notes "to la, cc, some ac";
+             :tripMeter "440"^^typ:mile;
+             _4:date "2003-07-28"^^XML:date ].
+    
+      [      a :FillUp;
+             :car ca:drewHonda;
+             :gallons "14.08"^^typ:gallon;
+             :gasPrice  [
+                 :gasStation Sta:arco4;
+                 :pricePerGallon "1.799"^^typ:dollar;
+                 _4:date "2003-07-17"^^XML:date ];
+             :gasStation Sta:arco4;
+             :odometer "121429"^^typ:mile;
+             :tripMeter "384"^^typ:mile;
+             _4:date "2003-07-17"^^XML:date ].
+    
+      [      a :FillUp;
+             :car ca:drewHonda;
+             :fee "0.35"^^typ:dollar;
+             :gallons "15.276"^^typ:gallon;
+             :gasPrice  [
+                 :gasStation Sta:arco3;
+                 :pricePerGallon "2.099"^^typ:dollar;
+                 _4:date "2003-08-19"^^XML:date ];
+             :gasStation Sta:arco3;
+             :odometer "123841"^^typ:mile;
+             :tripMeter "410"^^typ:mile;
+             _4:date "2003-08-19"^^XML:date ].
+    
+      [      a :FillUp;
+             :car ca:drewHonda;
+             :gallons "14.162"^^typ:gallon;
+             :gasPrice  [
+                 :gasStation <http://bigasterisk.com/2005/11/gasuse/Station/?2>;
+                 :pricePerGallon "1.749"^^typ:dollar;
+                 _4:date "2003-02-19"^^XML:date ];
+             :gasStation <http://bigasterisk.com/2005/11/gasuse/Station/?2>;
+             :notes "back from la, heavy traffic then cruise";
+             :odometer "112043"^^typ:mile;
+             :tripMeter "416"^^typ:mile;
+             _4:date "2003-02-19"^^XML:date ].
+    
+      [      a :FillUp;
+             :car ca:drewHonda;
+             :gallons "13.961"^^typ:gallon;
+             :gasPrice  [
+                 :gasStation Sta:valero;
+                 :pricePerGallon "1.899"^^typ:dollar;
+                 _4:date "2003-06-03"^^XML:date ];
+             :gasStation Sta:valero;
+             :notes "paid by kelsi";
+             :odometer "118582"^^typ:mile;
+             :tripMeter "519"^^typ:mile;
+             _4:date "2003-06-03"^^XML:date ].
+    
+      [      a :FillUp;
+             :car ca:drewHonda;
+             :fee "0.35"^^typ:dollar;
+             :gallons "14.095"^^typ:gallon;
+             :gasPrice  [
+                 :gasStation Sta:arco3;
+                 :pricePerGallon "2.219"^^typ:dollar;
+                 _4:date "2004-06-26"^^XML:date ];
+             :gasStation Sta:arco3;
+             :odometer "144878"^^typ:mile;
+             :tripMeter "409.4"^^typ:mile;
+             _4:date "2004-06-26"^^XML:date ].
+    
+      [      a :FillUp;
+             :car ca:drewHonda;
+             :gallons "14.6"^^typ:gallon;
+             :gasPrice  [
+                 :gasStation Sta:mobil;
+                 :pricePerGallon "1.499"^^typ:dollar;
+                 _4:date "2001-11-09"^^XML:date ];
+             :gasStation Sta:mobil;
+             :notes "cruise from 260-432";
+             :tripMeter "432"^^typ:mile;
+             _4:date "2001-11-09"^^XML:date ].
+    
+      [      a :FillUp;
+             :car ca:drewHonda;
+             :gallons "14.993"^^typ:gallon;
+             :gasPrice  [
+                 :gasStation Sta:chevron7;
+                 :pricePerGallon "1.939"^^typ:dollar;
+                 _4:date "2002-07-07"^^XML:date ];
+             :gasStation Sta:chevron7;
+             :odometer "101663"^^typ:mile;
+             :tripMeter "345"^^typ:mile;
+             _4:date "2002-07-07"^^XML:date ].
+    
+      [      a :FillUp;
+             :car ca:drewHonda;
+             :gallons "14.231"^^typ:gallon;
+             :gasPrice  [
+                 :gasStation Sta:chevron;
+                 :pricePerGallon "1.859"^^typ:dollar;
+                 _4:date "2001-08-06"^^XML:date ];
+             :gasStation Sta:chevron;
+             :notes "la to sf with 5 ppl";
+             :tripMeter "409"^^typ:mile;
+             _4:date "2001-08-06"^^XML:date ].
+    
+      [      a :FillUp;
+             :car ca:drewHonda;
+             :fee "0.35"^^typ:dollar;
+             :gallons "14.147"^^typ:gallon;
+             :gasPrice  [
+                 :gasStation Sta:arco7;
+                 :pricePerGallon "1.879"^^typ:dollar;
+                 _4:date "2003-05-09"^^XML:date ];
+             :gasStation Sta:arco7;
+             :odometer "115962"^^typ:mile;
+             :tripMeter "377"^^typ:mile;
+             _4:date "2003-05-09"^^XML:date ].
+    
+      [      a :FillUp;
+             :car ca:drewHonda;
+             :gallons "14.648"^^typ:gallon;
+             :gasPrice  [
+                 :gasStation Sta:touchless1;
+                 :pricePerGallon "1.499"^^typ:dollar;
+                 _4:date "2002-05-27"^^XML:date ];
+             :gasStation Sta:touchless1;
+             :notes "possibly \"311\"\" not \"\"377\"\"\"";
+             :odometer "99814"^^typ:mile;
+             :tripMeter "377"^^typ:mile;
+             _4:date "2002-05-27"^^XML:date ].
+    
+      [      a :FillUp;
+             :car ca:drewHonda;
+             :gallons "14.951"^^typ:gallon;
+             :gasPrice  [
+                 :gasStation Sta:valero1;
+                 :pricePerGallon "1.939"^^typ:dollar;
+                 _4:date "2003-10-02"^^XML:date ];
+             :gasStation Sta:valero1;
+             :odometer "128140"^^typ:mile;
+             :tripMeter "446"^^typ:mile;
+             _4:date "2003-10-02"^^XML:date ].
+    
+      [      a :FillUp;
+             :car ca:drewHonda;
+             :gallons "13.746"^^typ:gallon;
+             :gasPrice  [
+                 :gasStation Sta:7610;
+                 :pricePerGallon "2.619"^^typ:dollar;
+                 _4:date "2005-04-24"^^XML:date ];
+             :gasStation Sta:7610;
+             :odometer "163707"^^typ:mile;
+             :tripMeter "434"^^typ:mile;
+             _4:date "2005-04-24"^^XML:date ].
+    
+      [      a :FillUp;
+             :car ca:drewHonda;
+             :gallons "15.325"^^typ:gallon;
+             :gasPrice  [
+                 :gasStation Sta:shell9;
+                 :pricePerGallon "1.899"^^typ:dollar;
+                 _4:date "2003-10-15"^^XML:date ];
+             :gasStation Sta:shell9;
+             :odometer "129036"^^typ:mile;
+             :tripMeter "475"^^typ:mile;
+             _4:date "2003-10-15"^^XML:date ].
+    
+      [      a :FillUp;
+             :car ca:drewHonda;
+             :gallons "13.873"^^typ:gallon;
+             :gasPrice  [
+                 :gasStation Sta:chevron13;
+                 :pricePerGallon "1.999"^^typ:dollar;
+                 _4:date "2005-01-06"^^XML:date ];
+             :gasStation Sta:chevron13;
+             :odometer "158308"^^typ:mile;
+             :tripMeter "426"^^typ:mile;
+             _4:date "2005-01-06"^^XML:date ].
+    
+      [      a :FillUp;
+             :car ca:drewHonda;
+             :fee "25.02"^^typ:dollar;
+             :gallons "?"^^typ:gallon;
+             :gasPrice  [
+                 :gasStation <http://bigasterisk.com/2005/11/gasuse/Station/touchless?>;
+                 :pricePerGallon "?"^^typ:dollar;
+                 _4:date "2001-09-12"^^XML:date ];
+             :gasStation <http://bigasterisk.com/2005/11/gasuse/Station/touchless?>;
+             :notes "no miles, gals, rate";
+             :tripMeter "?"^^typ:mile;
+             _4:date "2001-09-12"^^XML:date ].
+    
+      [      a :FillUp;
+             :car ca:drewHonda;
+             :fee "0.35"^^typ:dollar;
+             :gallons "13.8"^^typ:gallon;
+             :gasPrice  [
+                 :gasStation Sta:arco15;
+                 :pricePerGallon "1.99927536231884"^^typ:dollar;
+                 _4:date "-?-"^^XML:date ];
+             :gasStation Sta:arco15;
+             :odometer "156370"^^typ:mile;
+             :tripMeter "402"^^typ:mile;
+             _4:date "-?-"^^XML:date ].
+    
+      [      a :FillUp;
+             :car ca:drewHonda;
+             :gallons "12.558"^^typ:gallon;
+             :gasPrice  [
+                 :gasStation Sta:flyingj;
+                 :pricePerGallon "1.389"^^typ:dollar;
+                 _4:date "2001-08-13"^^XML:date ];
+             :gasStation Sta:flyingj;
+             :notes "sf to la, ac";
+             :tripMeter "373"^^typ:mile;
+             _4:date "2001-08-13"^^XML:date ].
+    
+      [      a :FillUp;
+             :car ca:drewHonda;
+             :gallons "14.026"^^typ:gallon;
+             :gasPrice  [
+                 :gasStation Sta:valero;
+                 :pricePerGallon "1.699"^^typ:dollar;
+                 _4:date "2002-06-11"^^XML:date ];
+             :gasStation Sta:valero;
+             :notes "over two receipts";
+             :tripMeter "373"^^typ:mile;
+             _4:date "2002-06-11"^^XML:date ].
+    
+      [      a :FillUp;
+             :car ca:drewHonda;
+             :gallons "14.176"^^typ:gallon;
+             :gasPrice  [
+                 :gasStation Sta:chevron12;
+                 :pricePerGallon "2.119"^^typ:dollar;
+                 _4:date "2004-09-24"^^XML:date ];
+             :gasStation Sta:chevron12;
+             :odometer "150627"^^typ:mile;
+             :tripMeter "441"^^typ:mile;
+             _4:date "2004-09-24"^^XML:date ].
+    
+      [      a :FillUp;
+             :car ca:drewHonda;
+             :gallons "13.788"^^typ:gallon;
+             :gasPrice  [
+                 :gasStation Sta:arco2;
+                 :pricePerGallon "1.979"^^typ:dollar;
+                 _4:date "2001-05-18"^^XML:date ];
+             :gasStation Sta:arco2;
+             :tripMeter "321"^^typ:mile;
+             _4:date "2001-05-18"^^XML:date ].
+    
+      [      a :FillUp;
+             :car ca:drewHonda;
+             :gallons "20.195"^^typ:gallon;
+             :gasPrice  [
+                 :gasStation Sta:762;
+                 :pricePerGallon "1.65"^^typ:dollar;
+                 _4:date "2001-08-05"^^XML:date ];
+             :gasStation Sta:762;
+             :notes "miles includes an earlier 5 gal fill";
+             :tripMeter "573"^^typ:mile;
+             _4:date "2001-08-05"^^XML:date ].
+    
+      [      a :FillUp;
+             :car ca:drewHonda;
+             :gallons "15.069"^^typ:gallon;
+             :gasPrice  [
+                 :gasStation Sta:valero2;
+                 :pricePerGallon "2.179"^^typ:dollar;
+                 _4:date "2004-10-02"^^XML:date ];
+             :gasStation Sta:valero2;
+             :odometer "151594"^^typ:mile;
+             :tripMeter "455"^^typ:mile;
+             _4:date "2004-10-02"^^XML:date ].
+    
+      [      a :FillUp;
+             :car ca:drewHonda;
+             :gallons "12.455"^^typ:gallon;
+             :gasPrice  [
+                 :gasStation Sta:beacon;
+                 :pricePerGallon "1.599"^^typ:dollar;
+                 _4:date "2002-12-18"^^XML:date ];
+             :gasStation Sta:beacon;
+             :notes "paid by kelsi";
+             :odometer "108137"^^typ:mile;
+             :tripMeter "299"^^typ:mile;
+             _4:date "2002-12-18"^^XML:date ].
+    
+      [      a :FillUp;
+             :car ca:drewHonda;
+             :fee "0.35"^^typ:dollar;
+             :gallons "15.2"^^typ:gallon;
+             :gasPrice  [
+                 :gasStation Sta:arco3;
+                 :pricePerGallon "2.259"^^typ:dollar;
+                 _4:date "2004-05-14"^^XML:date ];
+             :gasStation Sta:arco3;
+             :odometer "141522"^^typ:mile;
+             :tripMeter "470"^^typ:mile;
+             _4:date "2004-05-14"^^XML:date ].
+    
+      [      a :FillUp;
+             :car ca:drewHonda;
+             :gallons "9.369"^^typ:gallon;
+             :gasPrice  [
+                 :gasStation Sta:rottenrobbie;
+                 :pricePerGallon "1.718"^^typ:dollar;
+                 _4:date "2001-03-02"^^XML:date ];
+             :gasStation Sta:rottenrobbie;
+             :tripMeter "?"^^typ:mile;
+             _4:date "2001-03-02"^^XML:date ].
+    
+      [      a :FillUp;
+             :car ca:drewHonda;
+             :gallons "13.81"^^typ:gallon;
+             :gasPrice  [
+                 :gasStation Sta:shell2;
+                 :pricePerGallon "1.959"^^typ:dollar;
+                 _4:date "2001-07-12"^^XML:date ];
+             :gasStation Sta:shell2;
+             :tripMeter "319"^^typ:mile;
+             _4:date "2001-07-12"^^XML:date ].
+    
+      [      a :FillUp;
+             :car ca:drewHonda;
+             :gallons "5.601"^^typ:gallon;
+             :gasPrice  [
+                 :gasStation Sta:arco2;
+                 :pricePerGallon "1.539"^^typ:dollar;
+                 _4:date "2002-12-10"^^XML:date ];
+             :gasStation Sta:arco2;
+             :notes "kelsi paid, big nozzle problems";
+             :odometer "107691"^^typ:mile;
+             :tripMeter "382"^^typ:mile;
+             _4:date "2002-12-10"^^XML:date ].
+    
+      [      a :FillUp;
+             :car ca:drewHonda;
+             :gallons "15"^^typ:gallon;
+             :gasPrice  [
+                 :gasStation Sta:shell9;
+                 :pricePerGallon "2.339"^^typ:dollar;
+                 _4:date "2004-06-10"^^XML:date ];
+             :gasStation Sta:shell9;
+             :notes "reset at 489";
+             :odometer "144044"^^typ:mile;
+             :tripMeter "449"^^typ:mile;
+             _4:date "2004-06-10"^^XML:date ].
+    
+      [      a :FillUp;
+             :car ca:drewHonda;
+             :gallons "14.026"^^typ:gallon;
+             :gasPrice  [
+                 :gasStation Sta:chevron13;
+                 :pricePerGallon "1.979"^^typ:dollar;
+                 _4:date "2005-01-15"^^XML:date ];
+             :gasStation Sta:chevron13;
+             :odometer "158712"^^typ:mile;
+             :tripMeter "403"^^typ:mile;
+             _4:date "2005-01-15"^^XML:date ].
+    
+      [      a :FillUp;
+             :car ca:drewHonda;
+             :gallons "11.705"^^typ:gallon;
+             :gasPrice  [
+                 :gasStation Sta:unocal;
+                 :pricePerGallon "1.679"^^typ:dollar;
+                 _4:date "2001-08-16"^^XML:date ];
+             :gasStation Sta:unocal;
+             :notes "socal + fwy";
+             :tripMeter "365"^^typ:mile;
+             _4:date "2001-08-16"^^XML:date ].
+    
+      [      a :FillUp;
+             :car ca:drewHonda;
+             :gallons "13.324"^^typ:gallon;
+             :gasPrice  [
+                 :gasStation Sta:shell;
+                 :pricePerGallon "1.799"^^typ:dollar;
+                 _4:date "2001-01-08"^^XML:date ];
+             :gasStation Sta:shell;
+             :notes "with 1/15, trip to pt reys";
+             :tripMeter "312"^^typ:mile;
+             _4:date "2001-01-08"^^XML:date ].
+    
+      [      a :FillUp;
+             :car ca:drewHonda;
+             :fee "0.35"^^typ:dollar;
+             :gallons "14.666"^^typ:gallon;
+             :gasPrice  [
+                 :gasStation Sta:arco13;
+                 :pricePerGallon "2.199"^^typ:dollar;
+                 _4:date "2004-09-13"^^XML:date ];
+             :gasStation Sta:arco13;
+             :notes "premium 91";
+             :odometer "149734"^^typ:mile;
+             :tripMeter "445"^^typ:mile;
+             _4:date "2004-09-13"^^XML:date ].
+    
+      [      a :FillUp;
+             :car ca:drewHonda;
+             :gallons "14.368"^^typ:gallon;
+             :gasPrice  [
+                 :gasStation Sta:number1gas;
+                 :pricePerGallon "2.088"^^typ:dollar;
+                 _4:date "2003-04-12"^^XML:date ];
+             :gasStation Sta:number1gas;
+             :odometer "114821"^^typ:mile;
+             :tripMeter "373"^^typ:mile;
+             _4:date "2003-04-12"^^XML:date ].
+    
+      [      a :FillUp;
+             :car ca:drewHonda;
+             :gallons "13.577"^^typ:gallon;
+             :gasPrice  [
+                 :gasStation Sta:xtra;
+                 :pricePerGallon "1.83"^^typ:dollar;
+                 _4:date "2001-06-17"^^XML:date ];
+             :gasStation Sta:xtra;
+             :odometer "81009"^^typ:mile;
+             :tripMeter "302.7"^^typ:mile;
+             _4:date "2001-06-17"^^XML:date ].
+    
+      [      a :FillUp;
+             :car ca:drewHonda;
+             :gallons "14.41"^^typ:gallon;
+             :gasPrice  [
+                 :gasStation <http://bigasterisk.com/2005/11/gasuse/Station/A&Agas>;
+                 :pricePerGallon "2.093"^^typ:dollar;
+                 _4:date "2004-09-19"^^XML:date ];
+             :gasStation <http://bigasterisk.com/2005/11/gasuse/Station/A&Agas>;
+             :odometer "150185"^^typ:mile;
+             :tripMeter "451"^^typ:mile;
+             _4:date "2004-09-19"^^XML:date ].
+    
+      [      a :FillUp;
+             :car ca:drewHonda;
+             :gallons "13.354"^^typ:gallon;
+             :gasPrice  [
+                 :gasStation Sta:valero;
+                 :pricePerGallon "1.699"^^typ:dollar;
+                 _4:date "2002-04-13"^^XML:date ];
+             :gasStation Sta:valero;
+             :odometer "97645"^^typ:mile;
+             :tripMeter "333"^^typ:mile;
+             _4:date "2002-04-13"^^XML:date ].
+    
+      [      a :FillUp;
+             :car ca:drewHonda;
+             :gallons "14.486"^^typ:gallon;
+             :gasPrice  [
+                 :gasStation Sta:ampm1;
+                 :pricePerGallon "1.899"^^typ:dollar;
+                 _4:date "2005-02-06"^^XML:date ];
+             :gasStation Sta:ampm1;
+             :odometer "159912"^^typ:mile;
+             :tripMeter "401"^^typ:mile;
+             _4:date "2005-02-06"^^XML:date ].
+    
+      [      a :FillUp;
+             :car ca:drewHonda;
+             :gallons "12.709"^^typ:gallon;
+             :gasPrice  [
+                 :gasStation Sta:valero;
+                 :pricePerGallon "1.999"^^typ:dollar;
+                 _4:date "2003-02-22"^^XML:date ];
+             :gasStation Sta:valero;
+             :notes "lots of drew driving from la";
+             :odometer "112387"^^typ:mile;
+             :tripMeter "344"^^typ:mile;
+             _4:date "2003-02-22"^^XML:date ].
+    
+      [      a :FillUp;
+             :car ca:drewHonda;
+             :gallons "14.102"^^typ:gallon;
+             :gasPrice  [
+                 :gasStation Sta:768;
+                 :pricePerGallon "2.159"^^typ:dollar;
+                 _4:date "2004-12-25"^^XML:date ];
+             :gasStation Sta:768;
+             :odometer "156779"^^typ:mile;
+             :tripMeter "409"^^typ:mile;
+             _4:date "2004-12-25"^^XML:date ].
+    
+      [      a :FillUp;
+             :car ca:drewHonda;
+             :fee "0.35"^^typ:dollar;
+             :gallons "13.911"^^typ:gallon;
+             :gasPrice  [
+                 :gasStation Sta:arco8;
+                 :pricePerGallon "1.939"^^typ:dollar;
+                 _4:date "2003-02-27"^^XML:date ];
+             :gasStation Sta:arco8;
+             :notes "kelsi to sacto, paid by kelsi";
+             :odometer "112773"^^typ:mile;
+             :tripMeter "382"^^typ:mile;
+             _4:date "2003-02-27"^^XML:date ].
+    
+      [      a :FillUp;
+             :car ca:drewHonda;
+             :gallons "14.185"^^typ:gallon;
+             :gasPrice  [
+                 :gasStation Sta:oysterpetroleum;
+                 :pricePerGallon "1.899"^^typ:dollar;
+                 _4:date "2001-08-05"^^XML:date ];
+             :gasStation Sta:oysterpetroleum;
+             :notes "miles maybe wrong, stef did reset";
+             :tripMeter "361"^^typ:mile;
+             _4:date "2001-08-05"^^XML:date ].
+    
+      [      a :FillUp;
+             :car ca:drewHonda;
+             :gallons "11.961"^^typ:gallon;
+             :gasPrice  [
+                 :gasStation Sta:flyingj;
+                 :pricePerGallon "1.669"^^typ:dollar;
+                 _4:date "2001-07-02"^^XML:date ];
+             :gasStation Sta:flyingj;
+             :notes "sf to la";
+             :tripMeter "337"^^typ:mile;
+             _4:date "2001-07-02"^^XML:date ].
+    
+      [      a :FillUp;
+             :car ca:drewHonda;
+             :gallons "14.549"^^typ:gallon;
+             :gasPrice  [
+                 :gasStation Sta:shell4;
+                 :pricePerGallon "1.879"^^typ:dollar;
+                 _4:date "2002-09-30"^^XML:date ];
+             :gasStation Sta:shell4;
+             :notes "paid by kelsi";
+             :odometer "104479"^^typ:mile;
+             :tripMeter "370"^^typ:mile;
+             _4:date "2002-09-30"^^XML:date ].
+    
+      [      a :FillUp;
+             :car ca:drewHonda;
+             :gallons "14.066"^^typ:gallon;
+             :gasPrice  [
+                 :gasStation Sta:mlksuperstop;
+                 :pricePerGallon "1.899"^^typ:dollar;
+                 _4:date "2003-06-20"^^XML:date ];
+             :gasStation Sta:mlksuperstop;
+             :odometer "120152"^^typ:mile;
+             :tripMeter "427"^^typ:mile;
+             _4:date "2003-06-20"^^XML:date ].
+    
+      [      a :FillUp;
+             :car ca:drewHonda;
+             :gallons "13.858"^^typ:gallon;
+             :gasPrice  [
+                 :gasStation Sta:valero4;
+                 :pricePerGallon "2.579"^^typ:dollar;
+                 _4:date "2005-05-10"^^XML:date ];
+             :gasStation Sta:valero4;
+             :odometer "164981"^^typ:mile;
+             :tripMeter "407"^^typ:mile;
+             _4:date "2005-05-10"^^XML:date ].
+    
+      [      a :FillUp;
+             :car ca:drewHonda;
+             :gallons "13.469"^^typ:gallon;
+             :gasPrice  [
+                 :gasStation Sta:chevron1;
+                 :pricePerGallon "1.979"^^typ:dollar;
+                 _4:date "2001-07-04"^^XML:date ];
+             :gasStation Sta:chevron1;
+             :notes "la to sf";
+             :tripMeter "364"^^typ:mile;
+             _4:date "2001-07-04"^^XML:date ].
+    
+      [      a :FillUp;
+             :car ca:drewHonda;
+             :gallons "13.663"^^typ:gallon;
+             :gasPrice  [
+                 :gasStation Sta:broadwayautobp;
+                 :pricePerGallon "2.359"^^typ:dollar;
+                 _4:date "2004-05-19"^^XML:date ];
+             :gasStation Sta:broadwayautobp;
+             :odometer "141936"^^typ:mile;
+             :tripMeter "414"^^typ:mile;
+             _4:date "2004-05-19"^^XML:date ].
+    
+      [      a :FillUp;
+             :car ca:drewHonda;
+             :gallons "14.685"^^typ:gallon;
+             :gasPrice  [
+                 :gasStation Sta:chevron13;
+                 :pricePerGallon "2.479"^^typ:dollar;
+                 _4:date "2005-05-27"^^XML:date ];
+             :gasStation Sta:chevron13;
+             :notes "drove mostly on spare tire at 50mph";
+             :odometer "165915"^^typ:mile;
+             :tripMeter "500.9"^^typ:mile;
+             _4:date "2005-05-27"^^XML:date ].
+    
+      [      a :FillUp;
+             :car ca:drewHonda;
+             :gallons "13.384"^^typ:gallon;
+             :gasPrice  [
+                 :gasStation Sta:arco;
+                 :pricePerGallon "1.559"^^typ:dollar;
+                 _4:date "2001-02-02"^^XML:date ];
+             :gasStation Sta:arco;
+             :notes "100 to/from alameda";
+             :tripMeter "335"^^typ:mile;
+             _4:date "2001-02-02"^^XML:date ].
+    
+      [      a :FillUp;
+             :car ca:drewHonda;
+             :gallons "11.9"^^typ:gallon;
+             :gasPrice  [
+                 :gasStation Sta:chevron5;
+                 :pricePerGallon "1.69"^^typ:dollar;
+                 _4:date "2002-04-27"^^XML:date ];
+             :gasStation Sta:chevron5;
+             :notes "kelsi's record";
+             :tripMeter "388"^^typ:mile;
+             _4:date "2002-04-27"^^XML:date ].
+    
+      [      a :FillUp;
+             :car ca:drewHonda;
+             :fee "0.35"^^typ:dollar;
+             :gallons "13.589"^^typ:gallon;
+             :gasPrice  [
+                 :gasStation Sta:arco2;
+                 :pricePerGallon "1.699"^^typ:dollar;
+                 _4:date "2001-09-18"^^XML:date ];
+             :gasStation Sta:arco2;
+             :odometer "88258"^^typ:mile;
+             :tripMeter "344"^^typ:mile;
+             _4:date "2001-09-18"^^XML:date ].
+    
+      [      a :FillUp;
+             :car ca:drewHonda;
+             :gallons "15.754"^^typ:gallon;
+             :gasPrice  [
+                 :gasStation Sta:shell9;
+                 :pricePerGallon "1.759"^^typ:dollar;
+                 _4:date "2003-10-31"^^XML:date ];
+             :gasStation Sta:shell9;
+             :odometer "130045"^^typ:mile;
+             :tripMeter "498"^^typ:mile;
+             _4:date "2003-10-31"^^XML:date ].
+    
+      [      a :FillUp;
+             :car ca:drewHonda;
+             :gallons "13.746"^^typ:gallon;
+             :gasPrice  [
+                 :gasStation Sta:valero3;
+                 :pricePerGallon "2.299"^^typ:dollar;
+                 _4:date "2005-03-27"^^XML:date ];
+             :gasStation Sta:valero3;
+             :odometer "162019"^^typ:mile;
+             :tripMeter "400"^^typ:mile;
+             _4:date "2005-03-27"^^XML:date ].
+    
+      [      a :FillUp;
+             :car ca:drewHonda;
+             :fee "0.35"^^typ:dollar;
+             :gallons "14.278"^^typ:gallon;
+             :gasPrice  [
+                 :gasStation Sta:arco3;
+                 :pricePerGallon "1.719"^^typ:dollar;
+                 _4:date "2001-10-16"^^XML:date ];
+             :gasStation Sta:arco3;
+             :notes "unl 89!";
+             :odometer "89736"^^typ:mile;
+             :tripMeter "305"^^typ:mile;
+             _4:date "2001-10-16"^^XML:date ].
+    
+      [      a :FillUp;
+             :car ca:drewHonda;
+             :gallons "11.479"^^typ:gallon;
+             :gasPrice  [
+                 :gasStation <http://bigasterisk.com/2005/11/gasuse/Station/?>;
+                 :pricePerGallon "1.549"^^typ:dollar;
+                 _4:date "2002-10-13"^^XML:date ];
+             :gasStation <http://bigasterisk.com/2005/11/gasuse/Station/?>;
+             :notes "paid by someone else";
+             :odometer "104776"^^typ:mile;
+             :tripMeter "298"^^typ:mile;
+             _4:date "2002-10-13"^^XML:date ].
+    
+      [      a :FillUp;
+             :car ca:drewHonda;
+             :gallons "14.368"^^typ:gallon;
+             :gasPrice  [
+                 :gasStation Sta:chevron15;
+                 :pricePerGallon "2.59883073496659"^^typ:dollar;
+                 _4:date "2005-05-18"^^XML:date ];
+             :gasStation Sta:chevron15;
+             :odometer "165414"^^typ:mile;
+             :tripMeter "432"^^typ:mile;
+             _4:date "2005-05-18"^^XML:date ].
+    
+      [      a :FillUp;
+             :car ca:drewHonda;
+             :gallons "13.122"^^typ:gallon;
+             :gasPrice  [
+                 :gasStation Sta:shell13;
+                 :pricePerGallon "2.199"^^typ:dollar;
+                 _4:date "2004-08-27"^^XML:date ];
+             :gasStation Sta:shell13;
+             :odometer "148833"^^typ:mile;
+             :tripMeter "389"^^typ:mile;
+             _4:date "2004-08-27"^^XML:date ].
+    
+      [      a :FillUp;
+             :car ca:drewHonda;
+             :gallons "14.071"^^typ:gallon;
+             :gasPrice  [
+                 :gasStation Sta:769;
+                 :pricePerGallon "2.099"^^typ:dollar;
+                 _4:date "2004-12-31"^^XML:date ];
+             :gasStation Sta:769;
+             :notes "to LA s/d/k, 2 tanks of gas";
+             :odometer "157485"^^typ:mile;
+             :tripMeter "706"^^typ:mile;
+             _4:date "2004-12-31"^^XML:date ].
+    
+      [      a :FillUp;
+             :car ca:drewHonda;
+             :fee "0.35"^^typ:dollar;
+             :gallons "14.63"^^typ:gallon;
+             :gasPrice  [
+                 :gasStation Sta:arco2;
+                 :pricePerGallon "1.539"^^typ:dollar;
+                 _4:date "2003-01-11"^^XML:date ];
+             :gasStation Sta:arco2;
+             :odometer "109691"^^typ:mile;
+             :tripMeter "418"^^typ:mile;
+             _4:date "2003-01-11"^^XML:date ].
+    
+      [      a :FillUp;
+             :car ca:drewHonda;
+             :gallons "14.816"^^typ:gallon;
+             :gasPrice  [
+                 :gasStation Sta:haipham;
+                 :pricePerGallon "2.699"^^typ:dollar;
+                 _4:date "2005-04-13"^^XML:date ];
+             :gasStation Sta:haipham;
+             :odometer "163273"^^typ:mile;
+             :tripMeter "450"^^typ:mile;
+             _4:date "2005-04-13"^^XML:date ].
+    
+      [      a :FillUp;
+             :car ca:drewHonda;
+             :gallons "14.479"^^typ:gallon;
+             :gasPrice  [
+                 :gasStation Sta:shell9;
+                 :pricePerGallon "2.199"^^typ:dollar;
+                 _4:date "2004-07-19"^^XML:date ];
+             :gasStation Sta:shell9;
+             :odometer "146144"^^typ:mile;
+             :tripMeter "445"^^typ:mile;
+             _4:date "2004-07-19"^^XML:date ].
+    
+      [      a :FillUp;
+             :car ca:drewHonda;
+             :gallons "12.06"^^typ:gallon;
+             :gasPrice  [
+                 :gasStation Sta:;
+                 :pricePerGallon ""^^typ:dollar;
+                 _4:date "2001-04-16"^^XML:date ];
+             :gasStation Sta:;
+             :notes "all socal";
+             :tripMeter "376"^^typ:mile;
+             _4:date "2001-04-16"^^XML:date ].
+    
+      [      a :FillUp;
+             :car ca:drewHonda;
+             :gallons "11.514"^^typ:gallon;
+             :gasPrice  [
+                 :gasStation Sta:valero;
+                 :pricePerGallon "1.899"^^typ:dollar;
+                 _4:date "2003-06-15"^^XML:date ];
+             :gasStation Sta:valero;
+             :notes "(sic gallons)";
+             :odometer "119724"^^typ:mile;
+             :tripMeter "407"^^typ:mile;
+             _4:date "2003-06-15"^^XML:date ].
+    
+      [      a :FillUp;
+             :car ca:drewHonda;
+             :gallons "13.679"^^typ:gallon;
+             :gasPrice  [
+                 :gasStation Sta:touchless1;
+                 :pricePerGallon "1.499"^^typ:dollar;
+                 _4:date "2002-08-03"^^XML:date ];
+             :gasStation Sta:touchless1;
+             :odometer "102357"^^typ:mile;
+             :tripMeter "358"^^typ:mile;
+             _4:date "2002-08-03"^^XML:date ].
+    
+      [      a :FillUp;
+             :car ca:drewHonda;
+             :gallons "13.439"^^typ:gallon;
+             :gasPrice  [
+                 :gasStation Sta:chevron13;
+                 :pricePerGallon "2.029"^^typ:dollar;
+                 _4:date "2005-01-29"^^XML:date ];
+             :gasStation Sta:chevron13;
+             :notes "gal hundredths smudged";
+             :odometer "159511"^^typ:mile;
+             :tripMeter "400"^^typ:mile;
+             _4:date "2005-01-29"^^XML:date ].
+    
+      [      a :FillUp;
+             :car ca:drewHonda;
+             :gallons "13.763"^^typ:gallon;
+             :gasPrice  [
+                 :gasStation Sta:shell10;
+                 :pricePerGallon "2.299"^^typ:dollar;
+                 _4:date "2004-03-19"^^XML:date ];
+             :gasStation Sta:shell10;
+             :odometer "137831"^^typ:mile;
+             :tripMeter "441"^^typ:mile;
+             _4:date "2004-03-19"^^XML:date ].
+    
+      [      a :FillUp;
+             :car ca:drewHonda;
+             :gallons "14.141"^^typ:gallon;
+             :gasPrice  [
+                 :gasStation Sta:shell1;
+                 :pricePerGallon "1.949"^^typ:dollar;
+                 _4:date "2001-05-27"^^XML:date ];
+             :gasStation Sta:shell1;
+             :notes "reset at 332=79399";
+             :tripMeter "320"^^typ:mile;
+             _4:date "2001-05-27"^^XML:date ].
+    
+      [      a :FillUp;
+             :car ca:drewHonda;
+             :gallons "13.035"^^typ:gallon;
+             :gasPrice  [
+                 :gasStation Sta:xtra1;
+                 :pricePerGallon "1.519"^^typ:dollar;
+                 _4:date "2002-04-20"^^XML:date ];
+             :gasStation Sta:xtra1;
+             :odometer "97970"^^typ:mile;
+             :tripMeter "324"^^typ:mile;
+             _4:date "2002-04-20"^^XML:date ].
+    
+      [      a :FillUp;
+             :car ca:drewHonda;
+             :gallons "14.038"^^typ:gallon;
+             :gasPrice  [
+                 :gasStation Sta:broadwayautobp;
+                 :pricePerGallon "1.859"^^typ:dollar;
+                 _4:date "2004-02-09"^^XML:date ];
+             :gasStation Sta:broadwayautobp;
+             :odometer "135556"^^typ:mile;
+             :tripMeter "442"^^typ:mile;
+             _4:date "2004-02-09"^^XML:date ].
+    
+      [      a :FillUp;
+             :car ca:drewHonda;
+             :gallons "14.769"^^typ:gallon;
+             :gasPrice  [
+                 :gasStation Sta:travelcenters;
+                 :pricePerGallon "1.979"^^typ:dollar;
+                 _4:date "2005-01-01"^^XML:date ];
+             :gasStation Sta:travelcenters;
+             :notes "SDK OC to santa nella";
+             :odometer "157882"^^typ:mile;
+             :tripMeter "396"^^typ:mile;
+             _4:date "2005-01-01"^^XML:date ].
+    
+      [      a :FillUp;
+             :car ca:drewHonda;
+             :gallons "15.313"^^typ:gallon;
+             :gasPrice  [
+                 :gasStation Sta:chevron14;
+                 :pricePerGallon "2.239"^^typ:dollar;
+                 _4:date "2005-02-17"^^XML:date ];
+             :gasStation Sta:chevron14;
+             :odometer "160360"^^typ:mile;
+             :tripMeter "447"^^typ:mile;
+             _4:date "2005-02-17"^^XML:date ].
+    
+      [      a :FillUp;
+             :car ca:drewHonda;
+             :gallons "14.355"^^typ:gallon;
+             :gasPrice  [
+                 :gasStation Sta:shell9;
+                 :pricePerGallon "1.839"^^typ:dollar;
+                 _4:date "2004-01-28"^^XML:date ];
+             :gasStation Sta:shell9;
+             :odometer "134662"^^typ:mile;
+             :tripMeter "446"^^typ:mile;
+             _4:date "2004-01-28"^^XML:date ].
+    
+      [      a :FillUp;
+             :car ca:drewHonda;
+             :gallons "13.043"^^typ:gallon;
+             :gasPrice  [
+                 :gasStation Sta:shell7;
+                 :pricePerGallon "1.459"^^typ:dollar;
+                 _4:date "2003-05-31"^^XML:date ];
+             :gasStation Sta:shell7;
+             :notes "yreka -> seattle, paid by kelsi";
+             :odometer "117617"^^typ:mile;
+             :tripMeter "483"^^typ:mile;
+             _4:date "2003-05-31"^^XML:date ].
+    
+      [      a :FillUp;
+             :car ca:drewHonda;
+             :gallons "14.535"^^typ:gallon;
+             :gasPrice  [
+                 :gasStation Sta:broadwayautobp;
+                 :pricePerGallon "1.959"^^typ:dollar;
+                 _4:date "2003-09-24"^^XML:date ];
+             :gasStation Sta:broadwayautobp;
+             :odometer "127694"^^typ:mile;
+             :tripMeter "448"^^typ:mile;
+             _4:date "2003-09-24"^^XML:date ].
+    
+      [      a :FillUp;
+             :car ca:drewHonda;
+             :gallons "13.81"^^typ:gallon;
+             :gasPrice  [
+                 :gasStation Sta:chevron1;
+                 :pricePerGallon "1.719"^^typ:dollar;
+                 _4:date "2001-08-17"^^XML:date ];
+             :gasStation Sta:chevron1;
+             :notes "la to sf, ac";
+             :tripMeter "409"^^typ:mile;
+             _4:date "2001-08-17"^^XML:date ].
+    
+      [      a :FillUp;
+             :car ca:drewHonda;
+             :gallons "15.6112"^^typ:gallon;
+             :gasPrice  [
+                 :gasStation Sta:shell9;
+                 :pricePerGallon "1.699"^^typ:dollar;
+                 _4:date "2003-11-25"^^XML:date ];
+             :gasStation Sta:shell9;
+             :odometer "131507"^^typ:mile;
+             :tripMeter "495"^^typ:mile;
+             _4:date "2003-11-25"^^XML:date ].
+    
+      [      a :FillUp;
+             :car ca:drewHonda;
+             :gallons "13.193"^^typ:gallon;
+             :gasPrice  [
+                 :gasStation Sta:bp;
+                 :pricePerGallon "2.259"^^typ:dollar;
+                 _4:date "-?-"^^XML:date ];
+             :gasStation Sta:bp;
+             :notes "paid by jim. no date";
+             :odometer "145699"^^typ:mile;
+             :tripMeter "411"^^typ:mile;
+             _4:date "-?-"^^XML:date ].
+    
+      [      a :FillUp;
+             :car ca:drewHonda;
+             :gallons "14.75"^^typ:gallon;
+             :gasPrice  [
+                 :gasStation Sta:shell12;
+                 :pricePerGallon "2.37966101694915"^^typ:dollar;
+                 _4:date "2004-06-05"^^XML:date ];
+             :gasStation Sta:shell12;
+             :odometer "143258"^^typ:mile;
+             :tripMeter "459"^^typ:mile;
+             _4:date "2004-06-05"^^XML:date ].
+    
+      [      a :FillUp;
+             :car ca:drewHonda;
+             :gallons "13.415"^^typ:gallon;
+             :gasPrice  [
+                 :gasStation Sta:chevron9;
+                 :pricePerGallon "1.899"^^typ:dollar;
+                 _4:date "2003-05-30"^^XML:date ];
+             :gasStation Sta:chevron9;
+             :notes "cc to oregon";
+             :odometer "117133"^^typ:mile;
+             :tripMeter "399"^^typ:mile;
+             _4:date "2003-05-30"^^XML:date ].
+    
+      [      a :FillUp;
+             :car ca:drewHonda;
+             :gallons "12.664"^^typ:gallon;
+             :gasPrice  [
+                 :gasStation Sta:touchless;
+                 :pricePerGallon "1.84933670246368"^^typ:dollar;
+                 _4:date "2001-02-10"^^XML:date ];
+             :gasStation Sta:touchless;
+             :tripMeter "277"^^typ:mile;
+             _4:date "2001-02-10"^^XML:date ].
+    
+      [      a :FillUp;
+             :car ca:drewHonda;
+             :fee "0.35"^^typ:dollar;
+             :gallons "14.908"^^typ:gallon;
+             :gasPrice  [
+                 :gasStation Sta:arco13;
+                 :pricePerGallon "2.279"^^typ:dollar;
+                 _4:date "2004-11-09"^^XML:date ];
+             :gasStation Sta:arco13;
+             :odometer "154243"^^typ:mile;
+             :tripMeter "456"^^typ:mile;
+             _4:date "2004-11-09"^^XML:date ].
+    
+      [      a :FillUp;
+             :car ca:drewHonda;
+             :gallons "15.881"^^typ:gallon;
+             :gasPrice  [
+                 :gasStation Sta:shell9;
+                 :pricePerGallon "1.739"^^typ:dollar;
+                 _4:date "2003-11-10"^^XML:date ];
+             :gasStation Sta:shell9;
+             :odometer "130549"^^typ:mile;
+             :tripMeter "504"^^typ:mile;
+             _4:date "2003-11-10"^^XML:date ].
+    
+      [      a :FillUp;
+             :car ca:drewHonda;
+             :gallons "12.694"^^typ:gallon;
+             :gasPrice  [
+                 :gasStation Sta:flyingj;
+                 :pricePerGallon "1.649"^^typ:dollar;
+                 _4:date "2001-07-03"^^XML:date ];
+             :gasStation Sta:flyingj;
+             :notes "la with some I5, no reset til 383";
+             :tripMeter "364"^^typ:mile;
+             _4:date "2001-07-03"^^XML:date ].
+    
+      [      a :FillUp;
+             :car ca:drewHonda;
+             :gallons "15.051"^^typ:gallon;
+             :gasPrice  [
+                 :gasStation Sta:broadwayautobp;
+                 :pricePerGallon "1.659"^^typ:dollar;
+                 _4:date "2003-12-20"^^XML:date ];
+             :gasStation Sta:broadwayautobp;
+             :odometer "132884"^^typ:mile;
+             :tripMeter "432"^^typ:mile;
+             _4:date "2003-12-20"^^XML:date ].
+    
+      [      a :FillUp;
+             :car ca:drewHonda;
+             :fee "0.35"^^typ:dollar;
+             :gallons "14.837"^^typ:gallon;
+             :gasPrice  [
+                 :gasStation Sta:arco3;
+                 :pricePerGallon "1.579"^^typ:dollar;
+                 _4:date "2003-12-12"^^XML:date ];
+             :gasStation Sta:arco3;
+             :odometer "132451"^^typ:mile;
+             :tripMeter "475"^^typ:mile;
+             _4:date "2003-12-12"^^XML:date ].
+    
+      [      a :FillUp;
+             :car ca:drewHonda;
+             :fee "0.35"^^typ:dollar;
+             :gallons "13.204"^^typ:gallon;
+             :gasPrice  [
+                 :gasStation Sta:arco3;
+                 :pricePerGallon "2.429"^^typ:dollar;
+                 _4:date "2005-04-03"^^XML:date ];
+             :gasStation Sta:arco3;
+             :odometer "162410"^^typ:mile;
+             :tripMeter "390"^^typ:mile;
+             _4:date "2005-04-03"^^XML:date ].
+    
+      [      a :FillUp;
+             :car ca:drewHonda;
+             :gallons "13.99"^^typ:gallon;
+             :gasPrice  [
+                 :gasStation Sta:broadwayautobp;
+                 :pricePerGallon "2.359"^^typ:dollar;
+                 _4:date "2004-11-15"^^XML:date ];
+             :gasStation Sta:broadwayautobp;
+             :odometer "154682"^^typ:mile;
+             :tripMeter "439"^^typ:mile;
+             _4:date "2004-11-15"^^XML:date ].
+    
+      [      a :FillUp;
+             :car ca:drewHonda;
+             :gallons "14.031"^^typ:gallon;
+             :gasPrice  [
+                 :gasStation Sta:shell9;
+                 :pricePerGallon "2.189"^^typ:dollar;
+                 _4:date "2003-09-09"^^XML:date ];
+             :gasStation Sta:shell9;
+             :odometer "126387"^^typ:mile;
+             :tripMeter "430"^^typ:mile;
+             _4:date "2003-09-09"^^XML:date ].
+    
+      [      a :FillUp;
+             :car ca:drewHonda;
+             :gallons "13.614"^^typ:gallon;
+             :gasPrice  [
+                 :gasStation Sta:shell9;
+                 :pricePerGallon "2.059"^^typ:dollar;
+                 _4:date "2003-09-18"^^XML:date ];
+             :gasStation Sta:shell9;
+             :odometer "127245"^^typ:mile;
+             :tripMeter "406"^^typ:mile;
+             _4:date "2003-09-18"^^XML:date ].
+    
+      [      a :FillUp;
+             :car ca:drewHonda;
+             :gallons "14.21"^^typ:gallon;
+             :gasPrice  [
+                 :gasStation Sta:xtra1;
+                 :pricePerGallon "2.079"^^typ:dollar;
+                 _4:date "2003-04-05"^^XML:date ];
+             :gasStation Sta:xtra1;
+             :odometer "114448"^^typ:mile;
+             :tripMeter "351"^^typ:mile;
+             _4:date "2003-04-05"^^XML:date ].
+    
+      [      a :FillUp;
+             :car ca:drewHonda;
+             :gallons "11.882"^^typ:gallon;
+             :gasPrice  [
+                 :gasStation Sta:exxon;
+                 :pricePerGallon "1.939"^^typ:dollar;
+                 _4:date "2001-01-06"^^XML:date ];
+             :gasStation Sta:exxon;
+             :tripMeter "316"^^typ:mile;
+             _4:date "2001-01-06"^^XML:date ].
+    
+      [      a :FillUp;
+             :car ca:drewHonda;
+             :gallons "14.652"^^typ:gallon;
+             :gasPrice  [
+                 :gasStation Sta:broadwayautobp;
+                 :pricePerGallon "2.399"^^typ:dollar;
+                 _4:date "2004-10-13"^^XML:date ];
+             :gasStation Sta:broadwayautobp;
+             :odometer "152467"^^typ:mile;
+             :tripMeter "459"^^typ:mile;
+             _4:date "2004-10-13"^^XML:date ].
+    
+      [      a :FillUp;
+             :car ca:drewHonda;
+             :fee "3"^^typ:dollar;
+             :gallons "13.451"^^typ:gallon;
+             :gasPrice  [
+                 :gasStation Sta:shell9;
+                 :pricePerGallon "2.189"^^typ:dollar;
+                 _4:date "2003-08-24"^^XML:date ];
+             :gasStation Sta:shell9;
+             :notes "the fee is for carwash. ls->sf, drew,kelsi, stef with some AC";
+             :odometer "125059"^^typ:mile;
+             :tripMeter "419"^^typ:mile;
+             _4:date "2003-08-24"^^XML:date ].
+    
+      [      a :FillUp;
+             :car ca:drewHonda;
+             :fee "0.35"^^typ:dollar;
+             :gallons "14.494"^^typ:gallon;
+             :gasPrice  [
+                 :gasStation Sta:arco3;
+                 :pricePerGallon "2.039"^^typ:dollar;
+                 _4:date "2004-08-20"^^XML:date ];
+             :gasStation Sta:arco3;
+             :odometer "148444"^^typ:mile;
+             :tripMeter "449"^^typ:mile;
+             _4:date "2004-08-20"^^XML:date ].
+    
+      [      a :FillUp;
+             :car ca:drewHonda;
+             :gallons "13.892"^^typ:gallon;
+             :gasPrice  [
+                 :gasStation Sta:chevron13;
+                 :pricePerGallon "2.499"^^typ:dollar;
+                 _4:date "2005-06-25"^^XML:date ];
+             :gasStation Sta:chevron13;
+             :odometer "167171"^^typ:mile;
+             :tripMeter "422"^^typ:mile;
+             _4:date "2005-06-25"^^XML:date ].
+    
+      [      a :FillUp;
+             :car ca:drewHonda;
+             :gallons "14.284"^^typ:gallon;
+             :gasPrice  [
+                 :gasStation Sta:broadwayautobp;
+                 :pricePerGallon "2.159"^^typ:dollar;
+                 _4:date "2004-04-29"^^XML:date ];
+             :gasStation Sta:broadwayautobp;
+             :odometer "140642"^^typ:mile;
+             :tripMeter "460"^^typ:mile;
+             _4:date "2004-04-29"^^XML:date ].
+    
+      [      a :FillUp;
+             :car ca:drewHonda;
+             :gallons "14.328"^^typ:gallon;
+             :gasPrice  [
+                 :gasStation Sta:arco2;
+                 :pricePerGallon "1.759"^^typ:dollar;
+                 _4:date "2001-10-02"^^XML:date ];
+             :gasStation Sta:arco2;
+             :tripMeter "319"^^typ:mile;
+             _4:date "2001-10-02"^^XML:date ].
+    
+      [      a :FillUp;
+             :car ca:drewHonda;
+             :fee "0.35"^^typ:dollar;
+             :gallons "14.361"^^typ:gallon;
+             :gasPrice  [
+                 :gasStation Sta:arco3;
+                 :pricePerGallon "2.329"^^typ:dollar;
+                 _4:date "2004-11-23"^^XML:date ];
+             :gasStation Sta:arco3;
+             :odometer "155111"^^typ:mile;
+             :tripMeter "428"^^typ:mile;
+             _4:date "2004-11-23"^^XML:date ].
+    
+      [      a :FillUp;
+             :car ca:drewHonda;
+             :fee "0.35"^^typ:dollar;
+             :gallons "13.782"^^typ:gallon;
+             :gasPrice  [
+                 :gasStation Sta:arco3;
+                 :pricePerGallon "2.299"^^typ:dollar;
+                 _4:date "2005-03-18"^^XML:date ];
+             :gasStation Sta:arco3;
+             :odometer "161619"^^typ:mile;
+             :tripMeter "423"^^typ:mile;
+             _4:date "2005-03-18"^^XML:date ].
+    
+      [      a :FillUp;
+             :car ca:drewHonda;
+             :gallons "12.774"^^typ:gallon;
+             :gasPrice  [
+                 :gasStation Sta:arco1;
+                 :pricePerGallon "1.819"^^typ:dollar;
+                 _4:date "2001-02-17"^^XML:date ];
+             :gasStation Sta:arco1;
+             :tripMeter "280"^^typ:mile;
+             _4:date "2001-02-17"^^XML:date ].
+    
+      [      a :FillUp;
+             :car ca:drewHonda;
+             :gallons "12.939"^^typ:gallon;
+             :gasPrice  [
+                 :gasStation Sta:arco10;
+                 :pricePerGallon "2.059"^^typ:dollar;
+                 _4:date "2003-08-24"^^XML:date ];
+             :gasStation Sta:arco10;
+             :odometer "124636"^^typ:mile;
+             :tripMeter "363"^^typ:mile;
+             _4:date "2003-08-24"^^XML:date ].
+    
+      [      a :FillUp;
+             :car ca:drewHonda;
+             :gallons "14.544"^^typ:gallon;
+             :gasPrice  [
+                 :gasStation Sta:chevron12;
+                 :pricePerGallon "1.879"^^typ:dollar;
+                 _4:date "2003-10-08"^^XML:date ];
+             :gasStation Sta:chevron12;
+             :odometer "128560"^^typ:mile;
+             :tripMeter "420"^^typ:mile;
+             _4:date "2003-10-08"^^XML:date ].
+    
+      [      a :FillUp;
+             :car ca:drewHonda;
+             :gallons "13.378"^^typ:gallon;
+             :gasPrice  [
+                 :gasStation Sta:chevron11;
+                 :pricePerGallon "2.179"^^typ:dollar;
+                 _4:date "2003-08-13"^^XML:date ];
+             :gasStation Sta:chevron11;
+             :odometer "126838"^^typ:mile;
+             :tripMeter "450"^^typ:mile;
+             _4:date "2003-08-13"^^XML:date ].
+    
+      [      a :FillUp;
+             :car ca:drewHonda;
+             :gallons "14.618"^^typ:gallon;
+             :gasPrice  [
+                 :gasStation Sta:shell;
+                 :pricePerGallon "1.839"^^typ:dollar;
+                 _4:date "2003-07-26"^^XML:date ];
+             :gasStation Sta:shell;
+             :tripMeter "341"^^typ:mile;
+             _4:date "2003-07-26"^^XML:date ].
+    
+      [      a :FillUp;
+             :car ca:drewHonda;
+             :fee "0.35"^^typ:dollar;
+             :gallons "14.59"^^typ:gallon;
+             :gasPrice  [
+                 :gasStation Sta:arco3;
+                 :pricePerGallon "1.999"^^typ:dollar;
+                 _4:date "2004-02-27"^^XML:date ];
+             :gasStation Sta:arco3;
+             :notes "day of month may be wrong";
+             :odometer "136494"^^typ:mile;
+             :tripMeter "464"^^typ:mile;
+             _4:date "2004-02-27"^^XML:date ].
+    
+      [      a :FillUp;
+             :car ca:drewHonda;
+             :fee "0.35"^^typ:dollar;
+             :gallons "13.642"^^typ:gallon;
+             :gasPrice  [
+                 :gasStation Sta:arco3;
+                 :pricePerGallon "2.119"^^typ:dollar;
+                 _4:date "2003-03-12"^^XML:date ];
+             :gasStation Sta:arco3;
+             :odometer "113714"^^typ:mile;
+             :tripMeter "400"^^typ:mile;
+             _4:date "2003-03-12"^^XML:date ].
+    
+      [      a :FillUp;
+             :car ca:drewHonda;
+             :gallons "15.303"^^typ:gallon;
+             :gasPrice  [
+                 :gasStation <http://bigasterisk.com/2005/11/gasuse/Station/manfredi'sdepot>;
+                 :pricePerGallon "1.459"^^typ:dollar;
+                 _4:date "2001-12-07"^^XML:date ];
+             :gasStation <http://bigasterisk.com/2005/11/gasuse/Station/manfredi'sdepot>;
+             :notes "\"fill at 231\"\"\"";
+             :tripMeter "231"^^typ:mile;
+             _4:date "2001-12-07"^^XML:date ].
+    
+      [      a :FillUp;
+             :car ca:drewHonda;
+             :gallons "14.903"^^typ:gallon;
+             :gasPrice  [
+                 :gasStation Sta:chevron13;
+                 :pricePerGallon "2.459"^^typ:dollar;
+                 _4:date "2004-10-27"^^XML:date ];
+             :gasStation Sta:chevron13;
+             :odometer "153310"^^typ:mile;
+             :tripMeter "451"^^typ:mile;
+             _4:date "2004-10-27"^^XML:date ].
+    
+      [      a :FillUp;
+             :car ca:drewHonda;
+             :gallons "14.593"^^typ:gallon;
+             :gasPrice  [
+                 :gasStation Sta:chevron10;
+                 :pricePerGallon "1.939"^^typ:dollar;
+                 _4:date "2003-06-28"^^XML:date ];
+             :gasStation Sta:chevron10;
+             :odometer "120685"^^typ:mile;
+             :tripMeter "403"^^typ:mile;
+             _4:date "2003-06-28"^^XML:date ].
+    
+      [      a :FillUp;
+             :car ca:drewHonda;
+             :gallons "15.142"^^typ:gallon;
+             :gasPrice  [
+                 :gasStation Sta:chevron13;
+                 :pricePerGallon "2.219"^^typ:dollar;
+                 _4:date "2004-07-31"^^XML:date ];
+             :gasStation Sta:chevron13;
+             :odometer "147063"^^typ:mile;
+             :tripMeter "452"^^typ:mile;
+             _4:date "2004-07-31"^^XML:date ].
+    
+      [      a :FillUp;
+             :car ca:drewHonda;
+             :gallons "14.362"^^typ:gallon;
+             :gasPrice  [
+                 :gasStation Sta:chevron3;
+                 :pricePerGallon "1.799"^^typ:dollar;
+                 _4:date "2001-09-23"^^XML:date ];
+             :gasStation Sta:chevron3;
+             :notes "la to sf for 345, ac, cruise";
+             :tripMeter "445"^^typ:mile;
+             _4:date "2001-09-23"^^XML:date ].
+    
+      [      a :FillUp;
+             :car ca:drewHonda;
+             :gallons "17.22"^^typ:gallon;
+             :gasPrice  [
+                 :gasStation Sta:shell5;
+                 :pricePerGallon "1.529"^^typ:dollar;
+                 _4:date "2002-10-19"^^XML:date ];
+             :gasStation Sta:shell5;
+             :notes "paid by kelsi";
+             :odometer "105166"^^typ:mile;
+             :tripMeter "304"^^typ:mile;
+             _4:date "2002-10-19"^^XML:date ].
+    
+      [      a :FillUp;
+             :car ca:drewHonda;
+             :gallons "14.737"^^typ:gallon;
+             :gasPrice  [
+                 :gasStation Sta:emerybaypetroleum;
+                 :pricePerGallon "2.199"^^typ:dollar;
+                 _4:date "2004-04-21"^^XML:date ];
+             :gasStation Sta:emerybaypetroleum;
+             :odometer "140181"^^typ:mile;
+             :tripMeter "457"^^typ:mile;
+             _4:date "2004-04-21"^^XML:date ].
+    
+      [      a :FillUp;
+             :car ca:drewHonda;
+             :gallons "14.419"^^typ:gallon;
+             :gasPrice  [
+                 :gasStation Sta:shell15;
+                 :pricePerGallon "2.719"^^typ:dollar;
+                 _4:date "2005-04-28"^^XML:date ];
+             :gasStation Sta:shell15;
+             :odometer "164155"^^typ:mile;
+             :tripMeter "448"^^typ:mile;
+             _4:date "2005-04-28"^^XML:date ].
+    
+      [      a :FillUp;
+             :car ca:drewHonda;
+             :fee "0.35"^^typ:dollar;
+             :gallons "13.264"^^typ:gallon;
+             :gasPrice  [
+                 :gasStation Sta:arco5;
+                 :pricePerGallon "1.419"^^typ:dollar;
+                 _4:date "2002-12-21"^^XML:date ];
+             :gasStation Sta:arco5;
+             :odometer "108491"^^typ:mile;
+             :tripMeter "354"^^typ:mile;
+             _4:date "2002-12-21"^^XML:date ].
+    
+      [      a :FillUp;
+             :car ca:drewHonda;
+             :gallons "13.058"^^typ:gallon;
+             :gasPrice  [
+                 :gasStation Sta:chevron2;
+                 :pricePerGallon "1.978"^^typ:dollar;
+                 _4:date "2001-04-30"^^XML:date ];
+             :gasStation Sta:chevron2;
+             :notes "kelsi filled, no reset";
+             :tripMeter "612"^^typ:mile;
+             _4:date "2001-04-30"^^XML:date ].
+    
+      [      a :FillUp;
+             :car ca:drewHonda;
+             :fee "0.35"^^typ:dollar;
+             :gallons "14.16"^^typ:gallon;
+             :gasPrice  [
+                 :gasStation Sta:arco3;
+                 :pricePerGallon "2.239"^^typ:dollar;
+                 _4:date "2004-06-17"^^XML:date ];
+             :gasStation Sta:arco3;
+             :notes "+40 see prev";
+             :odometer "144469"^^typ:mile;
+             :tripMeter "384"^^typ:mile;
+             _4:date "2004-06-17"^^XML:date ].
+    
+      [      a :FillUp;
+             :car ca:drewHonda;
+             :fee "0.35"^^typ:dollar;
+             :gallons "14.124"^^typ:gallon;
+             :gasPrice  [
+                 :gasStation Sta:arco2;
+                 :pricePerGallon "1.429"^^typ:dollar;
+                 _4:date "2002-10-28"^^XML:date ];
+             :gasStation Sta:arco2;
+             :odometer "105541"^^typ:mile;
+             :tripMeter "373"^^typ:mile;
+             _4:date "2002-10-28"^^XML:date ].
+    
+      [      a :FillUp;
+             :car ca:drewHonda;
+             :gallons "12.284"^^typ:gallon;
+             :gasPrice  [
+                 :gasStation Sta:768;
+                 :pricePerGallon "1.909"^^typ:dollar;
+                 _4:date "2003-06-14"^^XML:date ];
+             :gasStation Sta:768;
+             :notes "paid by kelsi";
+             :odometer "119321"^^typ:mile;
+             :tripMeter "312"^^typ:mile;
+             _4:date "2003-06-14"^^XML:date ].
+    
+      [      a :FillUp;
+             :car ca:drewHonda;
+             :fee "0.35"^^typ:dollar;
+             :gallons "13.733"^^typ:gallon;
+             :gasPrice  [
+                 :gasStation Sta:arco6;
+                 :pricePerGallon "1.469"^^typ:dollar;
+                 _4:date "2003-01-04"^^XML:date ];
+             :gasStation Sta:arco6;
+             :odometer "109273"^^typ:mile;
+             :tripMeter "361"^^typ:mile;
+             _4:date "2003-01-04"^^XML:date ].
+    
+      [      a :FillUp;
+             :car ca:drewHonda;
+             :gallons "14.271"^^typ:gallon;
+             :gasPrice  [
+                 :gasStation Sta:arco4;
+                 :pricePerGallon "2.179"^^typ:dollar;
+                 _4:date "2003-03-26"^^XML:date ];
+             :gasStation Sta:arco4;
+             :odometer "114096"^^typ:mile;
+             :tripMeter "382"^^typ:mile;
+             _4:date "2003-03-26"^^XML:date ].
+    
+      [      a :FillUp;
+             :car ca:drewHonda;
+             :gallons "14.362"^^typ:gallon;
+             :gasPrice  [
+                 :gasStation Sta:chevron1;
+                 :pricePerGallon "1.979"^^typ:dollar;
+                 _4:date "2001-04-17"^^XML:date ];
+             :gasStation Sta:chevron1;
+             :notes "socal to home";
+             :tripMeter "421"^^typ:mile;
+             _4:date "2001-04-17"^^XML:date ].
+    
+      [      a :FillUp;
+             :car ca:drewHonda;
+             :fee "0.35"^^typ:dollar;
+             :gallons "14.115"^^typ:gallon;
+             :gasPrice  [
+                 :gasStation Sta:arco7;
+                 :pricePerGallon "1.599"^^typ:dollar;
+                 _4:date "2003-01-19"^^XML:date ];
+             :gasStation Sta:arco7;
+             :notes "paid by x4262";
+             :odometer "110087"^^typ:mile;
+             :tripMeter "395"^^typ:mile;
+             _4:date "2003-01-19"^^XML:date ].
+    
+      [      a :FillUp;
+             :car ca:drewHonda;
+             :fee "0.35"^^typ:dollar;
+             :gallons "14.24"^^typ:gallon;
+             :gasPrice  [
+                 :gasStation Sta:arco4;
+                 :pricePerGallon "1.859"^^typ:dollar;
+                 _4:date "2003-02-12"^^XML:date ];
+             :gasStation Sta:arco4;
+             :odometer "111239"^^typ:mile;
+             :tripMeter "397"^^typ:mile;
+             _4:date "2003-02-12"^^XML:date ].
+    
+      [      a :FillUp;
+             :car ca:drewHonda;
+             :gallons "10.566"^^typ:gallon;
+             :gasPrice  [
+                 :gasStation Sta:;
+                 :pricePerGallon "1.879"^^typ:dollar;
+                 _4:date "2/01-7/--8"^^XML:date ];
+             :gasStation Sta:;
+             :notes "fwy";
+             :tripMeter "305"^^typ:mile;
+             _4:date "2/01-7/--8"^^XML:date ].
+    
+      [      a :FillUp;
+             :car ca:drewHonda;
+             :gallons "14.277"^^typ:gallon;
+             :gasPrice  [
+                 :gasStation Sta:touchless;
+                 :pricePerGallon "1.799"^^typ:dollar;
+                 _4:date "2001-11-03"^^XML:date ];
+             :gasStation Sta:touchless;
+             :odometer "90026"^^typ:mile;
+             :tripMeter "289"^^typ:mile;
+             _4:date "2001-11-03"^^XML:date ].
+    
+      [      a :FillUp;
+             :car ca:drewHonda;
+             :gallons "14.167"^^typ:gallon;
+             :gasPrice  [
+                 :gasStation Sta:valero;
+                 :pricePerGallon "1.699"^^typ:dollar;
+                 _4:date "2002-09-06"^^XML:date ];
+             :gasStation Sta:valero;
+             :odometer "103431"^^typ:mile;
+             :tripMeter "405"^^typ:mile;
+             _4:date "2002-09-06"^^XML:date ].
+    
+      [      a :FillUp;
+             :car ca:drewHonda;
+             :gallons "14.972"^^typ:gallon;
+             :gasPrice  [
+                 :gasStation Sta:767;
+                 :pricePerGallon "1.999"^^typ:dollar;
+                 _4:date "2003-04-20"^^XML:date ];
+             :gasStation Sta:767;
+             :odometer "115194"^^typ:mile;
+             :tripMeter "372"^^typ:mile;
+             _4:date "2003-04-20"^^XML:date ].
+    
+      [      a :FillUp;
+             :car ca:drewHonda;
+             :fee "0.35"^^typ:dollar;
+             :gallons "13.943"^^typ:gallon;
+             :gasPrice  [
+                 :gasStation Sta:arco3;
+                 :pricePerGallon "2.179"^^typ:dollar;
+                 _4:date "2004-07-07"^^XML:date ];
+             :gasStation Sta:arco3;
+             :odometer "145288"^^typ:mile;
+             :tripMeter "409"^^typ:mile;
+             _4:date "2004-07-07"^^XML:date ].
+    
+      [      a :FillUp;
+             :car ca:drewHonda;
+             :gallons "14.474"^^typ:gallon;
+             :gasPrice  [
+                 :gasStation Sta:shell9;
+                 :pricePerGallon "2.189"^^typ:dollar;
+                 _4:date "2003-08-28"^^XML:date ];
+             :gasStation Sta:shell9;
+             :odometer "125513"^^typ:mile;
+             :tripMeter "454"^^typ:mile;
+             _4:date "2003-08-28"^^XML:date ].
+    
+      [      a :FillUp;
+             :car ca:drewHonda;
+             :gallons "13.905"^^typ:gallon;
+             :gasPrice  [
+                 :gasStation Sta:touchless;
+                 :pricePerGallon "1.799"^^typ:dollar;
+                 _4:date "2001-09-12"^^XML:date ];
+             :gasStation Sta:touchless;
+             :tripMeter "332"^^typ:mile;
+             _4:date "2001-09-12"^^XML:date ].
+    
+      [      a :FillUp;
+             :car ca:drewHonda;
+             :gallons "14.522"^^typ:gallon;
+             :gasPrice  [
+                 :gasStation Sta:shell9;
+                 :pricePerGallon "2.199"^^typ:dollar;
+                 _4:date "2004-03-05"^^XML:date ];
+             :gasStation Sta:shell9;
+             :odometer "137389"^^typ:mile;
+             :tripMeter "455"^^typ:mile;
+             _4:date "2004-03-05"^^XML:date ].
+    
+      [      a :FillUp;
+             :car ca:drewHonda;
+             :gallons "13.52"^^typ:gallon;
+             :gasPrice  [
+                 :gasStation <http://bigasterisk.com/2005/11/gasuse/Station/gas&shop>;
+                 :pricePerGallon "1.619"^^typ:dollar;
+                 _4:date "2001-08-21"^^XML:date ];
+             :gasStation <http://bigasterisk.com/2005/11/gasuse/Station/gas&shop>;
+             :notes "\"+1.7G\"\"?\"";
+             :tripMeter "369.2"^^typ:mile;
+             _4:date "2001-08-21"^^XML:date ].
+    
+      [      a :FillUp;
+             :car ca:drewHonda;
+             :gallons "13.332"^^typ:gallon;
+             :gasPrice  [
+                 :gasStation Sta:chevron1;
+                 :pricePerGallon "1.839"^^typ:dollar;
+                 _4:date "2001-03-16"^^XML:date ];
+             :gasStation Sta:chevron1;
+             :tripMeter "268"^^typ:mile;
+             _4:date "2001-03-16"^^XML:date ].
+    
+      [      a :FillUp;
+             :car ca:drewHonda;
+             :gallons "14.185"^^typ:gallon;
+             :gasPrice  [
+                 :gasStation Sta:shell;
+                 :pricePerGallon "1.819"^^typ:dollar;
+                 _4:date "2001-03-26"^^XML:date ];
+             :gasStation Sta:shell;
+             :tripMeter "340"^^typ:mile;
+             _4:date "2001-03-26"^^XML:date ].
+    
+      [      a :FillUp;
+             :car ca:drewHonda;
+             :gallons "14.509"^^typ:gallon;
+             :gasPrice  [
+                 :gasStation Sta:ampm;
+                 :pricePerGallon "1.799"^^typ:dollar;
+                 _4:date "2003-05-28"^^XML:date ];
+             :gasStation Sta:ampm;
+             :notes "paid by kelsi";
+             :odometer "116734"^^typ:mile;
+             :tripMeter "397"^^typ:mile;
+             _4:date "2003-05-28"^^XML:date ].
+    
+      [      a :FillUp;
+             :car ca:drewHonda;
+             :gallons "11.798"^^typ:gallon;
+             :gasPrice  [
+                 :gasStation Sta:kwikserv;
+                 :pricePerGallon "1.539"^^typ:dollar;
+                 _4:date "2002-08-19"^^XML:date ];
+             :gasStation Sta:kwikserv;
+             :notes "cruise from 220; 200.. to pinecrest";
+             :odometer "102636"^^typ:mile;
+             :tripMeter "278"^^typ:mile;
+             _4:date "2002-08-19"^^XML:date ].
+    
+      [      a :FillUp;
+             :car ca:drewHonda;
+             :gallons "13.458"^^typ:gallon;
+             :gasPrice  [
+                 :gasStation Sta:valero;
+                 :pricePerGallon "1.699"^^typ:dollar;
+                 _4:date "2002-05-03"^^XML:date ];
+             :gasStation Sta:valero;
+             :odometer "98733"^^typ:mile;
+             :tripMeter "347"^^typ:mile;
+             _4:date "2002-05-03"^^XML:date ].
+    
+      [      a :FillUp;
+             :car ca:drewHonda;
+             :gallons "14.089"^^typ:gallon;
+             :gasPrice  [
+                 :gasStation Sta:chevron13;
+                 :pricePerGallon "2.619"^^typ:dollar;
+                 _4:date "2005-05-05"^^XML:date ];
+             :gasStation Sta:chevron13;
+             :odometer "164574"^^typ:mile;
+             :tripMeter "418"^^typ:mile;
+             _4:date "2005-05-05"^^XML:date ].
+    
+      [      a :FillUp;
+             :car ca:drewHonda;
+             :gallons "14.255"^^typ:gallon;
+             :gasPrice  [
+                 :gasStation Sta:chevron6;
+                 :pricePerGallon "1.619"^^typ:dollar;
+                 _4:date "2002-06-01"^^XML:date ];
+             :gasStation Sta:chevron6;
+             :odometer "100196"^^typ:mile;
+             :tripMeter "381"^^typ:mile;
+             _4:date "2002-06-01"^^XML:date ].
+    
+      [      a :FillUp;
+             :car ca:drewHonda;
+             :gallons "12.927"^^typ:gallon;
+             :gasPrice  [
+                 :gasStation Sta:oregondunesdelimart;
+                 :pricePerGallon "1.779"^^typ:dollar;
+                 _4:date "2003-06-02"^^XML:date ];
+             :gasStation Sta:oregondunesdelimart;
+             :notes "south WA -> reed city OR, cc, speed limit";
+             :odometer "118063"^^typ:mile;
+             :tripMeter "445"^^typ:mile;
+             _4:date "2003-06-02"^^XML:date ].
+    
+      [      a :FillUp;
+             :car ca:drewHonda;
+             :fee "0.35"^^typ:dollar;
+             :gallons "14.822"^^typ:gallon;
+             :gasPrice  [
+                 :gasStation Sta:arco3;
+                 :pricePerGallon "2.099"^^typ:dollar;
+                 _4:date "2004-07-26"^^XML:date ];
+             :gasStation Sta:arco3;
+             :odometer "146611"^^typ:mile;
+             :tripMeter "466.2"^^typ:mile;
+             _4:date "2004-07-26"^^XML:date ].
+    
+      [      a :FillUp;
+             :car ca:drewHonda;
+             :gallons "14.474"^^typ:gallon;
+             :gasPrice  [
+                 :gasStation Sta:shell;
+                 :pricePerGallon "2.199"^^typ:dollar;
+                 _4:date "2003-03-07"^^XML:date ];
+             :gasStation Sta:shell;
+             :odometer "113139"^^typ:mile;
+             :tripMeter "366"^^typ:mile;
+             _4:date "2003-03-07"^^XML:date ].
+    
+      [      a :FillUp;
+             :car ca:drewHonda;
+             :gallons "15.879"^^typ:gallon;
+             :gasPrice  [
+                 :gasStation Sta:shell9;
+                 :pricePerGallon "1.839"^^typ:dollar;
+                 _4:date "2003-10-22"^^XML:date ];
+             :gasStation Sta:shell9;
+             :odometer "129547"^^typ:mile;
+             :tripMeter "510"^^typ:mile;
+             _4:date "2003-10-22"^^XML:date ].
+    
+      [      a :FillUp;
+             :car ca:drewHonda;
+             :gallons "15.136"^^typ:gallon;
+             :gasPrice  [
+                 :gasStation Sta:broadwayautobp;
+                 :pricePerGallon "1.699"^^typ:dollar;
+                 _4:date "2004-01-21"^^XML:date ];
+             :gasStation Sta:broadwayautobp;
+             :odometer "134215"^^typ:mile;
+             :tripMeter "476"^^typ:mile;
+             _4:date "2004-01-21"^^XML:date ].
+    
+      [      a :FillUp;
+             :car ca:drewHonda;
+             :gallons "14.83"^^typ:gallon;
+             :gasPrice  [
+                 :gasStation Sta:broadwayautobp;
+                 :pricePerGallon "2.199"^^typ:dollar;
+                 _4:date "2004-12-02"^^XML:date ];
+             :gasStation Sta:broadwayautobp;
+             :odometer "155535"^^typ:mile;
+             :tripMeter "424"^^typ:mile;
+             _4:date "2004-12-02"^^XML:date ].
+    
+      [      a :FillUp;
+             :car ca:drewHonda;
+             :gallons "15.234"^^typ:gallon;
+             :gasPrice  [
+                 :gasStation Sta:costco;
+                 :pricePerGallon "1.759"^^typ:dollar;
+                 _4:date "2004-02-16"^^XML:date ];
+             :gasStation Sta:costco;
+             :notes "odo ones may be wrong";
+             :odometer "136029"^^typ:mile;
+             :tripMeter "472"^^typ:mile;
+             _4:date "2004-02-16"^^XML:date ].
+    
+      [      a :FillUp;
+             :car ca:drewHonda;
+             :gallons "14.565"^^typ:gallon;
+             :gasPrice  [
+                 :gasStation Sta:valero;
+                 :pricePerGallon "2.199"^^typ:dollar;
+                 _4:date "2004-02-28"^^XML:date ];
+             :gasStation Sta:valero;
+             :odometer "136934"^^typ:mile;
+             :tripMeter "440"^^typ:mile;
+             _4:date "2004-02-28"^^XML:date ].
+    
+      [      a :FillUp;
+             :car ca:drewHonda;
+             :fee "0.35"^^typ:dollar;
+             :gallons "13.987"^^typ:gallon;
+             :gasPrice  [
+                 :gasStation Sta:arco4;
+                 :pricePerGallon "1.499"^^typ:dollar;
+                 _4:date "2002-09-15"^^XML:date ];
+             :gasStation Sta:arco4;
+             :odometer "103798"^^typ:mile;
+             :tripMeter "367"^^typ:mile;
+             _4:date "2002-09-15"^^XML:date ].
+    
+      [      a :FillUp;
+             :car ca:drewHonda;
+             :gallons "15.956"^^typ:gallon;
+             :gasPrice  [
+                 :gasStation Sta:broadwayautobp;
+                 :pricePerGallon "2.159"^^typ:dollar;
+                 _4:date "2004-04-07"^^XML:date ];
+             :gasStation Sta:broadwayautobp;
+             :odometer "139288"^^typ:mile;
+             :tripMeter "486"^^typ:mile;
+             _4:date "2004-04-07"^^XML:date ].
+    
+      [      a :FillUp;
+             :car ca:drewCivicHybrid;
+             :gallons "10.237"^^type:gallon;
+             :gasPrice  [
+                 :gasStation sta:chevron1a;
+                 :pricePerGallon "3.259"^^type:dollar;
+                 _4:date "2006-05-12"^^XML:date ];
+             :gasStation sta:chevron1a;
+             :notes "this tank, first one for the car, is 482.5";
+             :odometer "22993"^^type:mile;
+             _4:date "2006-05-12"^^XML:date ].
+    
+      [      a :FillUp;
+             :car ca:drewCivicHybrid;
+             :gallons "10.823"^^type:gallon;
+             :gasPrice  [
+                 :gasStation sta:chevron1a;
+                 :pricePerGallon "3.299"^^type:dollar;
+                 _4:date "2006-05-12"^^XML:date ];
+             :gasStation sta:chevron1a;
+             :odometer "23499"^^type:mile;
+             _4:date "2006-05-18"^^XML:date ].
+    
+      [      a :FillUp;
+             :car ca:drewCivicHybrid;
+             :gallons "10.255"^^type:gallon;
+             :gasPrice  [
+                 :gasStation sta:chevron1a;
+                 :pricePerGallon "3.23"^^type:dollar;
+                 _4:date "2006-06-18"^^XML:date ];
+             :gasStation sta:seventysix1;
+             :odometer "24438"^^type:mile;
+             _4:date "2006-06-18"^^XML:date ].
+    
+      [      a :FillUp;
+             :car ca:drewCivicHybrid;
+             :gallons "10.444"^^type:gallon;
+             :gasPrice  [
+                 :gasStation sta:valero1a;
+                 :pricePerGallon "3.359"^^type:dollar;
+                 _4:date "2006-06-01"^^XML:date ];
+             :gasStation sta:valero1a;
+             :odometer "23982"^^type:mile;
+             _4:date "2006-06-01"^^XML:date ].
+    
+      [      a :FillUp;
+             :car ca:drewCivicHybrid;
+             :gallons "10.320"^^type:gallon;
+             :gasPrice  [
+                 :gasStation sta:chevron2a;
+                 :pricePerGallon "3.079"^^type:dollar;
+                 _4:date "2006-06-28"^^XML:date ];
+             :gasStation sta:chevron2a;
+             :odometer "24882"^^type:mile;
+             _4:date "2006-06-28"^^XML:date ].
+    
+      [      a :FillUp;
+             :car ca:drewCivicHybrid;
+             :gallons "10.6"^^type:gallon;
+             :gasPrice  [
+                 :gasStation sta:shell1a;
+                 :pricePerGallon "3.079"^^type:dollar;
+                 _4:date "2006-07-08"^^XML:date ];
+             :gasStation sta:shell1a;
+             :odometer "25373"^^type:mile;
+             _4:date "2006-07-08"^^XML:date ].
+    
+      [      a :FillUp;
+             :car ca:drewCivicHybrid;
+             :gallons "10.465"^^type:gallon;
+             :gasPrice  [
+                 :gasStation sta:valero2a;
+                 :pricePerGallon "3.159"^^type:dollar;
+                 _4:date "2006-07-13"^^XML:date ];
+             :gasStation sta:valero2a;
+             :odometer "25826"^^type:mile;
+             _4:date "2006-07-13"^^XML:date ].
+    
+      [      a :FillUp;
+             :car ca:drewCivicHybrid;
+             :gallons "10.411"^^type:gallon;
+             :gasPrice  [
+                 :gasStation sta:chevron3a;
+                 :pricePerGallon "3.179"^^type:dollar;
+                 _4:date "2006-07-24"^^XML:date ];
+             :gasStation sta:chevron3a;
+             :odometer "26267"^^type:mile;
+             _4:date "2006-07-24"^^XML:date ].
+    
+      [      a :FillUp;
+             :car ca:drewHonda;
+             :gallons "14.453"^^type:gallon;
+             :gasPrice  [
+                 :gasStation sta:bp1a;
+                 :pricePerGallon "3.099"^^type:dollar;
+                 _4:date "2006-08-24"^^XML:date ];
+             :gasStation sta:bp1a;
+             :odometer "177540"^^type:mile;
+             _4:date "2006-08-24"^^XML:date ].
+    
+      [      a :FillUp;
+             :car ca:drewCivicHybrid;
+             :gallons "10.561"^^type:gallon;
+             :gasPrice  [
+                 :gasStation sta:shell2a;
+                 :pricePerGallon "3.299"^^type:dollar;
+                 _4:date "2006-08-24"^^XML:date ];
+             :gasStation sta:shell2a;
+             :odometer "28561"^^type:mile;
+             _4:date "2006-08-24"^^XML:date ].
+    
+
+    
+#ENDS

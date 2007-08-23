@@ -22,7 +22,8 @@ from nevow.vhost import VHostMonsterResource
 from formless import annotate, webform
 from zope.interface import implements
 from rdflib.sparql.sparqlGraph import SPARQLGraph
-from rdflib import URIRef, Literal, BNode, Namespace, FileInputSource, Graph
+from rdflib import URIRef, Literal, BNode, Namespace, FileInputSource
+from rdflib.Graph import Graph, ConjunctiveGraph
 from rdflib import RDF, RDFS
 from rdflib.sparql.sparqlOperators import getLiteralValue
 from linegraph import LineGraph
@@ -119,6 +120,7 @@ class SubmitFillUpPage(formal.ResourceMixin, rend.Page):
                 return static.staticHTML("incorrect password, not submitting")
 
         g = graph.get_context(GAS['webAdded#context'])
+        print "webAdded had", len(g)
 
         car = GAS['car/drewCivicHybrid']
 
@@ -148,7 +150,7 @@ class SubmitFillUpPage(formal.ResourceMixin, rend.Page):
                          ).items():
             if o:
                 g.add((fill, GAS[s], o))        
-        
+
         g.serialize("web_added.nt", format="nt")
         return static.staticHTML("saved; webAdded now has %s nodes" % len(g))
 
@@ -185,7 +187,7 @@ class FillupsPage(Page):
         return [(T.a(href=url.here.add('numFillUps', n))[n]," ")
                 for n in [10,20,50,100,'all']]
     def render_row(self, ctx, item):
-        val = graph.value
+        val = lambda *args: str(graph.value(*args))
         slot = ctx.fillSlots
         for p in [
             "http://purl.org/dc/elements/1.1/date",
@@ -200,30 +202,33 @@ class FillupsPage(Page):
             slot(p, "")
  
         for p,o in graph.predicate_objects(item):
-            slot(p, str(o))
+            slot(str(p), str(o))
 
         try:
             slot("mpgTrunc", "%.2f" % float(val(item, GAS["mpgOnThisTank"])))
-        except (TypeError, ValueError):
+        except (TypeError, ValueError), e:
+            print e
             pass
 
-        if val(item, GAS["mpgOnThisTank"]) is not None:
+        if val(item, GAS["mpgOnThisTank"]) != "None": # val has str()
             m = float(val(item, GAS["mpgOnThisTank"]))
-            bright = (m - 15) / (35 - 15) * 255
+            bright = (m - 15) / (55 - 15) * 255
             slot("mpgColor", htmlColor(50, bright, 50))
 
         try:
             slot("pricePerGallon",
                  "%.03f" %
                  float(val(val(item, GAS["gasPrice"]), GAS["pricePerGallon"])))
-        except (TypeError, ValueError):
+        except (TypeError, ValueError), e:
+            print e
             pass
 
         try:
             stns = graph.objects(item, GAS["gasStation"])
             labels = [graph.label(s) for s in stns]
             slot("gasStationLabel", labels)
-        except (TypeError, ValueError):
+        except (TypeError, ValueError), e:
+            print e
             pass
 
         try:
@@ -232,6 +237,7 @@ class FillupsPage(Page):
             bright = (dpm - .03) / (.10 - .03) * 255
             slot("dpmColor", htmlColor(bright, 150, 150))
         except (TypeError, ValueError), e:
+            print e
             pass
             
         return ctx.tag
@@ -282,7 +288,7 @@ class FillupsPage(Page):
         return dpm, totalGal
 
     def data_years(self, ctx, data):
-        return range(2001, 2006+1) + ['All']
+        return range(2001, 2007+1) + ['All']
 
     def data_stationDpmByYear(self, ctx, data):
         """
@@ -307,7 +313,8 @@ class FillupsPage(Page):
         for stn in graph.subjects(RDF.type, GAS['Station']):
             shortName = graph.value(stn, GAS['shortName'], any=True)
             shortNames.add(shortName)
-        
+
+        car = self.render_car(ctx, data)
         for shortName in sorted(shortNames):
             row = [shortName]
             for year in self.data_years(ctx, data):
@@ -315,8 +322,7 @@ class FillupsPage(Page):
                     s,e = dlit("1970-01-01"), dlit("2038-01-01")
                 else:
                     s,e = dlit("%s-01-01" % year), dlit("%s-12-31" % year)
-                dpm, totalGal = self.dpmInDateRange(self.render_car(ctx, data),
-                                                    shortName, s, e)
+                dpm, totalGal = self.dpmInDateRange(car, shortName, s, e)
                 row.append((dpm, totalGal))
             allYearTotalGal = row[-1][1]
             if allYearTotalGal > self.data_minGallonsForStationDpm(ctx, data):
@@ -396,14 +402,46 @@ setattr(MainPage, 'child_formal.css', formal.defaultCSS)
 setattr(MainPage, 'child_js', formal.formsJS)
 setattr(MainPage, 'child_doap.rdf', static.File("doap.rdf"))
     
-graph = SPARQLGraph(Graph())
-graph.parse(FileInputSource(open("gas.rdf")), publicID=GAS['gas1#context'])
-print "%s triples after gas.rdf" % len(graph)
-graph.parse(FileInputSource(open("gas2.n3")), publicID=GAS['gas2#context'], format="n3")
-print "%s triples after gas2.n3" % len(graph)
+graph = SPARQLGraph(ConjunctiveGraph())
+
+def setupGetContextMethod(graph):
+    # why can't i have get_context from old BackwardCompatGraph? unclear
+    # how that should be done in ConjunctiveGraph
+    def get_context(self, identifier, quoted=False):
+        """Return a context graph for the given identifier
+
+        identifier must be a URIRef or BNode.
+        """
+        assert isinstance(identifier, URIRef) or \
+               isinstance(identifier, BNode), type(identifier)
+        if quoted:
+            assert False
+            return QuotedGraph(self.store, identifier)
+            #return QuotedGraph(self.store, Graph(store=self.store,
+            #                                     identifier=identifier))
+        else:
+            return Graph(store=self.store, identifier=identifier,
+                         namespace_manager=self)
+            #return Graph(self.store, Graph(store=self.store,
+            #                               identifier=identifier))
+
+
+    import types
+    graph.get_context = types.MethodType(get_context, graph, graph.__class__)
+setupGetContextMethod(graph)
+
+
+for inp, fmt in [('complete1.rdf', 'xml'),
+                 ('googlebak.n3', 'n3')]:
+    graph.parse(FileInputSource(open(inp)),
+                publicID=GAS['%s#context' % inp.split('.')[0]],
+                format=fmt)
+    print "%s triples after %s" % (len(graph), inp)
+
 graph.parse("web_added.nt", publicID=GAS['webAdded#context'], format="nt")
 for car in [GAS['car/drewCivicHybrid'],
-            GAS['car/drewHonda']]:
+            #GAS['car/drewHonda'],
+            ]:
     mpg.calcMpg(graph, car)
 
 application = service.Application('gasuse')

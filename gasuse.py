@@ -10,9 +10,10 @@ GAS = Namespace("http://bigasterisk.com/2005/11/gasuse/")
 # they're in SUMO; see #swig logs from 2006-02-11. also use fragments
 # for datatypes to avoid breaking cwm
 
-DOLLAR = GAS["type/dollar"]
-MILE = GAS["type/mile"]
-GALLON = GAS["type/gallon"]
+TYPE = Namespace("http://bigasterisk.com/2005/11/gasuse/type#")
+DOLLAR = TYPE["dollar"]
+MILE = TYPE["mile"]
+GALLON = TYPE["gallon"]
 
 def dateFromAmerican(mm_dd_yyyy):
     return Literal("%s-%s-%s" % (mm_dd_yyyy[6:10],

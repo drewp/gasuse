@@ -4,7 +4,8 @@ from twisted.application import internet, service
 from nevow import appserver
 from nevow import inevow, loaders, rend, static, url, tags as T
 from nevow.tags import Tag
-from rdflib.sparql import getLiteralValue
+#from rdflib.sparql import getLiteralValue
+def getLiteralValue(*args): raise NotImplementedError
 from rdflib import Literal
 
 def floatOrLiteral(x):
