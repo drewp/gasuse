@@ -1,0 +1,15 @@
+_:MWUMjvof463 <http://bigasterisk.com/2005/11/gasuse/pricePerGallon> "2.929"^^<http://bigasterisk.com/2005/11/gasuse/type#dollar>.
+_:MWUMjvof463 <http://purl.org/dc/elements/1.1/date> "2007-08-18"^^<http://www.w3.org/2001/XMLSchema#date>.
+_:MWUMjvof463 <http://bigasterisk.com/2005/11/gasuse/gasStation> <http://bigasterisk.com/2005/11/gasuse/station/hash-557807718>.
+<http://bigasterisk.com/2005/11/gasuse/station/hash-557807718> <http://bigasterisk.com/2005/11/gasuse/shortName> "chevron".
+<http://bigasterisk.com/2005/11/gasuse/station/hash-557807718> <http://bigasterisk.com/2005/11/gasuse/shortAddress> "cottonwood, ca".
+<http://bigasterisk.com/2005/11/gasuse/station/hash-557807718> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://bigasterisk.com/2005/11/gasuse/Station>.
+<http://bigasterisk.com/2005/11/gasuse/station/hash-557807718> <http://www.w3.org/2000/01/rdf-schema#label> "chevron near cottonwood, ca".
+_:MWUMjvof464 <http://purl.org/dc/elements/1.1/date> "2007-08-18"^^<http://www.w3.org/2001/XMLSchema#date>.
+_:MWUMjvof464 <http://bigasterisk.com/2005/11/gasuse/gasStation> <http://bigasterisk.com/2005/11/gasuse/station/hash-557807718>.
+_:MWUMjvof464 <http://bigasterisk.com/2005/11/gasuse/gallons> "10.864"^^<http://bigasterisk.com/2005/11/gasuse/type#gallon>.
+_:MWUMjvof464 <http://bigasterisk.com/2005/11/gasuse/car> <http://bigasterisk.com/2005/11/gasuse/car/drewCivicHybrid>.
+_:MWUMjvof464 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://bigasterisk.com/2005/11/gasuse/FillUp>.
+_:MWUMjvof464 <http://bigasterisk.com/2005/11/gasuse/gasPrice> _:MWUMjvof463.
+_:MWUMjvof464 <http://bigasterisk.com/2005/11/gasuse/odometer> "49912"^^<http://bigasterisk.com/2005/11/gasuse/type#mile>.
+_:MWUMjvof464 <http://purl.org/dc/elements/1.1/created> "2007-08-18T11:52:16.41-07:00".

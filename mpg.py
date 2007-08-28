@@ -5,7 +5,6 @@ sort fillups better, using odometer
 """
 
 import optparse, datetime
-from rdflib.sparql.sparqlGraph import SPARQLGraph as Graph
 from rdflib.sparql.bison import GraphPattern
 from rdflib.sparql import Debug
 import rdflib.sparql.sparqlOperators as op
@@ -22,7 +21,8 @@ def fillUps(graph, car):
     ret = list(graph.query("""SELECT ?date ?odo ?fillUp WHERE { 
                       ?fillUp a gas:FillUp; gas:odometer ?odo; dc:date ?date; gas:car ?car .
    }""", initNs=dict(gas=GAS, dc=DC), initBindings={Variable("?car") : car}))
-    ret.sort() # alpha sort on odo
+    ret.sort(key=lambda r: (str(r[0]), str(r[1]))) # alpha sort on odo
+
     print "return %s fillups for %s" % (len(ret), car)
     return [(f[0], f[2]) for f in ret]
 
@@ -78,6 +78,7 @@ def calcMpg(graph, car):
     
 
 if __name__ == '__main__':
+    from rdflib.sparql.sparqlGraph import SPARQLGraph as Graph
     graph = Graph()
     graph.parse(FileInputSource(open("gas.rdf")))
 

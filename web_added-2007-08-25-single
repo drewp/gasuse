@@ -1,0 +1,15 @@
+_:HWfgIrAH555 <http://bigasterisk.com/2005/11/gasuse/pricePerGallon> "2.899"^^<http://bigasterisk.com/2005/11/gasuse/type#dollar>.
+_:HWfgIrAH555 <http://purl.org/dc/elements/1.1/date> "2007-08-25"^^<http://www.w3.org/2001/XMLSchema#date>.
+_:HWfgIrAH555 <http://bigasterisk.com/2005/11/gasuse/gasStation> <http://bigasterisk.com/2005/11/gasuse/station/hash1698193610>.
+_:HWfgIrAH556 <http://purl.org/dc/elements/1.1/date> "2007-08-25"^^<http://www.w3.org/2001/XMLSchema#date>.
+_:HWfgIrAH556 <http://bigasterisk.com/2005/11/gasuse/car> <http://bigasterisk.com/2005/11/gasuse/car/drewCivicHybrid>.
+_:HWfgIrAH556 <http://bigasterisk.com/2005/11/gasuse/odometer> "51149"^^<http://bigasterisk.com/2005/11/gasuse/type#mile>.
+_:HWfgIrAH556 <http://bigasterisk.com/2005/11/gasuse/gallons> "9.036"^^<http://bigasterisk.com/2005/11/gasuse/type#gallon>.
+_:HWfgIrAH556 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://bigasterisk.com/2005/11/gasuse/FillUp>.
+_:HWfgIrAH556 <http://purl.org/dc/elements/1.1/created> "2007-08-25T13:14:30.96-07:00".
+_:HWfgIrAH556 <http://bigasterisk.com/2005/11/gasuse/gasPrice> _:HWfgIrAH555.
+_:HWfgIrAH556 <http://bigasterisk.com/2005/11/gasuse/gasStation> <http://bigasterisk.com/2005/11/gasuse/station/hash1698193610>.
+<http://bigasterisk.com/2005/11/gasuse/station/hash1698193610> <http://www.w3.org/2000/01/rdf-schema#label> "quik stop near watsonville".
+<http://bigasterisk.com/2005/11/gasuse/station/hash1698193610> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://bigasterisk.com/2005/11/gasuse/Station>.
+<http://bigasterisk.com/2005/11/gasuse/station/hash1698193610> <http://bigasterisk.com/2005/11/gasuse/shortName> "quik stop".
+<http://bigasterisk.com/2005/11/gasuse/station/hash1698193610> <http://bigasterisk.com/2005/11/gasuse/shortAddress> "watsonville".
