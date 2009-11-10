@@ -18,7 +18,6 @@ sys.path.append('/usr/lib/python%s/site-packages/oldxml' % sys.version[:3])
 from sets import Set
 from xml.utils import iso8601
 from twisted.application import internet, service
-import formal
 from nevow import appserver
 from nevow import inevow, loaders, rend, static, url, tags as T, guard
 from nevow.vhost import VHostMonsterResource
@@ -31,18 +30,16 @@ from rdflib import RDF, RDFS
 from rdflib.sparql.sparqlOperators import getLiteralValue
 from linegraph import LineGraph
 import mpg
-from gasuse import DC, DATE, GAS, DOLLAR, MILE, GALLON
-
+from gasuse import DC, DATE, GAS, DOLLAR, MILE, GALLON, SIOC
 
 sys.path.append("/my/proj/ffg/sparqlhttp")
+sys.path.append("../ffg/sparqlhttp")
 from sparqlhttp.syncimport import SyncImport
 from sparqlhttp.dictquery import Graph2
 
-
 XS = Namespace("http://www.w3.org/2001/XMLSchema#")
 
-dlit = lambda d: Literal(d,
-                         datatype='http://www.w3.org/2001/XMLSchema#date')
+dlit = lambda d: Literal(d, datatype='http://www.w3.org/2001/XMLSchema#date')
 
 class Page(rend.Page):
     docFactory = loaders.xmlfile("basic.html")
@@ -68,70 +65,33 @@ def stationUri(existingGraph, newGraph, station, addr):
                           Literal("%s near %s" % (station, addr))))
     return s
 
-class SubmitFillUpPage(formal.ResourceMixin, rend.Page):
-    # not a Page since this one is for mobile phones. but it should
-    # detect if you're a phone and draw itself accordingly (all the
-    # pages should do this)
+class SubmitFillUpPage(rend.Page):
+    docFactory = loaders.xmlfile("submit.html")
 
-    docFactory = loaders.stan(
-        T.html[
-          T.head[
-            T.link(rel='stylesheet', type='text/css', href=url.root.child('formal.css')),
-            T.script(type='text/javascript', src='js/formal.js'),
-            T.style["""
-        div.1-fee-field { background: #ff0000; border: 11px }
-            """]
-            ],
-          T.body[T.div[
-            T.div(render=T.directive("loggedIn")),
-            T.directive('form 1')
-            ]
-            ]
-          ])
-    def render_loggedIn(self, ctx, data):
-        if hasattr(inevow.ISession(ctx), 'password'):
-            return "[logged in]"
-        else:
-            return ""
+    def renderHTTP(self, ctx):
+        if inevow.IRequest(ctx).method == 'POST':
+            return self.newItem(ctx)
         
-    def form_1(self, ctx):
-        form = formal.Form()
-        if not hasattr(inevow.ISession(ctx), 'password'):
-            form.addField('password', formal.String())
-        form.addField('date', formal.String())
-        form.data['date'] = 'today'
-        form.addField('station', formal.String(missing=""))# description="e.g. shell"),
-        form.addField('addr', formal.String(missing=""))# label="address",
-#                             description="e.g. oak and main SF"),
-        form.addField('priceGal', formal.String(missing=""))
-        form.addField('gallons', formal.String(missing=""))
-        form.addField('fee', formal.String(missing=""))
-        form.addField('odo', formal.String(missing=""))
-        form.addField('notes', formal.String(missing=""))
-        form.addAction(self.newItem)
-        return form
+        return rend.Page.renderHTTP(self, ctx)
 
-    def newItem(self, ctx, form, data):
-        password, date, station, addr, priceGal, gallons, fee, odo, notes = [
-          data.get(x) for x in
-          "password date station addr priceGal gallons fee odo notes".split()]
+    def render_loggedIn(self, ctx, data):
+        req = inevow.IRequest(ctx)
+        user = req.getHeader('x-foaf-agent')
+        if user is None:
+            return T.a(href="/login")['Login required']
+        return [T.div(id="login")["Logged in as ", user or 'unknown'], ctx.tag]
+            
+    def newItem(self, ctx):
+        date, station, addr, priceGal, car, gallons, fee, odo, notes = [
+          ctx.arg(x) for x in
+          "date station addr priceGal car gallons fee odo notes".split()]
 
-        sess = inevow.ISession(ctx)
-        if hasattr(sess, 'password'):
-            print "already had password", sess.password
-        else:
-            correctPassword = (Graph()
-                               .parse("password.nt", format="nt")
-                               .value(GAS['site'], GAS['password']))
-            if password == correctPassword:
-                print "logged in"
-                sess.password = True
-            else:
-                return static.staticHTML("incorrect password, not submitting")
-
+        req = inevow.IRequest(ctx)
+        user = req.getHeader('x-foaf-agent')
+        if user is None:
+            raise ValueError("not logged in")
+        
         g = Graph()
-
-        car = GAS['car/drewCivicHybrid']
 
         if date == 'today':
             date = time.strftime("%Y-%m-%d")
@@ -147,10 +107,11 @@ class SubmitFillUpPage(formal.ResourceMixin, rend.Page):
 
         fill = BNode()
         g.add((fill, RDF.type, GAS['FillUp']))
+        g.add((fill, SIOC.has_creator, URIRef(user)))
         g.add((fill, DC['created'],
                Literal(iso8601.tostring(time.time(), timezone=time.altzone))))
         g.add((fill, DC['date'], date))
-        for s, o in dict(car=car,
+        for s, o in dict(car=URIRef(car),
                          gallons=Literal(gallons, datatype=GAS['type#gallon']),
                          gasPrice=price,
                          gasStation=station,
@@ -412,8 +373,6 @@ class MainPage(Page):
                              "pricePerGallon")
     def child_submitFillUp(self, ctx):
         return SubmitFillUpPage()
-setattr(MainPage, 'child_formal.css', formal.defaultCSS)
-setattr(MainPage, 'child_js', formal.formsJS)
 setattr(MainPage, 'child_doap.rdf', static.File("doap.rdf"))
     
 

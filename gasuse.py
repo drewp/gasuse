@@ -4,6 +4,7 @@ from rdflib import URIRef, Literal, BNode, Namespace
 DC = Namespace("http://purl.org/dc/elements/1.1/")
 DATE = URIRef("http://www.w3.org/2001/XMLSchema#date")
 GAS = Namespace("http://bigasterisk.com/2005/11/gasuse/")
+SIOC = Namespace("http://rdfs.org/sioc/ns#")
 
 # should be standard datatypes, but I can't find any
 

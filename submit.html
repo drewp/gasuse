@@ -1,0 +1,112 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:n="http://nevow.com/ns/nevow/0.1">
+  <head>
+    <style type="text/css">
+      body { background: #5a7a1b; color: white; }
+      div.inputs { display: inline } 
+      div.description { display: inline; font-size: 70%; }
+      div.field { margin-bottom: 10px }
+      #col { width: 320px }
+      .actions { text-align: center; }
+      #login, #group-stn, #group-car, #group-note {
+	  padding: 6px;
+	  margin: 10px;
+	  -moz-border-radius: 10px;
+	  -webkit-border-radius: 20px;
+	  border: 2px solid #88a847;
+      }
+      #login { border: 0; margin: 2px 10px; font-size: 70%; }
+      #group-stn { background: #6d9028; }
+      #group-car { background: #6d9028; }
+      #group-note { background: #6d9028; }
+      input[type=text] { 
+	  padding: 5px;
+	  border: 1px solid #88a847;
+	  background: #423f8c;
+	  color: white;
+      }
+      input[type=submit] {
+	  border: 1px outset #88a847;
+	  color: white;
+	  background: #1e1c5b;
+	  padding: 5px;
+      }
+      input[type=radio] {
+	  width: 25px;
+	  height: 25px;
+      }
+      .field.left {
+	  float:left; 
+	  margin-right: 10px;
+      }
+    </style>
+    <meta name="viewport" content="width=320; initial-scale=1.0; minimum-scale: .01; user-scalable=no"/>
+  </head>
+  <body>
+    <div id="col">
+      <div n:render="loggedIn">
+	<form accept-charset="utf-8" action="submitFillUp" method="post" enctype="multipart/form-data">
+
+	  <div id="group-stn">
+	    <div class="field string textinput" id="1-date-field">
+	      <label class="label" for="1-date">Date</label>
+	      <div class="inputs"> <input type="text" id="1-date" value="today" name="date" size="11"/> </div>
+	      <div class="description"/>
+	    </div>
+	    <div class="field string textinput" id="1-station-field">
+	      <label class="label" for="1-station">Station</label>
+	      <div class="inputs"> <input type="text" id="1-station" name="station" size="10"/> </div>
+	      <div class="description">e.g. shell</div>
+	    </div>
+	    <div class="field string textinput" id="1-addr-field">
+	      <label class="label" for="1-addr">Addr</label>
+	      <div class="inputs"> <input type="text" id="1-addr" name="addr" size="10"/> </div>
+	      <div class="description">e.g. oak and man SF</div>
+	    </div>
+	    <div>
+	      <div class="field string textinput left" id="1-priceGal-field">
+		<label class="label" for="1-priceGal">Price Gal</label>
+		<div class="inputs"> $<input type="text" id="1-priceGal" name="priceGal" size="6"/> </div>
+		<div class="description"/>
+	      </div>
+	      <div class="field string textinput" id="1-fee-field">
+		<label class="label" for="1-fee">Fee</label>
+		<div class="inputs"> $<input type="text" id="1-fee" name="fee" size="5"/> </div>
+		<div class="description"/>
+	      </div>
+	    </div>
+	  </div>
+
+	  <div id="group-car">
+	    <div class="field string textinput" id="1-date-field">
+	      <label>Car:</label>
+	      <input type="radio" checked="checked" name="car" id="car1" value="http://bigasterisk.com/2005/11/gasuse/car/drewCivicHybrid"/> <label for="car1">gray</label>
+	      <input type="radio" name="car" id="car2" value="http://bigasterisk.com/gasuse/car/2010/insight"/> <label for="car2">white</label>
+
+	    </div>
+	    <div>
+	      <div class="field string textinput left" id="1-odo-field">
+		<label class="label" for="1-odo">Odo</label>
+		<div class="inputs"> <input type="text" id="1-odo" name="odo" size="6"/> mi</div>
+		<div class="description"/>
+	      </div>
+	      <div class="field string textinput" id="1-gallons-field">
+		<label class="label" for="1-gallons">Gallons</label>
+		<div class="inputs"> <input type="text" id="1-gallons" name="gallons" size="6"/> </div>
+		<div class="description"/>
+	      </div>
+	    </div>
+	  </div>
+
+	  <div id="group-note">
+	    <div class="field string textinput" id="1-notes-field">
+	      <label class="label" for="1-notes">Notes</label>
+	      <div class="inputs"> <input type="text" id="1-notes" name="notes" size="28"/> </div>
+	      <div class="description"/>
+	    </div>
+	    <div class="actions"> <input type="submit" name="submit" value="Submit" id="1-action-submit"/> </div>
+	  </div>
+	</form>
+      </div>
+    </div>
+  </body>
+</html>
