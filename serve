@@ -12,6 +12,9 @@ histogram of dollars per mile (by number of miles at that price)
 
 from __future__ import division
 import math, time, sys, logging
+
+sys.path.append('/usr/lib/python%s/site-packages/oldxml' % sys.version[:3])
+
 from sets import Set
 from xml.utils import iso8601
 from twisted.application import internet, service
@@ -295,7 +298,7 @@ class FillupsPage(Page):
         return dpm, totalGal
 
     def data_years(self, ctx, data):
-        return range(2001, 2007+1) + ['All']
+        return range(2001, 2009+1) + ['All']
 
     def data_stationDpmByYear(self, ctx, data):
         """
