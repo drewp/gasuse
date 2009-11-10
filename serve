@@ -78,7 +78,7 @@ class SubmitFillUpPage(rend.Page):
         req = inevow.IRequest(ctx)
         user = req.getHeader('x-foaf-agent')
         if user is None:
-            return T.a(href="/login")['Login required']
+            return T.a(href="login")['Login required']
         return [T.div(id="login")["Logged in as ", user or 'unknown'], ctx.tag]
             
     def newItem(self, ctx):
