@@ -6,7 +6,7 @@
   xmlns:admin="http://webns.net/mvcb/">
  <name>gasuse</name>
  <shortdesc>Gather and report on gasoline usage and prices</shortdesc>
- <homepage rdf:resource="http://gasuse.bigasterisk.com/" />
+ <homepage rdf:resource="http://bigasterisk.com/gasuse/" />
  <maintainer rdf:resource="http://bigasterisk.com/foaf.rdf#drewp"/>
  <category rdf:resource="http://rdflib.net/projects#using_rdflib"/>
  

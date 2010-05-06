@@ -32,8 +32,8 @@ from linegraph import LineGraph
 import mpg
 from gasuse import DC, DATE, GAS, DOLLAR, MILE, GALLON, SIOC
 
-sys.path.append("/my/proj/ffg/sparqlhttp")
-sys.path.append("../ffg/sparqlhttp")
+sys.path.append("/my/proj/sparqlhttp")
+sys.path.append("../sparqlhttp")
 from sparqlhttp.syncimport import SyncImport
 from sparqlhttp.dictquery import Graph2
 
@@ -373,6 +373,10 @@ class MainPage(Page):
                              "pricePerGallon")
     def child_submitFillUp(self, ctx):
         return SubmitFillUpPage()
+
+    def child_news(self, ctx):
+        return static.File("wiki1.html")
+    
 setattr(MainPage, 'child_doap.rdf', static.File("doap.rdf"))
     
 
