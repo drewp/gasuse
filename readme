@@ -38,3 +38,9 @@ currently won't view the new data because query is based on
 errors in the old data. need to upgrade rdf:Class to rdf:type, etc
 and move to new rdflib, sparql
 
+
+---
+
+remove bnodes:
+all to .nt
+perl -lpi -e 's,_:(\S+),<http://bigasterisk.com/2005/11/gasuse/node/$1>,g' *

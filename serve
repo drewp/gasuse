@@ -24,7 +24,7 @@ from nevow.vhost import VHostMonsterResource
 from formless import annotate, webform
 from zope.interface import implements
 from rdflib.sparql.sparqlGraph import SPARQLGraph
-from rdflib import URIRef, Literal, BNode, Namespace, FileInputSource
+from rdflib import URIRef, Literal, Namespace, FileInputSource
 from rdflib.Graph import Graph, ConjunctiveGraph
 from rdflib import RDF, RDFS
 from rdflib.sparql.sparqlOperators import getLiteralValue
@@ -35,7 +35,7 @@ from gasuse import DC, DATE, GAS, DOLLAR, MILE, GALLON, SIOC
 sys.path.append("/my/proj/sparqlhttp")
 sys.path.append("../sparqlhttp")
 from sparqlhttp.syncimport import SyncImport
-from sparqlhttp.dictquery import Graph2
+from sparqlhttp.graph2 import SyncGraph
 
 XS = Namespace("http://www.w3.org/2001/XMLSchema#")
 
@@ -46,6 +46,10 @@ class Page(rend.Page):
     content = "" # xml file to appear in center frame
     def render_content(self, context, data):
         return loaders.xmlfile(self.content)
+
+def randomNode():
+    """not using bnodes, but these are about the same"""
+    return URIRef("http://bigasterisk.com/2005/11/gasuse/node/%f" % time.time())
 
 def stationUri(existingGraph, newGraph, station, addr):
     """
@@ -99,13 +103,13 @@ class SubmitFillUpPage(rend.Page):
 
         station = stationUri(graph, g, station, addr)
 
-        price = BNode()
+        price = randomNode()
         g.add((price, GAS['gasStation'], station))
         g.add((price, GAS['pricePerGallon'],
                Literal(priceGal, datatype=GAS['type#dollar'])))
         g.add((price, DC['date'], date))
 
-        fill = BNode()
+        fill = randomNode()
         g.add((fill, RDF.type, GAS['FillUp']))
         g.add((fill, SIOC.has_creator, URIRef(user)))
         g.add((fill, DC['created'],
@@ -147,7 +151,8 @@ class FillupsPage(Page):
         except (KeyError, TypeError, ValueError), e:
             return 10
     def data_fillUps(self, ctx, data):
-        fillUps = [f for d,f in mpg.fillUps(graph, self.render_car(ctx, data))]
+        reload(mpg)
+        fillUps = [f for d,f in mpg.fillUps(graph2, self.render_car(ctx, data))]
         n = self.data_numFillUps(ctx, data)
         if n == 'all':
             n = 0
@@ -158,7 +163,7 @@ class FillupsPage(Page):
         return [(T.a(href=url.here.add('numFillUps', n))[n]," ")
                 for n in [10,20,50,100,'all']]
     def render_row(self, ctx, item):
-        val = lambda *args: str(graph.value(*args))
+        val = lambda *args: str(graph2.value(*args))
         slot = ctx.fillSlots
         for p in [
             "http://purl.org/dc/elements/1.1/date",
@@ -171,33 +176,38 @@ class FillupsPage(Page):
             "mpgColor", "pricePerGallon", "gasStationLabel",
             "dpmColor", "dollarsPerMile", "mpgTrunc"]:
             slot(p, "")
- 
-        for p,o in graph.predicate_objects(item):
-            slot(str(p), str(o))
 
-        try:
-            slot("mpgTrunc", "%.2f" % float(val(item, GAS["mpgOnThisTank"])))
-        except (TypeError, ValueError), e:
-            print e
-            pass
+        for row in graph2.queryd("SELECT ?p ?o WHERE { ?s ?p ?o }",
+                                 initBindings={'s' : item}):
+            slot(str(row['p']), str(row['o']))
+
+        def tryRound(x, width=2):
+            try:
+                return ("%."+str(width)+"f") % float(x)
+            except (TypeError, ValueError), e:
+                return x
+
+        slot("mpgTrunc", tryRound(val(item, GAS["mpgOnThisTank"])))
 
         if val(item, GAS["mpgOnThisTank"]) != "None": # val has str()
             m = float(val(item, GAS["mpgOnThisTank"]))
             bright = (m - 15) / (55 - 15) * 255
             slot("mpgColor", htmlColor(50, bright, 50))
 
-        try:
-            slot("pricePerGallon",
-                 "%.03f" %
-                 float(val(val(item, GAS["gasPrice"]), GAS["pricePerGallon"])))
-        except (TypeError, ValueError), e:
-            print e
-            pass
+        slot("pricePerGallon",
+             tryRound(graph2.queryd("""
+               SELECT ?ppg WHERE {
+                 ?item gas:gasPrice [
+                   gas:pricePerGallon ?ppg ]
+               }""", initBindings={'item' : item})[0]['ppg'], width=3))
 
         try:
-            stns = graph.objects(item, GAS["gasStation"])
-            labels = [graph.label(s) for s in stns]
-            slot("gasStationLabel", labels)
+            slot("gasStationLabel", [row['label'] for row in graph2.queryd("""
+              SELECT ?label WHERE {
+                ?item gas:gasStation ?stn .
+                ?stn rdfs:label ?label .
+              }
+            """, initBindings={'item' : item})])
         except (TypeError, ValueError), e:
             print e
             pass
@@ -217,17 +227,17 @@ class FillupsPage(Page):
         if not hasattr(self, "_fbsn"):
             self._fbsn = {}
         if shortName not in self._fbsn:
-            val = graph.value
-            fillUps = []
-            stns = Set()
-            for stn in graph.subjects(RDF.type, GAS['Station']):
-                if val(stn, GAS['shortName'], any=True) == shortName:
-                    stns.add(stn)
-
-            for f in graph.subjects(RDF.type, GAS['FillUp']):
-                if (val(f, GAS['car']) == car and
-                    val(f, GAS['gasStation']) in stns):
-                    fillUps.append(f)
+            val = graph2.value
+            fillUps = Set([row['fillUp'] for row in graph2.queryd("""
+              SELECT DISTINCT ?fillUp WHERE {
+                ?stn a gas:Station ;
+                  gas:shortName ?shortName .
+                ?fill a gas:Fillup ;
+                  gas:car ?car ;
+                  gas:gasStation ?stn .
+              }
+            """, initBindings={'shortName' : Literal(shortName),
+                               'car' : car})])
             self._fbsn[shortName] = fillUps
             
         return self._fbsn[shortName]
@@ -237,7 +247,7 @@ class FillupsPage(Page):
         milesFromStn = 0
         dollarsFromStn = 0
         totalGal = 0
-        val = graph.value
+        val = graph2.value
         for f in self.fillUpsByShortName(car, shortName):
             try:
                 if not (getLiteralValue(start) <=
@@ -280,10 +290,8 @@ class FillupsPage(Page):
         """
         ret = []
         print "shortnames"
-        shortNames = Set()
-        for stn in graph.subjects(RDF.type, GAS['Station']):
-            shortName = graph.value(stn, GAS['shortName'], any=True)
-            shortNames.add(shortName)
+        shortNames = Set([row['shortName'] for row in
+                          graph2.queryd("SELECT ?shortName WHERE { ?stn a gas:Station ; gas:shortName ?shortName . }")])
 
         car = self.render_car(ctx, data)
         for shortName in sorted(shortNames):
@@ -332,7 +340,8 @@ class LineGraphPage(Page):
     
     def child_graph(self, ctx):
         vals = []
-        for i, (date, f) in enumerate(mpg.fillUps(graph, car)):
+        reload(mpg)
+        for i, (date, f) in enumerate(mpg.fillUps(graph2, car)):
             try:
                 # clean up the data- i should be able to screen for datatype
                 if not date.startswith("200") or len(date) != 10:
@@ -355,9 +364,9 @@ class LineGraphPage(Page):
     
     def funcDesc(self, word):
         if word == 'dollarsPerMile':
-            return (lambda fillUp: graph.value(fillUp, GAS['dollarsPerMile']),
+            return (lambda fillUp: graph2.value(fillUp, GAS['dollarsPerMile']),
                     'dollarsPerMile')
-        return (lambda fillUp: graph.value(graph.value(fillUp,
+        return (lambda fillUp: graph2.value(graph2.value(fillUp,
                                                       GAS['gasPrice']),
                                           GAS['pricePerGallon']),
                 "pricePerGallon")
@@ -367,7 +376,7 @@ class MainPage(Page):
     def child_fillUps(self, ctx):
         return FillupsPage()
     def child_lineGraph(self, ctx):
-        return LineGraphPage(lambda fillUp: graph.value(graph.value(fillUp,
+        return LineGraphPage(lambda fillUp: graph2.value(graph2.value(fillUp,
                                                             GAS['gasPrice']),
                                                         GAS['pricePerGallon']),
                              "pricePerGallon")
@@ -379,48 +388,24 @@ class MainPage(Page):
     
 setattr(MainPage, 'child_doap.rdf', static.File("doap.rdf"))
     
-
-def setupGetContextMethod(graph):
-    # why can't i have get_context from old BackwardCompatGraph? unclear
-    # how that should be done in ConjunctiveGraph
-    def get_context(self, identifier, quoted=False):
-        """Return a context graph for the given identifier
-
-        identifier must be a URIRef or BNode.
-        """
-        assert isinstance(identifier, URIRef) or \
-               isinstance(identifier, BNode), type(identifier)
-        if quoted:
-            assert False
-            return QuotedGraph(self.store, identifier)
-            #return QuotedGraph(self.store, Graph(store=self.store,
-            #                                     identifier=identifier))
-        else:
-            return Graph(store=self.store, identifier=identifier,
-                         namespace_manager=self)
-            #return Graph(self.store, Graph(store=self.store,
-            #                               identifier=identifier))
-
-
-    import types
-    graph.get_context = types.MethodType(get_context, graph, graph.__class__)
-
 logging.basicConfig(level=logging.INFO)
 log = logging.getLogger()
+logging.getLogger('restkit.client').setLevel(logging.WARN)
 
-graph = ConjunctiveGraph()
-setupGetContextMethod(graph)
-
-graph2 = Graph2(graph, initNs=dict())
+graph2 = SyncGraph('sesame',
+     'http://plus:8080/openrdf-sesame/repositories/gasuse',
+                   initNs=dict(dc=DC, gas=GAS, rdfs=RDFS.RDFSNS))
 sync = SyncImport(graph2, inputDirectory='input/',
                   contextPrefix="http://gasuse.bigasterisk.com/input/",
                   pollSeconds=8)
 
-print "now", len(graph), len(graph2.graph)
+log.info("recomputing mpg")
+mpg.clearComputed(graph2)
 for car in [GAS['car/drewCivicHybrid'],
             #GAS['car/drewHonda'],
             ]:
-    mpg.calcMpg(graph, car)
+    mpg.calcMpg(graph2, car)
+log.info("done mpg")
 
 application = service.Application('gasuse')
 main = MainPage()
