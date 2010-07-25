@@ -116,8 +116,8 @@ def calcMpg(graph, car):
     prevFillup = None
     val = graph.value
         
-    stmts = set()
     for d,f in fillUps(graph, car):
+        stmts = set()
         if prevFillup is not None:
             try:
                 stmts.update(fillupStatements(graph, f, prevFillup))
@@ -130,38 +130,3 @@ def calcMpg(graph, car):
 def clearComputed(graph):
     graph.subgraphClear(GAS['computed'])
 
-if __name__ == '__main__':
-    from rdflib.sparql.sparqlGraph import SPARQLGraph as Graph
-    graph = Graph()
-    graph.parse(FileInputSource(open("gas.rdf")))
-
-    print "parsed"
-
-    knownNames = graph.query("?shortName",
-                             GraphPattern([
-        ("?station", RDFS.Class, GAS['Station']),
-        ("?station", GAS['shortName'], "?shortName"),
-        ("?station", GAS['shortAddress'], "?shortAddress"),
-        ]))
-
-    print "known stations:",
-    for name in knownNames:
-        res = graph.query("?station",
-                          GraphPattern([("?station", GAS['shortName'], name)]))
-        print "%s (%d)," % (name, len(res)),
-    print
-
-    #print "%d known stations: %s" % (len(knownStations), 
-
-    Debug = True
-
-    car = GAS['car/drewCivicHybrid']
-
-    calcMpg(graph, car)
-
-    for d,f in fillUps(graph, car):
-        print d, shorten(graph, graph.value(f, GAS['gasStation']))
-        dump(graph, f)
-
-    #    pattern.addConstraint(op.ge("?date", datetime.date(2004, 11, 1)))
-    #    pattern.addConstraint(op.le("?date", datetime.date(2004, 12, 31)))
