@@ -5,10 +5,7 @@ sort fillups better, using odometer
 """
 
 import optparse, datetime
-from rdflib.sparql.bison import GraphPattern
-from rdflib.sparql import Debug
-import rdflib.sparql.sparqlOperators as op
-from rdflib import URIRef, Literal, Variable, BNode, Namespace, FileInputSource
+from rdflib import URIRef, Literal, Variable, BNode, Namespace
 from rdflib import RDF, RDFS
 
 from gasuse import DC, DATE, GAS, DOLLAR, MILE, GALLON, TYPE

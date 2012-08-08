@@ -13,8 +13,6 @@ histogram of dollars per mile (by number of miles at that price)
 from __future__ import division
 import time, sys, logging
 
-sys.path.append('/usr/lib/python%s/site-packages/oldxml' % sys.version[:3])
-
 from sets import Set
 from xml.utils import iso8601
 from twisted.application import internet, service
@@ -22,9 +20,8 @@ from nevow import appserver
 from nevow import inevow, loaders, rend, static, url, tags as T
 from nevow.vhost import VHostMonsterResource
 from rdflib import URIRef, Literal, Namespace
-from rdflib.Graph import Graph
+from rdflib import Graph
 from rdflib import RDF, RDFS
-from rdflib.sparql.sparqlOperators import getLiteralValue
 from linegraph import LineGraph
 import mpg
 from gasuse import DC, DATE, GAS, DOLLAR, MILE, GALLON, SIOC
@@ -250,9 +247,7 @@ class FillupsPage(Page):
         val = graph2.value
         for f in self.fillUpsByShortName(car, shortName):
             try:
-                if not (getLiteralValue(start) <=
-                        getLiteralValue(val(f, DC['date'])) <=
-                        getLiteralValue(end)):
+                if not (start.toPython() <= val(f, DC['date']).toPython() <= end.toPython()):
                     continue
                 m = val(f, GAS['milesOnThisTank'])
                 milesFromStn += float(m)
