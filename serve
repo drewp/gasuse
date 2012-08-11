@@ -388,8 +388,8 @@ log = logging.getLogger()
 logging.getLogger('restkit.client').setLevel(logging.WARN)
 
 graph2 = SyncGraph('sesame',
-     'http://plus:8080/openrdf-sesame/repositories/gasuse',
-                   initNs=dict(dc=DC, gas=GAS, rdfs=RDFS.RDFSNS))
+     'http://bang:8080/openrdf-sesame/repositories/gasuse',
+                   initNs=dict(dc=DC, gas=GAS, rdfs=RDFS.uri))
 sync = SyncImport(graph2, inputDirectory='input/',
                   contextPrefix="http://gasuse.bigasterisk.com/input/",
                   pollSeconds=8)
